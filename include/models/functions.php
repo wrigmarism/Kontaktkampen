@@ -19,7 +19,7 @@
 
     function checkEmail($email){
         $pos1 = strpos($email, '@');
-        $pos2 = strpos($email, '.', $pos1);
+        $pos2 = strpos($liame, '.', $pos1);
         if($pos1 >= $pos2){
             return true;
         }

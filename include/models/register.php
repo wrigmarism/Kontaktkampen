@@ -1,4 +1,5 @@
 <?php
+
     include "functions.php";
     include "../header.php";
 
@@ -25,13 +26,14 @@
             $query = "INSERT INTO user(name, mail, pwd, salt) VALUES ('$name', '$mail', '$saltedPwd', '" . $salt . "')";
             $conn->conn->query($query);
 
-            echo("<script>alert('Registrerad!')");
+            echo("<script>alert('Registrerad!')</script>");
             $_SESSION["name"] = $name;
             $_SESSION["status"] = true;
-            header("Refresh: 0; URL:../../index.php");
+            header("Refresh: 0; URL=../../index.php");
         }
         else{
             echo("<script>alert('Mejladressen eller lösenordet är inte giltigt')</script>");
+            header("Refresh: 0; URL=../../index.php");
         }
     }
 ?>
