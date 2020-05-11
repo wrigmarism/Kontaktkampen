@@ -12,9 +12,9 @@
       <a class="nav-item nav-link" id="companies_button">Företag</a> 
       
       <?php if(isset($_SESSION['status']) && $_SESSION['status'] == true) : ?>
-      <a class="nav-item nav-link" id="logIn_button">Logga in</a>
+        <a class="nav-item nav-link" id="logOut_button">Logga ut</a>
     <?php else : ?>
-      <a class="nav-item nav-link" id="logOut_button">Logga ut</a>
+      <a class="nav-item nav-link" id="logIn_button">Logga in</a>
     <?php endif ?> 
 
     </div>

@@ -20,32 +20,64 @@
             <?php include "include/html/home.php" ?>
         </div>
 
+
         <div class="card">
+  <h5 class="card-header" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+  Capgemini
+</h5>
+  <div class="card-body collapse" id="collapseExample">
+  <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Info</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Fråga</a>
+      </li>
+    </ul>
   <img src="assets/img/Logga1.jpg" class="card-img-top">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Expand</a>
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
   </div>
 </div>
 
 <div class="card">
+  <h5 class="card-header" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+  Microsoft
+</h5>
+  <div class="card-body collapse" id="collapseExample2">
+  <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Info</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Fråga</a>
+      </li>
+    </ul>
   <img src="assets/img/Logga2.png" class="card-img-top">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Expand</a>
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
   </div>
 </div>
 
 <div class="card">
+  <h5 class="card-header" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+  Cytiva
+</h5>
+  <div class="card-body collapse" id="collapseExample3">
+  <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Info</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Fråga</a>
+      </li>
+    </ul>
   <img src="assets/img/Logga3.jpg" class="card-img-top">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Expand</a>
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
   </div>
 </div>
+
 
 
         <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
