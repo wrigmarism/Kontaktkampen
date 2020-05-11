@@ -22,20 +22,32 @@ function home(){
     xhttp.open("GET", "include/html/home.php", true);
     xhttp.send();
 };
-
-function companies(){
-
-  // var ref = db.collection("company").doc("HX4dG35C3TwCLcYlfGfx");
   
-  // console.log(ref.name);
+  
+function companies(){
+  document.getElementById("content").innerHTML ='<h1>Årets företag</h1>' +
+  '<table id="company" cellspacing="0" cellpadding="1">' +
+      '<tr>' +
+          '<th> Logga </th>' +
+          '<th> Företag </th>' +
+          '<th> Kod </th>' +
+      '</tr>' +
+      '<tr>';
+
   db.collection("company").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
-        var EName = doc.data().name;
-        console.log(EName);
-        
-    });
-});
+      $("#content").append('<tr><th><img src="' + doc.data().img + '" width="50"></th>' +
+                            '<th>' + doc.data().name + '</th>' +
+                            '<th>' + doc.data().code + '</th></tr>');
+  })});
+  
+  
+
+
+};
+
+  
+
 
     // var xhttp;
     // if (window.XMLHttpRequest) {
@@ -50,7 +62,7 @@ function companies(){
     // };
     // xhttp.open("GET", "include/html/companies.php", true);
     // xhttp.send();
-};
+
 
 function logIn(){
     var xhttp;

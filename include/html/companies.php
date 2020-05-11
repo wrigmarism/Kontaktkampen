@@ -9,12 +9,21 @@
         <th> Företag </th>
         <th> Kod </th>
     </tr>
-    <?php
-        while($row = mysqli_fetch_array($result)) : ?>
-            <tr>
-                <td><img src="<?php echo $row['img']; ?>" width="50"></td>
-                <td><?php echo $row["name"]; ?></td>
-                <td><?php echo $row["code"]; ?></td>
-            </tr>
-        <?php endwhile ?>
+    <script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyB79OZRXPSHds112xsBihTbG-Iv0kjKPt8",
+        authDomain: "kontaktkampen-b308a.firebaseapp.com",
+        projectId: "kontaktkampen-b308a"
+    });
+    
+    var db = firebase.firestore();
+
+    db.collection("company").get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        document.write('<tr><th>' + doc.data().name + '</th>');
+        document.write('<th>' + doc.data().img + '</th>');
+        document.write('<th>' + doc.data().code + '</th></tr>');
+    });
+</script>
 </table>
