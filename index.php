@@ -53,7 +53,7 @@
         <a class="nav-link" href="#">Fråga</a>
       </li>
     </ul>
-  <img src="assets/img/Logga2.png" class="card-img-top">
+  <img src="assets/img/logga2.png" class="card-img-top">
     <h5 class="card-title">Special title treatment</h5>
     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
   </div>
@@ -72,7 +72,7 @@
         <a class="nav-link" href="#">Fråga</a>
       </li>
     </ul>
-  <img src="assets/img/Logga3.jpg" class="card-img-top">
+  <img src="assets/img/logga3.jpg" class="card-img-top">
     <h5 class="card-title">Special title treatment</h5>
     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
   </div>
