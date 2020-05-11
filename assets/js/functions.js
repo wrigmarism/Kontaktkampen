@@ -22,15 +22,31 @@ function home(){
     xhttp.open("GET", "include/html/home.php", true);
     xhttp.send();
 };
-
+  
+  
 function companies(){
+  var html ='<h1>Årets företag</h1>' +
+  '<table id="company" cellspacing="0" cellpadding="1">' +
+      '<tr>' +
+          '<th> Företag </th>' +
+      '</tr>' +
+      '<tr>';
+  
+  var list = '';
 
   db.collection("company").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-    });
-});
+      $("#content").append('<tr><th>' + doc.data().name + '</th></tr>');
+  })});
+  
+  /*
+  document.getElementById("content").innerHTML = html;*/
+
+
+};
+
+  
+
 
     // var xhttp;
     // if (window.XMLHttpRequest) {
@@ -45,7 +61,7 @@ function companies(){
     // };
     // xhttp.open("GET", "include/html/companies.php", true);
     // xhttp.send();
-};
+
 
 function logIn(){
     var xhttp;
