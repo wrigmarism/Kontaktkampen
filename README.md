@@ -2,6 +2,7 @@
 En tipspromenad med frågor om företagen som ställer ut under Kontaktdagarna 2020. Som användare 
 
 KRAVSPECIFIKATION
+
 Funktionella krav:
 * Logga in / registrera användare
 * Se lista med företag
