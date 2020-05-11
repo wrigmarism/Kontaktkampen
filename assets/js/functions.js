@@ -34,6 +34,9 @@ function companies(){
   
   var list = '';
 
+  // var ref = db.collection("company").doc("HX4dG35C3TwCLcYlfGfx");
+  
+  // console.log(ref.name);
   db.collection("company").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
       $("#content").append('<tr><th>' + doc.data().name + '</th></tr>');
