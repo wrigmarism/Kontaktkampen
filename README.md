@@ -8,8 +8,8 @@ Funktionella krav:
 * Logga in / registrera användare
 * Se lista med företag
 * Se info om enskilda företag och kunna svara på företagsfråga
-(* Adminsida för att lägga till/ta bort/redigera företag och ev användare)
-(* Se eventuella kontaktsamtal)
+* (Adminsida för att lägga till/ta bort/redigera företag och ev användare)
+* (Se eventuella kontaktsamtal)
 
 Icke-funktionella krav:
 * Logga in via Mina sidor-API:n
