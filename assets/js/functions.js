@@ -25,25 +25,23 @@ function home(){
   
   
 function companies(){
-  var html ='<h1>Årets företag</h1>' +
+  document.getElementById("content").innerHTML ='<h1>Årets företag</h1>' +
   '<table id="company" cellspacing="0" cellpadding="1">' +
       '<tr>' +
+          '<th> Logga </th>' +
           '<th> Företag </th>' +
+          '<th> Kod </th>' +
       '</tr>' +
       '<tr>';
-  
-  var list = '';
 
-  // var ref = db.collection("company").doc("HX4dG35C3TwCLcYlfGfx");
-  
-  // console.log(ref.name);
   db.collection("company").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
-      $("#content").append('<tr><th>' + doc.data().name + '</th></tr>');
+      $("#content").append('<tr><th><img src="' + doc.data().img + '" width="50"></th>' +
+                            '<th>' + doc.data().name + '</th>' +
+                            '<th>' + doc.data().code + '</th></tr>');
   })});
   
-  /*
-  document.getElementById("content").innerHTML = html;*/
+  
 
 
 };
