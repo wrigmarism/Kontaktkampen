@@ -29,7 +29,7 @@
         messagingSenderId: "927975566314",
         appId: "1:927975566314:web:6ae89ddc756572c8496093",
         measurementId: "G-D3S89K248G"
-        
+
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
@@ -47,5 +47,6 @@ db.collection("företag").doc("LA").set({
 .catch(function(error) {
     console.error("Error writing document: ", error);
 });</script>
+    <script src="assets/js/functions.js"></script>
     </body>
 </html>

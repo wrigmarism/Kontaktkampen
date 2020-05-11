@@ -8,5 +8,4 @@
                 <button type="button" onclick="logIn()">Logga in</button>
                 <button type="button" onclick="register()">Registera dig</button>
     <?php endif ?> 
-    <script src="assets/js/functions.js"></script>
 </div>
