@@ -20,12 +20,12 @@
             <?php include "include/html/home.php" ?>
         </div>
 
-
+        <div class="accordion" id="accordionExample">
         <div class="card">
   <h5 class="card-header" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
   Capgemini
 </h5>
-  <div class="card-body collapse" id="collapseExample">
+  <div class="card-body collapse" id="collapseExample" data-parent="#accordionExample">
   <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
         <a class="nav-link active" href="#">Info</a>
@@ -44,7 +44,7 @@
   <h5 class="card-header" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
   Microsoft
 </h5>
-  <div class="card-body collapse" id="collapseExample2">
+  <div class="card-body collapse" id="collapseExample2" data-parent="#accordionExample">
   <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
         <a class="nav-link active" href="#">Info</a>
@@ -63,7 +63,7 @@
   <h5 class="card-header" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
   Cytiva
 </h5>
-  <div class="card-body collapse" id="collapseExample3">
+  <div class="card-body collapse" id="collapseExample3" data-parent="#accordionExample">
   <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
         <a class="nav-link active" href="#">Info</a>
@@ -76,6 +76,7 @@
     <h5 class="card-title">Special title treatment</h5>
     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
   </div>
+</div>
 </div>
 
 
