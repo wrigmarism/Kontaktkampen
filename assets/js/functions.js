@@ -1,3 +1,12 @@
+// Initialize Cloud Firestore through Firebase
+firebase.initializeApp({
+  apiKey: "AIzaSyB79OZRXPSHds112xsBihTbG-Iv0kjKPt8",
+  authDomain: "kontaktkampen-b308a.firebaseapp.com",
+  projectId: "kontaktkampen-b308a"
+});
+
+var db = firebase.firestore();
+
 function home(){
     var xhttp;
     if (window.XMLHttpRequest) {
@@ -15,6 +24,19 @@ function home(){
 };
 
 function companies(){
+
+  db.collection("users").add({
+    first: "Ada",
+    last: "Lovelace",
+    born: 1815
+})
+.then(function(docRef) {
+    console.log("Document written with ID: ", docRef.id);
+})
+.catch(function(error) {
+    console.error("Error adding document: ", error);
+});
+
     var xhttp;
     if (window.XMLHttpRequest) {
       xhttp = new XMLHttpRequest();
@@ -66,3 +88,4 @@ function register(){
     xhttp.open("POST", "include/html/registerform.php", true);
     xhttp.send();
 };
+
