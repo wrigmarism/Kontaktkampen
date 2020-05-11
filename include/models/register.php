@@ -27,7 +27,7 @@
             $conn->conn->query($query);
 
             echo("<script>alert('Registrerad!')</script>");
-            $_SESSION["name"] = $name;
+            $_SESSION["uid"] = $name;
             $_SESSION["status"] = true;
             header("Refresh: 0; URL=../../index.php");
         }

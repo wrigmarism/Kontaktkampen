@@ -1,3 +1,5 @@
+<h1>Registrera användare</h1>
+
 <div id="registerform">
     <form id="registerform" action="include/models/register.php" method="post">
         <label for name="name">Namn:</label>
