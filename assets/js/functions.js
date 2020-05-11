@@ -25,31 +25,26 @@ function home(){
 
 function companies(){
 
-  db.collection("users").add({
-    first: "Ada",
-    last: "Lovelace",
-    born: 1815
-})
-.then(function(docRef) {
-    console.log("Document written with ID: ", docRef.id);
-})
-.catch(function(error) {
-    console.error("Error adding document: ", error);
+  db.collection("company").get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+    });
 });
 
-    var xhttp;
-    if (window.XMLHttpRequest) {
-      xhttp = new XMLHttpRequest();
-    } else {
-      xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("content").innerHTML = this.responseText;
-      }
-    };
-    xhttp.open("GET", "include/html/companies.php", true);
-    xhttp.send();
+    // var xhttp;
+    // if (window.XMLHttpRequest) {
+    //   xhttp = new XMLHttpRequest();
+    // } else {
+    //   xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    // }
+    // xhttp.onreadystatechange = function() {
+    //   if (this.readyState == 4 && this.status == 200) {
+    //     document.getElementById("content").innerHTML = this.responseText;
+    //   }
+    // };
+    // xhttp.open("GET", "include/html/companies.php", true);
+    // xhttp.send();
 };
 
 function logIn(){
