@@ -4,9 +4,10 @@
         <title>Kontaktkampen</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="assets/css/styles.css">
-
+        
     </head>
 
     <?php
@@ -18,6 +19,34 @@
         <div id="content">
             <?php include "include/html/home.php" ?>
         </div>
+
+        <div class="card">
+  <img src="assets/img/Logga1.jpg" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Expand</a>
+  </div>
+</div>
+
+<div class="card">
+  <img src="assets/img/Logga2.png" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Expand</a>
+  </div>
+</div>
+
+<div class="card">
+  <img src="assets/img/Logga3.jpg" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Expand</a>
+  </div>
+</div>
+
 
         <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
