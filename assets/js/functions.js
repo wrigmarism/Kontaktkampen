@@ -126,3 +126,19 @@ function register() {
   xhttp.open("POST", "include/html/registerform.php", true);
   xhttp.send();
 }
+
+
+function companyInfo() {
+  var companyData = db.collection("company").doc("Företag 1");
+  
+  companyData.get().then(function(doc) {
+    if (doc.exists) {
+      console.log("Document data:", doc.data());
+    }
+    else{
+      console.log("No such document!");
+    }
+    }).catch(function(error){
+      console.log("Error getting document: ", error);
+    })
+  }
