@@ -25,10 +25,15 @@ function home(){
 
 function companies(){
 
+  // var ref = db.collection("company").doc("HX4dG35C3TwCLcYlfGfx");
+  
+  // console.log(ref.name);
   db.collection("company").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
+        var EName = doc.data().name;
+        console.log(EName);
+        
     });
 });
 
