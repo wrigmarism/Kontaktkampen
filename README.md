@@ -19,5 +19,5 @@ Databas:
 * company(cid, name, code, img) - id-nummer, företagsnamn, kod för att låsa upp fråga, adress till logga
 * question(qid, cid, qst, corr, ans1, ans2, ans3) - fråge-id, företags-id, fråga, rätt svar, tre alternativ)
 * lock(uid, cid) - användar-id, företags-id (korstabell för upplåsta frågor)
-* trophy(uid, cid, timestamp) - användar-id, företags-id, tidsstämpel för att kunna veta vem som svarat först (korstabell för rätta svar)
+* trophy(uid, cid, time) - användar-id, företags-id, tidsstämpel för att kunna veta vem som svarat först (korstabell för rätta svar)
 
