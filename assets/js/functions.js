@@ -48,42 +48,31 @@ function home() {
 }
 
 function companies() {
-  $("#content").empty();
-  $("#content").append('<div class="accordion" id="accordion">');
+  document.getElementById("content").innerHTML =
+    "<h1>Årets företag</h1>" +
+    '<table id="company" cellspacing="0" cellpadding="1">' +
+    "<tr>" +
+    "<th> Logga </th>" +
+    "<th> Företag </th>" +
+    "<th> Kod </th>" +
+    "</tr>" +
+    "<tr>";
+
   db.collection("company")
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        $("#accordion").append(
-          '<div class="card">' +
-          '<h5 class="card-header" data-toggle="collapse" href="#collapse' +
-           doc.data().name +
-          '" role="button" aria-expanded="false" aria-controls="collapseExample">' +
-            doc.data().name +
-            '</h5>' +
-            '<div class="card-body collapse" id="collapse' + 
-            doc.data().name +
-            '" data-parent="#accordion">' +
-            '<ul class="nav nav-tabs card-header-tabs">' +
-            '<li class="nav-item">' +
-              '<a class="nav-link active" href="#">Info</a>' +
-            '</li>' +
-            '<li class="nav-item">' +
-              '<a class="nav-link" href="#">Fråga</a>' +
-            '</li>' +
-          '</ul>' +
-          '<img src="' +
+        $("#content").append(
+          '<tr><th><img src="' +
             doc.data().img +
-            '" class="card-img-top">' +
-            '<h5 class="card-title">' +
-            doc.data().title +
-            '</h5>' +
-            '<p class="card-text">' +
-            doc.data().infoText + 
-            '</p>' +
-            '</div>' +
-          '</div>'
-      );
+            '" width="50"></th>' +
+            "<th>" +
+            doc.data().name +
+            "</th>" +
+            "<th>" +
+            doc.data().code +
+            "</th></tr>"
+        );
       });
     });
 }
@@ -165,3 +154,32 @@ function companyInfo(company) {
           console.log("Error getting documents: ", error);
       });
     }
+
+//id(name, question, title, infoText, img, answer1, answer2, answer3, correctAnswer)
+
+
+function generateCompanies(x){
+  for (let i = 1; index <= x; index++) {
+      var name = "Företag " + i;
+      var title = "Here be " + i + " dragons";
+      var infoText = "We are " + i;
+      var img = "URL " + i;
+      var question = "How many?";
+      var answer1 = "1";
+      var answer2 = "2";
+      var answer3 = "3";
+      var correctAnswer = Math.floor(Math.random() * 3);
+
+      firebase.database().ref('company/' + firebase.push()).set({
+        name : name,
+        title : title,
+        infoText : infoText,
+        img : img,
+        question : question,
+        answer1 : answer1,
+        answer2 : answer2,
+        answer3 : answer3,
+        correctAnswer : correctAnswer
+      });
+  }
+}
