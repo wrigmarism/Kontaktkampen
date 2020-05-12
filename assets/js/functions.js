@@ -76,7 +76,9 @@ function companies() {
             '" data-parent="#accordion">' +
             '<ul class="nav nav-tabs card-header-tabs">' +
             '<li class="nav-item">' +
-              '<a class="nav-link active">Info</a>' +
+              '<a class="nav-link active cardShowText" id ="' +
+              companyNameNoSpaces +
+              '" >Info</a>' +
             '</li>' +
             '<li class="nav-item">' +
               '<a class="nav-link cardShowQuestion" id ="' +
@@ -97,31 +99,10 @@ function companies() {
             doc.data().infoText + 
             '</p>' +
             '</div>' +
-            '<div class="card-body" id="question_' +
+            '<div class="card-body questionDiv" id="question_' +
           companyNameNoSpaces +
-          '"></div>' +
-          '</div>' +
-          '</div>' 
-      );
-      });
-    });
-}
-
-$('body').on('click', 'a.cardShowQuestion', function() {
-  var company = $(this).attr('id');
-  showQuestion(company);
-});
-
-function showQuestion(company) {
-  var idNameText = "text_" + company;
-  $('#' +idNameText).hide();
-  db.collection("company").where("name", "==", company)
-  .get()
-  .then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-        var idName = "question_" + company;
-        $('#' + idName).empty();
-        $('#' + idName).append('<h5>' +
+          '">' +
+          '<h5>' +
                 doc.data().question +
               '</h5>' +
               '<div class="form-check">' +
@@ -141,12 +122,44 @@ function showQuestion(company) {
               '<label class="form-check-label" for="exampleRadios3">' +
               doc.data().answer3 +
               '</label>' +
-            '</div>'
-        )})
-  .catch(function(error) {
-      console.log("Error getting documents: ", error);
-  });
+            '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>' 
+
+          
+      );
+      });
+    });
+}
+
+$('body').on('click', 'a.cardShowQuestion', function() {
+  var company = $(this).attr('id');
+  $(this).toggleClass("active");
+  $('.cardShowText').toggleClass("active");
+  showQuestion(company);
 });
+
+function showQuestion(company) {
+  var idNameText = "text_" + company;
+  var idNameQuestion = "question_" + company;
+  $('#' +idNameText).hide(450);
+  $('#' +idNameQuestion).show(450);
+}
+
+$('body').on('click', 'a.cardShowText', function() {
+  var company = $(this).attr('id');
+  $(this).toggleClass("active");
+  $('.cardShowQuestion').toggleClass("active");
+  showText(company);
+});
+
+function showText(company) {
+  var idNameText = "text_" + company;
+  var idNameQuestion = "question_" + company;
+  $('#' +idNameQuestion).hide(450);
+  $('#' +idNameText).show(450);
+
 }
 
 // var xhttp;

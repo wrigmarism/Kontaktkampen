@@ -2,7 +2,9 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-.info_question{
-padding: 20em;
-margin: 100em;
+.questionDiv{
+  display: none
+}
+
+.active{
 }
