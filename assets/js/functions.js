@@ -48,31 +48,42 @@ function home() {
 }
 
 function companies() {
-  document.getElementById("content").innerHTML =
-    "<h1>Årets företag</h1>" +
-    '<table id="company" cellspacing="0" cellpadding="1">' +
-    "<tr>" +
-    "<th> Logga </th>" +
-    "<th> Företag </th>" +
-    "<th> Kod </th>" +
-    "</tr>" +
-    "<tr>";
-
+  $("#content").empty();
+  $("#content").append('<div class="accordion" id="accordion">');
   db.collection("company")
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        $("#content").append(
-          '<tr><th><img src="' +
-            doc.data().img +
-            '" width="50"></th>' +
-            "<th>" +
+        $("#accordion").append(
+          '<div class="card">' +
+          '<h5 class="card-header" data-toggle="collapse" href="#collapse' +
+           doc.data().name +
+          '" role="button" aria-expanded="false" aria-controls="collapseExample">' +
             doc.data().name +
-            "</th>" +
-            "<th>" +
-            doc.data().code +
-            "</th></tr>"
-        );
+            '</h5>' +
+            '<div class="card-body collapse" id="collapse' + 
+            doc.data().name +
+            '" data-parent="#accordion">' +
+            '<ul class="nav nav-tabs card-header-tabs">' +
+            '<li class="nav-item">' +
+              '<a class="nav-link active" href="#">Info</a>' +
+            '</li>' +
+            '<li class="nav-item">' +
+              '<a class="nav-link" href="#">Fråga</a>' +
+            '</li>' +
+          '</ul>' +
+          '<img src="' +
+            doc.data().img +
+            '" class="card-img-top">' +
+            '<h5 class="card-title">' +
+            doc.data().title +
+            '</h5>' +
+            '<p class="card-text">' +
+            doc.data().infoText + 
+            '</p>' +
+            '</div>' +
+          '</div>'
+      );
       });
     });
 }

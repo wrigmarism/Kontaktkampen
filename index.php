@@ -4,7 +4,7 @@
         <title>Kontaktkampen</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="assets/css/styles.css">
         <link rel="shortcut icon" type="image/jpg" href="assets/img/kdLogga.png"/>
@@ -19,67 +19,6 @@
         <div id="content">
             <?php include "include/html/home.php" ?>
         </div>
-
-        <div class="accordion" id="accordionExample">
-        <div class="card">
-  <h5 class="card-header" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-  Capgemini
-</h5>
-  <div class="card-body collapse" id="collapseExample" data-parent="#accordionExample">
-  <ul class="nav nav-tabs card-header-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Info</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Fråga</a>
-      </li>
-    </ul>
-  <img src="assets/img/Logga1.jpg" class="card-img-top">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-  </div>
-</div>
-
-<div class="card">
-  <h5 class="card-header" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-  Microsoft
-</h5>
-  <div class="card-body collapse" id="collapseExample2" data-parent="#accordionExample">
-  <ul class="nav nav-tabs card-header-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Info</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Fråga</a>
-      </li>
-    </ul>
-  <img src="assets/img/logga2.png" class="card-img-top">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-  </div>
-</div>
-
-<div class="card">
-  <h5 class="card-header" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
-  Cytiva
-</h5>
-  <div class="card-body collapse" id="collapseExample3" data-parent="#accordionExample">
-  <ul class="nav nav-tabs card-header-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Info</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Fråga</a>
-      </li>
-    </ul>
-  <img src="assets/img/logga3.jpg" class="card-img-top">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-  </div>
-</div>
-</div>
-
-
 
         <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
