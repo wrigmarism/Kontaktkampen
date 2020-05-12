@@ -33,7 +33,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $("#generate_button").click(function () {
-    //Funktionen du vill kalla på generate();
+    generateCompanies(30);
   });
 });
 
@@ -54,6 +54,16 @@ function home() {
 }
 
 function companies() {
+  document.getElementById("content").innerHTML =
+    "<h1>Årets företag</h1>" +
+    '<table id="company" cellspacing="0" cellpadding="1">' +
+    "<tr>" +
+    "<th> Logga </th>" +
+    "<th> Företag </th>" +
+    "<th> Kod </th>" +
+    "</tr>" +
+    "<tr>";
+
   $("#content").empty();
   $("#content").append('<h4>Företagen:</h4>' +
   '<div class="accordion" id="accordion">');
@@ -61,6 +71,8 @@ function companies() {
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
+        $("#content").append(
+          '<tr><th><img src="' +
         $("#accordion").append(
           '<div class="card">' +
           '<h5 class="card-header" data-toggle="collapse" href="#collapse' +
@@ -85,16 +97,14 @@ function companies() {
           doc.data().name +
           '"> <img src="' +
             doc.data().img +
-            '" class="card-img-top">' +
-            '<h5 class="card-title">' +
-            doc.data().title +
-            '</h5>' +
-            '<p class="card-text">' +
-            doc.data().infoText + 
-            '</p>' +
-            '</div>' +
-          '</div>'
-      );
+            '" width="50"></th>' +
+            "<th>" +
+            doc.data().name +
+            "</th>" +
+            "<th>" +
+            doc.data().code +
+            "</th></tr>"
+        ));
       });
     });
 }
@@ -186,3 +196,23 @@ function companyInfo(company) {
           console.log("Error getting documents: ", error);
       });
     }
+
+//id(name, question, title, infoText, img, answer1, answer2, answer3, correctAnswer)
+
+
+function generateCompanies(x){
+
+  for (let i = 1; i <= x; i++) {
+      db.collection('company').add({
+        name : "Företag " + i,
+        title : "Here be " + i + " dragons",
+        infoText : "We are " + i,
+        img : "URL " + i,
+        question : "How many?",
+        answer1 : "1",
+        answer2 : "2",
+        answer3 : "3",
+        correctAnswer : Math.floor(Math.random() * 3)
+      });
+  }
+}
