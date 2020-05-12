@@ -73,15 +73,17 @@ function companies() {
             '" data-parent="#accordion">' +
             '<ul class="nav nav-tabs card-header-tabs">' +
             '<li class="nav-item">' +
-              '<a class="nav-link active" href="#">Info</a>' +
+              '<a class="nav-link active">Info</a>' +
             '</li>' +
             '<li class="nav-item">' +
-              '<a class="nav-link" href="#">Fråga</a>' +
+              '<a class="nav-link cardShowQuestion" id ="' +
+              doc.data().name +
+              '" >Fråga</a>' +
             '</li>' +
           '</ul>' +
-          '<div> id="container_' +
+          '<div id="container_' +
           doc.data().name +
-          '" <img src="' +
+          '"> <img src="' +
             doc.data().img +
             '" class="card-img-top">' +
             '<h5 class="card-title">' +
@@ -96,10 +98,14 @@ function companies() {
       });
     });
 }
-$('body').on('click', 'a.card_', function() {
-  // do something
+
+$('body').on('click', 'a.cardShowQuestion', function() {
+  alert($(this).attr('id'));
+  var company = $(this).attr('id');
+  showQuestion(company);
 });
-function showQuestion(){
+
+function showQuestion(company){
 
 }
 
