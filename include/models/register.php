@@ -36,4 +36,5 @@
             header("Refresh: 0; URL=../../index.php");
         }
     }
+    $conn->conn->close();
 ?>
