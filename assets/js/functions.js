@@ -127,18 +127,30 @@ function register() {
   xhttp.send();
 }
 
-
-function companyInfo() {
-  var companyData = db.collection("company").doc("Företag 1");
-  
-  companyData.get().then(function(doc) {
-    if (doc.exists) {
-      console.log("Document data:", doc.data());
-    }
-    else{
-      console.log("No such document!");
-    }
-    }).catch(function(error){
-      console.log("Error getting document: ", error);
+function companyInfo(company) {
+  db.collection("company").where("name", "==", company)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          $("#companyInfo").append(doc.data().info); //hämtar värdet från company(info)
+        });
     })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
   }
+
+
+  //Hämtar just nu endast frågan, men behöver även hämta alla svarsalternativ, och presentera dem på ett snyggt sätt
+  function companyQuestion(company) {
+    db.collection("company").where("name", "==", company)
+      .get()
+      .then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+            $("#companyInfo").append(doc.data().question); //hämtar värdet från company(question)
+          });
+      })
+      .catch(function(error) {
+          console.log("Error getting documents: ", error);
+      });
+    }
