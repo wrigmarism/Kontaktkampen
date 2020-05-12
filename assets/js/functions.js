@@ -197,7 +197,7 @@ function companyInfo(company) {
 function generateCompanies(x){
 
   for (let i = 1; i <= x; i++) {
-      db.ref('company/' + db.push()).set({
+      db.collection('company').add({
         name : "Företag " + i,
         title : "Here be " + i + " dragons",
         infoText : "We are " + i,
