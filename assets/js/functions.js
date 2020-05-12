@@ -31,6 +31,12 @@ $(document).ready(function () {
   });
 });
 
+$(document).ready(function () {
+  $("#generate_button").click(function () {
+    generateCompanies(30);
+  });
+});
+
 function home() {
   var xhttp;
   if (window.XMLHttpRequest) {
@@ -58,12 +64,36 @@ function companies() {
     "</tr>" +
     "<tr>";
 
+  $("#content").empty();
+  $("#content").append('<h4>Företagen:</h4>' +
+  '<div class="accordion" id="accordion">');
   db.collection("company")
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         $("#content").append(
           '<tr><th><img src="' +
+        $("#accordion").append(
+          '<div class="card">' +
+          '<h5 class="card-header" data-toggle="collapse" href="#collapse' +
+           doc.data().name +
+          '" role="button" aria-expanded="false" aria-controls="collapseExample">' +
+            doc.data().name +
+            '</h5>' +
+            '<div class="card-body collapse" id="collapse' + 
+            doc.data().name +
+            '" data-parent="#accordion">' +
+            '<ul class="nav nav-tabs card-header-tabs">' +
+            '<li class="nav-item">' +
+              '<a class="nav-link active" href="#">Info</a>' +
+            '</li>' +
+            '<li class="nav-item">' +
+              '<a class="nav-link" href="#">Fråga</a>' +
+            '</li>' +
+          '</ul>' +
+          '<div> id="container_' +
+          doc.data().name +
+          '" <img src="' +
             doc.data().img +
             '" width="50"></th>' +
             "<th>" +
@@ -72,9 +102,15 @@ function companies() {
             "<th>" +
             doc.data().code +
             "</th></tr>"
-        );
+        ));
       });
     });
+}
+$('body').on('click', 'a.card_', function() {
+  // do something
+});
+function showQuestion(){
+
 }
 
 // var xhttp;
@@ -159,27 +195,18 @@ function companyInfo(company) {
 
 
 function generateCompanies(x){
-  for (let i = 1; index <= x; index++) {
-      var name = "Företag " + i;
-      var title = "Here be " + i + " dragons";
-      var infoText = "We are " + i;
-      var img = "URL " + i;
-      var question = "How many?";
-      var answer1 = "1";
-      var answer2 = "2";
-      var answer3 = "3";
-      var correctAnswer = Math.floor(Math.random() * 3);
 
-      firebase.database().ref('company/' + firebase.push()).set({
-        name : name,
-        title : title,
-        infoText : infoText,
-        img : img,
-        question : question,
-        answer1 : answer1,
-        answer2 : answer2,
-        answer3 : answer3,
-        correctAnswer : correctAnswer
+  for (let i = 1; i <= x; i++) {
+      db.ref('company/' + db.push()).set({
+        name : "Företag " + i,
+        title : "Here be " + i + " dragons",
+        infoText : "We are " + i,
+        img : "URL " + i,
+        question : "How many?",
+        answer1 : "1",
+        answer2 : "2",
+        answer3 : "3",
+        correctAnswer : Math.floor(Math.random() * 3)
       });
   }
 }
