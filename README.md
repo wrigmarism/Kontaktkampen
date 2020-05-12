@@ -16,8 +16,7 @@ Icke-funktionella krav:
 
 Databas:
 * user(uid, name, mail, pwd, salt) - användar-id, namn, email-adress, lösenord, salt
-* company(cid, name, code, img) - id-nummer, företagsnamn, kod för att låsa upp fråga, adress till logga
-* question(qid, cid, qst, corr, ans1, ans2, ans3) - fråge-id, företags-id, fråga, rätt svar, tre alternativ)
+* company(cid, name, code, img, question, {alternativa svar}, correctAnswer) - id-nummer, företagsnamn, låskod, företagsfråga, de olika alternativen, korrekta svaret som kan jämföras med
 * lock(uid, cid) - användar-id, företags-id (korstabell för upplåsta frågor)
 * trophy(uid, cid, time) - användar-id, företags-id, tidsstämpel för att kunna veta vem som svarat först (korstabell för rätta svar)
 
