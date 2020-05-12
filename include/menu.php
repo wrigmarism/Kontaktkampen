@@ -16,6 +16,7 @@
     <?php else : ?>
       <a class="nav-item nav-link" id="logIn_button">Logga in</a>
     <?php endif ?> 
+      <a class="nav-item nav-link" id="generate_button">Generera data</a>
 
     </div>
   </div>

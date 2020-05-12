@@ -31,6 +31,12 @@ $(document).ready(function () {
   });
 });
 
+$(document).ready(function () {
+  $("#generate_button").click(function () {
+    //Funktionen du vill kalla på generate();
+  });
+});
+
 function home() {
   var xhttp;
   if (window.XMLHttpRequest) {
@@ -49,7 +55,8 @@ function home() {
 
 function companies() {
   $("#content").empty();
-  $("#content").append('<div class="accordion" id="accordion">');
+  $("#content").append('<h4>Företagen:</h4>' +
+  '<div class="accordion" id="accordion">');
   db.collection("company")
     .get()
     .then(function (querySnapshot) {
@@ -72,7 +79,9 @@ function companies() {
               '<a class="nav-link" href="#">Fråga</a>' +
             '</li>' +
           '</ul>' +
-          '<img src="' +
+          '<div> id="container_' +
+          doc.data().name +
+          '" <img src="' +
             doc.data().img +
             '" class="card-img-top">' +
             '<h5 class="card-title">' +
@@ -86,6 +95,12 @@ function companies() {
       );
       });
     });
+}
+$('body').on('click', 'a.card_', function() {
+  // do something
+});
+function showQuestion(){
+
 }
 
 // var xhttp;
