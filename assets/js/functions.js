@@ -33,7 +33,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $("#generate_button").click(function () {
-    generateCompanies(30);
+    //generateCompanies(30);
   });
 });
 
@@ -61,15 +61,18 @@ function companies() {
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
+        var companyName = doc.data().name;
+        companyNameNoSpaces = companyName.replace(/\s+/g, '');
         $("#accordion").append(
           '<div class="card">' +
           '<h5 class="card-header" data-toggle="collapse" href="#collapse' +
-           doc.data().name +
+          companyNameNoSpaces +
           '" role="button" aria-expanded="false" aria-controls="collapseExample">' +
-            doc.data().name +
+          companyName +
             '</h5>' +
+            //kanske ta bort card-body här?
             '<div class="card-body collapse" id="collapse' + 
-            doc.data().name +
+            companyNameNoSpaces +
             '" data-parent="#accordion">' +
             '<ul class="nav nav-tabs card-header-tabs">' +
             '<li class="nav-item">' +
@@ -77,12 +80,12 @@ function companies() {
             '</li>' +
             '<li class="nav-item">' +
               '<a class="nav-link cardShowQuestion" id ="' +
-              doc.data().name +
+              companyNameNoSpaces +
               '" >Fråga</a>' +
             '</li>' +
           '</ul>' +
-          '<div id="container_' +
-          doc.data().name +
+          '<div class="card-body" id="text_' +
+          companyNameNoSpaces +
           '" <img src="' +
           '"> <img src="' +
             doc.data().img +
@@ -94,20 +97,56 @@ function companies() {
             doc.data().infoText + 
             '</p>' +
             '</div>' +
-          '</div>'
+            '<div class="card-body" id="question_' +
+          companyNameNoSpaces +
+          '"></div>' +
+          '</div>' +
+          '</div>' 
       );
       });
     });
 }
 
 $('body').on('click', 'a.cardShowQuestion', function() {
-  alert($(this).attr('id'));
   var company = $(this).attr('id');
   showQuestion(company);
 });
 
-function showQuestion(company){
-
+function showQuestion(company) {
+  var idNameText = "text_" + company;
+  $('#' +idNameText).hide();
+  db.collection("company").where("name", "==", company)
+  .get()
+  .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        var idName = "question_" + company;
+        $('#' + idName).empty();
+        $('#' + idName).append('<h5>' +
+                doc.data().question +
+              '</h5>' +
+              '<div class="form-check">' +
+              '<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1" checked>' +
+              '<label class="form-check-label" for="exampleRadios1">' +
+              doc.data().answer1 +
+              '</label>' +
+            '</div>' +
+            '<div class="form-check">' +
+              '<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="2">' +
+              '<label class="form-check-label" for="exampleRadios2">' +
+              doc.data().answer2 +
+              '</label>' +
+            '</div>' +
+            '<div class="form-check">' +
+              '<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="3">' +
+              '<label class="form-check-label" for="exampleRadios3">' +
+              doc.data().answer3 +
+              '</label>' +
+            '</div>'
+        )})
+  .catch(function(error) {
+      console.log("Error getting documents: ", error);
+  });
+});
 }
 
 // var xhttp;
