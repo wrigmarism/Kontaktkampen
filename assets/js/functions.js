@@ -54,16 +54,6 @@ function home() {
 }
 
 function companies() {
-  document.getElementById("content").innerHTML =
-    "<h1>Årets företag</h1>" +
-    '<table id="company" cellspacing="0" cellpadding="1">' +
-    "<tr>" +
-    "<th> Logga </th>" +
-    "<th> Företag </th>" +
-    "<th> Kod </th>" +
-    "</tr>" +
-    "<tr>";
-
   $("#content").empty();
   $("#content").append('<h4>Företagen:</h4>' +
   '<div class="accordion" id="accordion">');
@@ -71,8 +61,6 @@ function companies() {
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        $("#content").append(
-          '<tr><th><img src="' +
         $("#accordion").append(
           '<div class="card">' +
           '<h5 class="card-header" data-toggle="collapse" href="#collapse' +
@@ -95,16 +83,19 @@ function companies() {
           '</ul>' +
           '<div id="container_' +
           doc.data().name +
+          '" <img src="' +
           '"> <img src="' +
             doc.data().img +
-            '" width="50"></th>' +
-            "<th>" +
-            doc.data().name +
-            "</th>" +
-            "<th>" +
-            doc.data().code +
-            "</th></tr>"
-        ));
+            '" class="card-img-top">' +
+            '<h5 class="card-title">' +
+            doc.data().title +
+            '</h5>' +
+            '<p class="card-text">' +
+            doc.data().infoText + 
+            '</p>' +
+            '</div>' +
+          '</div>'
+      );
       });
     });
 }
