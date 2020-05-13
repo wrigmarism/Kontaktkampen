@@ -8,14 +8,6 @@ firebase.initializeApp({
 var db = firebase.firestore();
 
 $(document).ready(function () {
-  $('.navbar-collapse ul li a').click(function(){ 
-    $('.navbar-toggle:visible').click();
-  });
-});
-
-
-
-$(document).ready(function () {
   $("#home_button").click(function () {
     home();
   });
@@ -62,7 +54,7 @@ function home() {
 }
 
 //Denna funktion laddar in alla företagskort med tillhörande data.
-//Kan säkert optimeras för att bara ladda in relevant data när någon klickar på ett specefikt företag istället. 
+//Kan säkert optimeras för att bara ladda in relevant data när någon klickar på ett specefikt företag istället.
 function companies() {
   $("#content").empty();
   $("#content").append(
@@ -117,24 +109,30 @@ function companies() {
             doc.data().question +
             "</h5>" +
             '<div class="form-check">' +
-            '<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1" checked>' +
+            '<input class="form-check-input" type="radio" name="' +
+            companyNameNoSpaces +
+            '" value="1">' +
             '<label class="form-check-label" for="exampleRadios1">' +
             doc.data().answer1 +
             "</label>" +
             "</div>" +
             '<div class="form-check">' +
-            '<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="2">' +
+            '<input class="form-check-input" type="radio" name="' +
+            companyNameNoSpaces +
+            '" value="2">' + +
             '<label class="form-check-label" for="exampleRadios2">' +
             doc.data().answer2 +
             "</label>" +
             "</div>" +
             '<div class="form-check">' +
-            '<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="3">' +
+            '<input class="form-check-input" type="radio" name="' +
+            companyNameNoSpaces +
+            '" value="3">' +
             '<label class="form-check-label" for="exampleRadios3">' +
             doc.data().answer3 +
             "</label>" +
             "</div>" +
-            '<button type="button" class="btn btn-primary">Välj</button>' +
+            '<button type="button" class="btn btn-primary selectAnswer">Välj</button>' +
             "</div>" +
             "</div>" +
             "</div>"
@@ -143,8 +141,15 @@ function companies() {
     });
 }
 
+$(document).ready(function () {
+  $("body").on("click", ".selectAnswer", function () {
+    var radioValue = $('input[name=radioName]:checked', '#myForm').val()
+    alert(radioValue);
+  });
+});
+
 //Denna funktion aktiveras när någon trycker på fråga fliken i ett företagskort
-//Den tar in namnet på företaget ochskickar det till funktionen under som startar 
+//Den tar in namnet på företaget och skickar det till funktionen under som startar
 //animationen. Den ändrar även vilken flik som har "active" som css property.
 $("body").on("click", "a.cardShowQuestion", function () {
   var company = $(this).attr("id");
@@ -163,7 +168,7 @@ function showQuestion(company) {
 }
 
 //Denna funktion aktiveras när någon trycker på info fliken i ett företagskort
-//Den tar in namnet på företaget ochskickar det till funktionen under som startar 
+//Den tar in namnet på företaget ochskickar det till funktionen under som startar
 //animationen. Den ändrar även vilken flik som har "active" som css property.
 $("body").on("click", "a.cardShowText", function () {
   var company = $(this).attr("id");
