@@ -8,6 +8,14 @@ firebase.initializeApp({
 var db = firebase.firestore();
 
 $(document).ready(function () {
+  $('.navbar-collapse ul li a').click(function(){ 
+    $('.navbar-toggle:visible').click();
+  });
+});
+
+
+
+$(document).ready(function () {
   $("#home_button").click(function () {
     home();
   });
@@ -126,6 +134,7 @@ function companies() {
             doc.data().answer3 +
             "</label>" +
             "</div>" +
+            '<button type="button" class="btn btn-primary">Välj</button>' +
             "</div>" +
             "</div>" +
             "</div>"
@@ -139,7 +148,6 @@ function companies() {
 //animationen. Den ändrar även vilken flik som har "active" som css property.
 $("body").on("click", "a.cardShowQuestion", function () {
   var company = $(this).attr("id");
-  console.log($(".cardShowText").hasClass("active"));
   if ($(".cardShowText").hasClass("active")) {
     $(this).addClass("active");
     $(".cardShowText").removeClass("active");
