@@ -53,113 +53,124 @@ function home() {
   xhttp.send();
 }
 
+//Denna funktion laddar in alla företagskort med tillhörande data.
+//Kan säkert optimeras för att bara ladda in relevant data när någon klickar på ett specefikt företag istället. 
 function companies() {
   $("#content").empty();
-  $("#content").append('<h4>Företagen:</h4>' +
-  '<div class="accordion" id="accordion">');
+  $("#content").append(
+    "<h4>Företagen:</h4>" + '<div class="accordion" id="accordion">'
+  );
   db.collection("company")
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         var companyName = doc.data().name;
-        companyNameNoSpaces = companyName.replace(/\s+/g, '');
+        companyNameNoSpaces = companyName.replace(/\s+/g, "");
         $("#accordion").append(
           '<div class="card">' +
-          '<h5 class="card-header" data-toggle="collapse" href="#collapse' +
-          companyNameNoSpaces +
-          '" role="button" aria-expanded="false" aria-controls="collapseExample">' +
-          companyName +
-            '</h5>' +
+            '<h5 class="card-header" data-toggle="collapse" href="#collapse' +
+            companyNameNoSpaces +
+            '" role="button" aria-expanded="false" aria-controls="collapseExample">' +
+            companyName +
+            "</h5>" +
             //kanske ta bort card-body här?
-            '<div class="card-body collapse" id="collapse' + 
+            '<div class="card-body collapse" id="collapse' +
             companyNameNoSpaces +
             '" data-parent="#accordion">' +
             '<ul class="nav nav-tabs card-header-tabs">' +
             '<li class="nav-item">' +
-              '<a class="nav-link active cardShowText" id ="' +
-              companyNameNoSpaces +
-              '" >Info</a>' +
-            '</li>' +
+            '<a class="nav-link active cardShowText" id ="' +
+            companyNameNoSpaces +
+            '" >Info</a>' +
+            "</li>" +
             '<li class="nav-item">' +
-              '<a class="nav-link cardShowQuestion" id ="' +
-              companyNameNoSpaces +
-              '" >Fråga</a>' +
-            '</li>' +
-          '</ul>' +
-          '<div class="card-body" id="text_' +
-          companyNameNoSpaces +
-          '" <img src="' +
-          '"> <img src="' +
+            '<a class="nav-link cardShowQuestion" id ="' +
+            companyNameNoSpaces +
+            '" >Fråga</a>' +
+            "</li>" +
+            "</ul>" +
+            '<div class="card-body" id="text_' +
+            companyNameNoSpaces +
+            '" <img src="' +
+            '"> <img src="' +
             doc.data().img +
             '" class="card-img-top">' +
             '<h5 class="card-title">' +
             doc.data().title +
-            '</h5>' +
+            "</h5>" +
             '<p class="card-text">' +
-            doc.data().infoText + 
-            '</p>' +
-            '</div>' +
+            doc.data().infoText +
+            "</p>" +
+            "</div>" +
             '<div class="card-body questionDiv" id="question_' +
-          companyNameNoSpaces +
-          '">' +
-          '<h5>' +
-                doc.data().question +
-              '</h5>' +
-              '<div class="form-check">' +
-              '<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1" checked>' +
-              '<label class="form-check-label" for="exampleRadios1">' +
-              doc.data().answer1 +
-              '</label>' +
-            '</div>' +
+            companyNameNoSpaces +
+            '">' +
+            "<h5>" +
+            doc.data().question +
+            "</h5>" +
             '<div class="form-check">' +
-              '<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="2">' +
-              '<label class="form-check-label" for="exampleRadios2">' +
-              doc.data().answer2 +
-              '</label>' +
-            '</div>' +
+            '<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1" checked>' +
+            '<label class="form-check-label" for="exampleRadios1">' +
+            doc.data().answer1 +
+            "</label>" +
+            "</div>" +
             '<div class="form-check">' +
-              '<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="3">' +
-              '<label class="form-check-label" for="exampleRadios3">' +
-              doc.data().answer3 +
-              '</label>' +
-            '</div>' +
-          '</div>' +
-          '</div>' +
-          '</div>' 
-
-          
-      );
+            '<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="2">' +
+            '<label class="form-check-label" for="exampleRadios2">' +
+            doc.data().answer2 +
+            "</label>" +
+            "</div>" +
+            '<div class="form-check">' +
+            '<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="3">' +
+            '<label class="form-check-label" for="exampleRadios3">' +
+            doc.data().answer3 +
+            "</label>" +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            "</div>"
+        );
       });
     });
 }
 
-$('body').on('click', 'a.cardShowQuestion', function() {
-  var company = $(this).attr('id');
-  $(this).toggleClass("active");
-  $('.cardShowText').toggleClass("active");
+//Denna funktion aktiveras när någon trycker på fråga fliken i ett företagskort
+//Den tar in namnet på företaget ochskickar det till funktionen under som startar 
+//animationen. Den ändrar även vilken flik som har "active" som css property.
+$("body").on("click", "a.cardShowQuestion", function () {
+  var company = $(this).attr("id");
+  console.log($(".cardShowText").hasClass("active"));
+  if ($(".cardShowText").hasClass("active")) {
+    $(this).addClass("active");
+    $(".cardShowText").removeClass("active");
+  }
   showQuestion(company);
 });
 
 function showQuestion(company) {
   var idNameText = "text_" + company;
   var idNameQuestion = "question_" + company;
-  $('#' +idNameText).hide(450);
-  $('#' +idNameQuestion).show(450);
+  $("#" + idNameText).hide(450);
+  $("#" + idNameQuestion).show(450);
 }
 
-$('body').on('click', 'a.cardShowText', function() {
-  var company = $(this).attr('id');
-  $(this).toggleClass("active");
-  $('.cardShowQuestion').toggleClass("active");
+//Denna funktion aktiveras när någon trycker på info fliken i ett företagskort
+//Den tar in namnet på företaget ochskickar det till funktionen under som startar 
+//animationen. Den ändrar även vilken flik som har "active" som css property.
+$("body").on("click", "a.cardShowText", function () {
+  var company = $(this).attr("id");
+  if ($(".cardShowQuestion").hasClass("active")) {
+    $(this).addClass("active");
+    $(".cardShowQuestion").removeClass("active");
+  }
   showText(company);
 });
 
 function showText(company) {
   var idNameText = "text_" + company;
   var idNameQuestion = "question_" + company;
-  $('#' +idNameQuestion).hide(450);
-  $('#' +idNameText).show(450);
-
+  $("#" + idNameQuestion).hide(450);
+  $("#" + idNameText).show(450);
 }
 
 // var xhttp;
@@ -213,49 +224,48 @@ function register() {
 }
 
 function companyInfo(company) {
-  db.collection("company").where("name", "==", company)
+  db.collection("company")
+    .where("name", "==", company)
     .get()
-    .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-          $("#companyInfo").append(doc.data().info); //hämtar värdet från company(info)
-        });
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-    });
-  }
-
-
-  //Hämtar just nu endast frågan, men behöver även hämta alla svarsalternativ, och presentera dem på ett snyggt sätt
-  function companyQuestion(company) {
-    db.collection("company").where("name", "==", company)
-      .get()
-      .then(function(querySnapshot) {
-          querySnapshot.forEach(function(doc) {
-            $("#companyInfo").append(doc.data().question); //hämtar värdet från company(question)
-          });
-      })
-      .catch(function(error) {
-          console.log("Error getting documents: ", error);
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        $("#companyInfo").append(doc.data().info); //hämtar värdet från company(info)
       });
-    }
+    })
+    .catch(function (error) {
+      console.log("Error getting documents: ", error);
+    });
+}
+
+//Hämtar just nu endast frågan, men behöver även hämta alla svarsalternativ, och presentera dem på ett snyggt sätt
+function companyQuestion(company) {
+  db.collection("company")
+    .where("name", "==", company)
+    .get()
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        $("#companyInfo").append(doc.data().question); //hämtar värdet från company(question)
+      });
+    })
+    .catch(function (error) {
+      console.log("Error getting documents: ", error);
+    });
+}
 
 //id(name, question, title, infoText, img, answer1, answer2, answer3, correctAnswer)
 
-
-function generateCompanies(x){
-
+function generateCompanies(x) {
   for (let i = 1; i <= x; i++) {
-      db.collection('company').add({
-        name : "Företag " + i,
-        title : "Here be " + i + " dragons",
-        infoText : "We are " + i,
-        img : "URL " + i,
-        question : "How many?",
-        answer1 : "1",
-        answer2 : "2",
-        answer3 : "3",
-        correctAnswer : Math.floor(Math.random() * 3)
-      });
+    db.collection("company").add({
+      name: "Företag " + i,
+      title: "Here be " + i + " dragons",
+      infoText: "We are " + i,
+      img: "URL " + i,
+      question: "How many?",
+      answer1: "1",
+      answer2: "2",
+      answer3: "3",
+      correctAnswer: Math.floor(Math.random() * 3),
+    });
   }
 }
