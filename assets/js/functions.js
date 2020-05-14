@@ -119,8 +119,8 @@ function companies() {
             '<div class="form-check">' +
             '<input class="form-check-input" type="radio" name="' +
             companyNameNoSpaces +
-            '" value="2">' + +
-            '<label class="form-check-label" for="exampleRadios2">' +
+            '" value="2">' +
+            +'<label class="form-check-label" for="exampleRadios2">' +
             doc.data().answer2 +
             "</label>" +
             "</div>" +
@@ -143,10 +143,36 @@ function companies() {
 
 $(document).ready(function () {
   $("body").on("click", ".selectAnswer", function () {
-    var radioValue = $('input[name=radioName]:checked', '#myForm').val()
-    alert(radioValue);
+    var answer = $(this)
+      .closest(".questionDiv")
+      .find("input:radio:checked")
+      .val();
+    var company = $(this).closest(".questionDiv").attr("id");
+    var company = company.split("_");
+    company = company[1];
+
+    db.collection("company")
+      .where("name", "==", company)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          if (doc.data().correctAnswer == answer) {
+            correctAnswer(company, answer);
+          } else {
+            wrongAnswer(company, answer);
+          }
+        });
+      });
   });
 });
+
+function correctAnswer(company, answer) {
+  console.log("rätt svar" + company);
+}
+
+function wrongAnswer(company, answer) {
+  console.log("fel svar" + company);
+}
 
 //Denna funktion aktiveras när någon trycker på fråga fliken i ett företagskort
 //Den tar in namnet på företaget och skickar det till funktionen under som startar
