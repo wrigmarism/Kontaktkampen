@@ -27,13 +27,13 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $("#logOut_button").click(function () {
-    logOut();
+    delCookie("status");
   });
 });
 
 $(document).ready(function () {
   $("#generate_button").click(function () {
-    generateCompanies(30);
+    //generateCompanies(30);
   });
 });
 
@@ -49,7 +49,7 @@ function home() {
       document.getElementById("content").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "include/html/home.php", true);
+  xhttp.open("GET", "include/html/home.html", true);
   xhttp.send();
 }
 
@@ -136,12 +136,12 @@ function logIn() {
       document.getElementById("content").innerHTML = this.responseText;
     }
   };
-  xhttp.open("POST", "include/html/login.php", true);
+  xhttp.open("POST", "include/html/login.html", true);
   xhttp.send();
 }
 
 function logOut() {
-  window.location = "include/models/logout.php";
+  window.location = "include/models/logout.html";
 }
 
 function register() {
@@ -156,7 +156,7 @@ function register() {
       document.getElementById("content").innerHTML = this.responseText;
     }
   };
-  xhttp.open("POST", "include/html/registerform.php", true);
+  xhttp.open("POST", "include/html/registerform.html", true);
   xhttp.send();
 }
 
@@ -188,11 +188,8 @@ function companyInfo(company) {
       });
     }
 
-//id(name, question, title, infoText, img, answer1, answer2, answer3, correctAnswer)
-
-
+//Genererar x antal fejkföretag - används endast under utveckling -> ta bort sen!
 function generateCompanies(x){
-
   for (let i = 1; i <= x; i++) {
       db.collection('company').add({
         name : "Företag " + i,
@@ -206,4 +203,35 @@ function generateCompanies(x){
         correctAnswer : Math.floor(Math.random() * 3)
       });
   }
+}
+
+
+//COOKIE-FUNKTIONER
+
+//Skapar en cookie, tar in namn och önskat värde
+function setCookie(cookie, value){
+  document.cookie = cookie + "=" + value + ";";
+}
+
+
+//Hämtar cookie-information, tar in namn och returnerar värde
+function getCookie(cookie){
+  var name = cookie + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while(c.charAt(0) == " "){
+      c = c.substring(1);
+    }
+    if(c.indexOf(name) == 0){
+      return c.substring(name.length, c.length)
+    }
+  }
+  return "";
+}
+
+//Raderar cookie, tar in namn
+function delCookie(cookie){
+  document.cookie = cookie + "=; expires=Mon, 03 Sep 2018 15:00:00 UTC+2"; //Kan du koppla sluttiden? <3
 }
