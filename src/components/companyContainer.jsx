@@ -1,46 +1,52 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { getData } from '../helpers/db';
+import { getData } from "../helpers/db";
+import Company from "../helpers/companyClass.js";
+import CompanyCard from "./companyCard";
 
-
-import Accordion from 'react-bootstrap/Accordion';
+import Accordion from "react-bootstrap/Accordion";
 
 class CompanyContainer extends React.Component {
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
 
-      this.state = {
-        hits: [],
-      };
-    }
-
-    async componentDidMount() {
-      var data = await getData("company");
-      var list = [];
-        // data.then(function(result) {
-        //     result.forEach(function (doc) {
-        //         list.push(doc);
-        //         });
-                
-            // console.log(list[1]);
-            // });
-            
-            this.setState({ hits: data });
-    }
-  
-    render() {
-      const { hits } = this.state;
-   
-      return (
-        <Accordion> 
-          {hits.map(hit =>
-            <li key={hit.objectID}>
-              <a href={hit.name}>{hit.name}</a>
-            </li>
-          )}
-        </Accordion> 
-      );
-    }
+    this.state = {
+      hits: [],
+      isLoading: true
+    };
   }
 
-  export default CompanyContainer;
+   componentDidMount() {
+    var data = getData("company").then(
+      this.setState({ hits: data, isLoading: false })
+    );
+    //console.log(data);
+    // data.then(function(result) {
+    //     result.forEach(function (doc) {
+    //         list.push(doc);
+    //         });
+
+    // console.log(list[1]);
+    // });
+  }
+
+  render() {
+    const hits = this.state;
+    
+    return (
+      <Accordion>
+        { if(this.state.isLoading == false){Object.keys(hits).map(function (keyName, keyIndex) {
+          // use keyName to get current key's name
+          // and a[keyName] to get its value
+          new CompanyCard(hits[keyName]);
+        }
+        else{
+          '<h1>"Loading"</h1>'
+        }
+        })}
+      </Accordion>
+    );
+  }
+}
+
+export default CompanyContainer;

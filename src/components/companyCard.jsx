@@ -7,37 +7,21 @@ import Accordion from 'react-bootstrap/Accordion';
 class CompanyCard extends React.Component {
     constructor(props) {
       super(props);
-
+      console.log(props);
       this.state = {
         hits: [],
       };
     }
 
     async componentDidMount() {
-      var data = await getData("company");
-      var list = [];
-        // data.then(function(result) {
-        //     result.forEach(function (doc) {
-        //         list.push(doc);
-        //         });
-                
-            // console.log(list[1]);
-            // });
-            
-            this.setState({ hits: data });
+      
     }
   
     render() {
       const { hits } = this.state;
    
       return (
-        <Accordion> 
-          {hits.map(hit =>
-            <li key={hit.objectID}>
-              <a href={hit.name}>{hit.name}</a>
-            </li>
-          )}
-        </Accordion> 
+        <h1>"jag är ett företag"</h1>
       );
     }
   }
