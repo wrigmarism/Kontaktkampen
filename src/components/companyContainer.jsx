@@ -17,35 +17,17 @@ class CompanyContainer extends React.Component {
   }
 
   async componentDidMount() {
-    var data = getData("company");
-    var list = [];
-    data.then(function(result) {
-        result.forEach(function (doc) {
-            list.push(doc);
-            });
+    // I obiwan kenobied dis shiet *dabs
+    getData("company").then((result) => {
+      this.setState({ companies: result });
     });
-    console.log(list);
-    /* Lyckas inte få över listan till min comapnies array 
-     När jag lyckades med det i en annan variant så skrev den ut allt två gånger alternativt uppdaterade inte när 
-     datan hade laddat in. Så tror bara jag tänker lite knasigt på hur man gör detta på smidigast sätt. Help me obiwan Simpelimp your my only hope*/
-    this.setState({companies: list});
   }
 
-
   render() {
-    const companies = this.state.companies.map((name, move) => {
-      return (
-        <li key={move}>
-          {name}
-        </li>
-      );
+    const companies = this.state.companies.map((company, index) => {
+      return <CompanyCard company={company} />;
     });
-    return (
-      <Accordion>
-        <CompanyCard />
-        {companies}
-      </Accordion>
-    );
+    return <Accordion>{companies}</Accordion>;
   }
 }
 
