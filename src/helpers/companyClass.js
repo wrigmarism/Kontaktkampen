@@ -1,3 +1,5 @@
+//En klass för att spara datan från databasen. Vet inte om det här behövs i javaScript dock. 
+
 class Company {
   constructor(
     ID,
