@@ -30,7 +30,6 @@ export default class App extends React.Component {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
-          <Nav id="menu">
             <Switch>
               <Route exact path="/">
                 <Start />
@@ -42,7 +41,6 @@ export default class App extends React.Component {
                 <Companies />
               </Route>
             </Switch>
-          </Nav>
         </div>
       </Router>
     );
