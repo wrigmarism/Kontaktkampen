@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./cytiva.jpg";
 
 import Card from "react-bootstrap/Card";
 
@@ -10,6 +9,7 @@ class Text extends React.Component {
       openCard: false,
     };
     this.handleClick = this.handleClick.bind(this);
+    
   }
 
   openCard() {
@@ -24,10 +24,10 @@ class Text extends React.Component {
 
   async componentDidMount() {}
 
-  render() {
+  render() { 
     return (
       <div>
-        <Card.Img variant="top" src={logo} />
+        <Card.Img variant="top" src={require('./cytiva.jpg')} />
         <h5> {this.props.company.title}</h5>
         <p>{this.props.company.text}</p>
       </div>

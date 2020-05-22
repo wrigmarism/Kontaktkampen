@@ -17,7 +17,8 @@ export async function getData(collection) {
       doc.get("answer1"),
       doc.get("answer2"),
       doc.get("answer3"),
-      doc.get("correctAnswer")
+      doc.get("correctAnswer"),
+      doc.get("img")
     );
     result.push(company);
   });
