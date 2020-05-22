@@ -1,7 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { getData } from '../helpers/db';
-
+import React from "react";
+import ReactDOM from "react-dom";
+import { getData } from "../helpers/db";
 
 import Question from "./question";
 import Text from "./text";
@@ -15,10 +14,9 @@ import Collapse from "react-bootstrap/Collapse";
 //Detta är det enskilda företagets container som ska displaya all information.
 //Denna ska enligt min tanke få datan från föräldrarklassen "companyContainer" som den sedan visar ut.
 class CompanyCard extends React.Component {
-
   constructor(props) {
     super(props);
-    
+
     this.state = {
       openCard: false,
     };
@@ -71,7 +69,6 @@ class CompanyCard extends React.Component {
         </Router>
       </Card>
     );
-
   }
-
-  export default CompanyCard;
+}
+export default CompanyCard;
