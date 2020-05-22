@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { getData } from "../helpers/db";
-import Company from "../helpers/companyClass.js";
-import CompanyCard from "./companyCard";
+import { getData } from '../helpers/db';
 
 import Accordion from "react-bootstrap/Accordion";
 /* Denna komponents syfte är att ta in datan från databasen och sedan för varje objekt i databasen skapa 
@@ -28,7 +26,7 @@ class CompanyContainer extends React.Component {
       return <CompanyCard key={company.ID} company={company} />;
     });
     return <Accordion defaultActiveKey="0">{companies}</Accordion>;
-  }
-}
 
-export default CompanyContainer;
+  }
+
+  export default CompanyContainer;
