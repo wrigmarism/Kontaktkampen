@@ -25,9 +25,9 @@ class CompanyContainer extends React.Component {
 
   render() {
     const companies = this.state.companies.map((company, index) => {
-      return <CompanyCard company={company} />;
+      return <CompanyCard key={company.ID} company={company} />;
     });
-    return <Accordion>{companies}</Accordion>;
+    return <Accordion defaultActiveKey="0">{companies}</Accordion>;
   }
 }
 
