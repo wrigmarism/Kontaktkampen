@@ -10,7 +10,8 @@ class Company {
     answer1,
     answer2,
     answer3,
-    correctAnswer
+    correctAnswer,
+    img
   ) {
     this.ID = ID;
     this.name = name;
@@ -21,6 +22,7 @@ class Company {
     this.answer2 = answer2;
     this.answer3 = answer3;
     this.correctAnswer = correctAnswer;
+    this.img = img;
   }
 }
 
