@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { getData } from "../helpers/db";
+
 import Question from "./question";
 import Text from "./text";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -10,11 +11,13 @@ import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 import Collapse from "react-bootstrap/Collapse";
 
+
 //Detta är det enskilda företagets container som ska displaya all information.
 //Denna ska enligt min tanke få datan från föräldrarklassen "companyContainer" som den sedan visar ut.
 class CompanyCard extends React.Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       openCard: false,
     };
@@ -67,6 +70,7 @@ class CompanyCard extends React.Component {
         </Router>
       </Card>
     );
+
   }
 }
 

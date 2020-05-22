@@ -10,7 +10,9 @@ export async function getData(collection) {
       doc.id,
       doc.get("name"),
       doc.get("title"),
+
       doc.get("infoText"),
+
       doc.get("question"),
       doc.get("answer1"),
       doc.get("answer2"),
