@@ -4,7 +4,6 @@ import { getData } from "../helpers/db";
 
 import Question from "./question";
 import Text from "./text";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
@@ -19,54 +18,52 @@ class CompanyCard extends React.Component {
 
     this.state = {
       openCard: false,
+      text: true,
+      //1=inte svarat på. 2=svarat men fel. 3=svarat rätt
+      completedQuestion: 1,
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
-  openCard() {
-    this.setState((this.openCard = true));
-  }
-
   handleClick() {
     this.setState((state) => ({
-      isToggleOn: !state.isToggleOn,
+      text: !state.text,
     }));
   }
 
   async componentDidMount() {}
   // <h1>{this.props.company.name}</h1>
   render() {
+    const text = this.state.text;
+    let content;
+    if (text) {
+      content = <Text company={this.props.company} />;
+    } else {
+      content = (
+        <Question
+          company={this.props.company}
+          completedQuestion={this.props.completedQuestion}
+        />
+      );
+    }
     return (
       <Card>
-        <Router>
-          <Accordion.Toggle as={Card.Header} eventKey={this.props.company.ID}>
-            {this.props.company.name}
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey={this.props.company.ID}>
-            <Card.Body>
-              <Nav variant="tabs">
-                <Nav.Item>
-                  <Nav.Link as={Link} to="/">
-                    Info
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link as={Link} to="/question">
-                    Fråga
-                  </Nav.Link>
-                </Nav.Item>
-              </Nav>
-              <Switch>
-                <Route exact path="/question">
-                  <Question company={this.props.company} />
-                </Route>
-                <Route exact path="/">
-                  <Text company={this.props.company} />
-                </Route>
-              </Switch>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Router>
+        <Accordion.Toggle as={Card.Header} eventKey={this.props.company.ID}>
+          {this.props.company.name}
+        </Accordion.Toggle>
+        <Accordion.Collapse eventKey={this.props.company.ID}>
+          <Card.Body>
+            <Nav variant="tabs">
+              <Nav.Item>
+                <Nav.Link onClick={this.handleClick}>Info</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link onClick={this.handleClick}>Fråga</Nav.Link>
+              </Nav.Item>
+            </Nav>
+            {content}
+          </Card.Body>
+        </Accordion.Collapse>
       </Card>
     );
   }

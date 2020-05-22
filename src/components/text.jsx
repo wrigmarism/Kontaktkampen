@@ -9,7 +9,6 @@ class Text extends React.Component {
       openCard: false,
     };
     this.handleClick = this.handleClick.bind(this);
-    
   }
 
   openCard() {
@@ -24,10 +23,13 @@ class Text extends React.Component {
 
   async componentDidMount() {}
 
-  render() { 
+  render() {
     return (
       <div>
-        <Card.Img variant="top" src={require('./cytiva.jpg')} />
+        <Card.Img
+          variant="top"
+          src={require("../img/" + this.props.company.img)}
+        />
         <h5> {this.props.company.title}</h5>
         <p>{this.props.company.text}</p>
       </div>
