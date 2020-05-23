@@ -8,7 +8,7 @@ import Text from "./text";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
-import Collapse from "react-bootstrap/Collapse";
+import Button from "react-bootstrap/Button";
 
 //Detta är det enskilda företagets container som ska displaya all information.
 //Denna ska enligt min tanke få datan från föräldrarklassen "companyContainer" som den sedan visar ut.
@@ -19,16 +19,33 @@ class CompanyCard extends React.Component {
     this.state = {
       openCard: false,
       text: true,
+      activeButtonText: true,
+      activeButtonQuestion: false,
       //1=inte svarat på. 2=svarat men fel. 3=svarat rätt
       completedQuestion: 1,
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClickText = this.handleClickText.bind(this);
+    this.handleClickQuestion = this.handleClickQuestion.bind(this);
   }
 
-  handleClick() {
-    this.setState((state) => ({
-      text: !state.text,
-    }));
+  handleClickText() {
+    if (this.state.text == false) {
+      this.setState((state) => ({
+        text: !state.text,
+        activeButtonQuestion: false,
+        activeButtonText: true,
+      }));
+    }
+  }
+
+  handleClickQuestion() {
+    if (this.state.text == true) {
+      this.setState((state) => ({
+        text: !state.text,
+        activeButtonQuestion: true,
+        activeButtonText: false,
+      }));
+    }
   }
 
   async componentDidMount() {}
@@ -53,14 +70,20 @@ class CompanyCard extends React.Component {
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={this.props.company.ID}>
           <Card.Body>
-            <Nav variant="tabs">
-              <Nav.Item>
-                <Nav.Link onClick={this.handleClick}>Info</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link onClick={this.handleClick}>Fråga</Nav.Link>
-              </Nav.Item>
-            </Nav>
+            <Button
+              variant="light"
+              onClick={this.handleClickText}
+              active={this.state.activeButtonText}
+            >
+              Info
+            </Button>
+            <Button
+              variant="light"
+              onClick={this.handleClickQuestion}
+              active={this.state.activeButtonQuestion}
+            >
+              Fråga
+            </Button>
             {content}
           </Card.Body>
         </Accordion.Collapse>
