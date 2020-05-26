@@ -5,7 +5,6 @@ import { getUser } from "../helpers/db";
 
 import Question from "./question";
 import Text from "./text";
-import { ReactComponent as Icon } from "../img/trophy.svg";
 
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
@@ -62,6 +61,7 @@ class CompanyCard extends React.Component {
       }
     });
   }
+
   // <h1>{this.props.company.name}</h1>
   render() {
     const text = this.state.text;
@@ -82,7 +82,16 @@ class CompanyCard extends React.Component {
           <Container>
             <Row>
               <Col>{this.props.company.name}</Col>
-              <Col>{this.state.completedQuestion == "3" && <Icon />}</Col>
+              <Col>
+                <div style={{ float: "right" }}>
+                  {this.state.completedQuestion == "3" && (
+                    <img
+                      style={{ width: "20px" }}
+                      src={require("../img/trophy.png")}
+                    ></img>
+                  )}
+                </div>
+              </Col>
             </Row>
           </Container>
           {/* {this.props.company.name}
