@@ -2,6 +2,8 @@ import React from "react";
 
 import Card from "react-bootstrap/Card";
 
+import "./app.css";
+
 class Text extends React.Component {
   constructor(props) {
     super(props);

@@ -9,6 +9,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
+import "./app.css";
 
 //Detta är det enskilda företagets container som ska displaya all information.
 //Denna ska enligt min tanke få datan från föräldrarklassen "companyContainer" som den sedan visar ut.
@@ -71,14 +72,17 @@ class CompanyCard extends React.Component {
         <Accordion.Collapse eventKey={this.props.company.ID}>
           <Card.Body>
             <Button
-              variant="light"
+              style={{
+                backgroundColor: "#1969ae",
+                borderColor: "#1969ae",
+              }}
               onClick={this.handleClickText}
               active={this.state.activeButtonText}
             >
               Info
             </Button>
             <Button
-              variant="light"
+              bsClass="custom-class"
               onClick={this.handleClickQuestion}
               active={this.state.activeButtonQuestion}
             >
