@@ -1,4 +1,5 @@
 import React from "react";
+import { updateUser } from "../helpers/db";
 
 import Button from "react-bootstrap/Button";
 
@@ -31,6 +32,7 @@ class Question extends React.Component {
   submit = (e) => {
     if (this.state.selectedOption == this.props.company.correctAnswer) {
       console.log("weeey");
+      updateUser(this.props.company.ID);
     }
   };
 

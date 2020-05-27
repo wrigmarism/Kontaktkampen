@@ -1,4 +1,5 @@
 import { db } from "../services/firebase";
+import firebase from "firebase/app";
 import Company from "./companyClass.js";
 
 export async function getData(collection) {
@@ -23,4 +24,32 @@ export async function getData(collection) {
     result.push(company);
   });
   return result;
+}
+
+export async function getUser() {
+  var data = [];
+  await db
+    .collection("users")
+    .where("userID", "==", "123")
+    .get()
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        // doc.data() is never undefined for query doc snapshots
+        data.push(doc.get("completedQuestions"));
+      });
+    })
+    .catch(function (error) {
+      console.log("Error getting documents: ", error);
+    });
+
+  return data;
+}
+
+export function updateUser(question) {
+  var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
+
+  // Atomically add a new region to the "regions" array field.
+  ref.update({
+    completedQuestions: firebase.firestore.FieldValue.arrayUnion(question),
+  });
 }
