@@ -1,7 +1,11 @@
 import React from "react";
 import { getScore } from "../helpers/db";
+
+import { clearUser } from "../helpers/db";
 import { db } from "../services/firebase";
 import CompanyContainer from "../components/companyContainer.jsx";
+
+import Button from "react-bootstrap/Button";
 
 // export async function Companies() {
 //   var data = ["hej", "då"];
@@ -14,6 +18,11 @@ class CompaniesPage extends React.Component {
     this.state = {
       points: 0,
     };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    clearUser();
   }
 
   async componentDidMount() {
@@ -32,6 +41,8 @@ class CompaniesPage extends React.Component {
         <h4>Vi äro alla ekonomer</h4>
         <p>Din poäng är: {this.state.points}</p>
         <CompanyContainer />
+        <p>Endast för utvecklingssyfte</p>
+        <Button onClick={this.handleClick}>Rensa användardata</Button>
       </div>
     );
   }

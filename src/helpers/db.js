@@ -53,3 +53,12 @@ export function updateUser(question) {
     score: firebase.firestore.FieldValue.increment(1),
   });
 }
+
+export function clearUser() {
+  var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
+
+  ref.update({
+    completedQuestions: [],
+    score: 0,
+  });
+}
