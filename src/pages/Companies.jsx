@@ -21,6 +21,7 @@ class CompaniesPage extends React.Component {
     db.collection("users")
       .doc("50luj5fMi93PBkK4s26N")
       .onSnapshot(function (doc) {
+        var data = doc.get("score");
         self.setState({ points: data });
       });
   }
