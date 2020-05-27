@@ -30,6 +30,13 @@ class CompanyCard extends React.Component {
     };
     this.handleClickText = this.handleClickText.bind(this);
     this.handleClickQuestion = this.handleClickQuestion.bind(this);
+    this.changeSubmited = this.changeSubmited.bind(this);
+  }
+
+  changeSubmited(e) {
+    this.setState((state) => ({
+      completedQuestion: e,
+    }));
   }
 
   handleClickText() {
@@ -72,8 +79,18 @@ class CompanyCard extends React.Component {
       content = (
         <Question
           company={this.props.company}
-          completedQuestion={this.props.completedQuestion}
+          changeSubmited={this.changeSubmited}
         />
+      );
+    }
+    var icon = <div></div>;
+    if (this.state.completedQuestion == "3") {
+      icon = (
+        <img style={{ width: "20px" }} src={require("../img/trophy.png")}></img>
+      );
+    } else if (this.state.completedQuestion == "2") {
+      icon = (
+        <img style={{ width: "20px" }} src={require("../img/x.png")}></img>
       );
     }
     return (
@@ -83,14 +100,7 @@ class CompanyCard extends React.Component {
             <Row>
               <Col>{this.props.company.name}</Col>
               <Col>
-                <div style={{ float: "right" }}>
-                  {this.state.completedQuestion == "3" && (
-                    <img
-                      style={{ width: "20px" }}
-                      src={require("../img/trophy.png")}
-                    ></img>
-                  )}
-                </div>
+                <div style={{ float: "right" }}>{icon}</div>
               </Col>
             </Row>
           </Container>
@@ -102,10 +112,12 @@ class CompanyCard extends React.Component {
         <Accordion.Collapse eventKey={this.props.company.ID}>
           <Card.Body>
             <Button
-              style={{
-                backgroundColor: "#1969ae",
-                borderColor: "#1969ae",
-              }}
+              style={
+                {
+                  // backgroundColor: "#1969ae",
+                  // borderColor: "#1969ae",
+                }
+              }
               onClick={this.handleClickText}
               active={this.state.activeButtonText}
             >

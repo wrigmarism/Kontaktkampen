@@ -7,20 +7,8 @@ class Question extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      openCard: false,
       selectedOption: "1",
     };
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  openCard() {
-    this.setState((this.openCard = true));
-  }
-
-  handleClick() {
-    this.setState((state) => ({
-      isToggleOn: !state.isToggleOn,
-    }));
   }
 
   handleOptionChange = (e) => {
@@ -31,8 +19,10 @@ class Question extends React.Component {
 
   submit = (e) => {
     if (this.state.selectedOption == this.props.company.correctAnswer) {
-      console.log("weeey");
       updateUser(this.props.company.ID);
+      this.props.changeSubmited(3);
+    } else {
+      this.props.changeSubmited(2);
     }
   };
 

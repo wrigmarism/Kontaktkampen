@@ -48,8 +48,8 @@ export async function getUser() {
 export function updateUser(question) {
   var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
 
-  // Atomically add a new region to the "regions" array field.
   ref.update({
     completedQuestions: firebase.firestore.FieldValue.arrayUnion(question),
+    score: firebase.firestore.FieldValue.increment(1),
   });
 }
