@@ -68,7 +68,6 @@ class CompanyCard extends React.Component {
       }
     });
   }
-
   // <h1>{this.props.company.name}</h1>
   render() {
     const text = this.state.text;
@@ -80,6 +79,7 @@ class CompanyCard extends React.Component {
         <Question
           company={this.props.company}
           changeSubmited={this.changeSubmited}
+          completedQuestion={this.state.completedQuestion}
         />
       );
     }
@@ -124,7 +124,6 @@ class CompanyCard extends React.Component {
               Info
             </Button>
             <Button
-              bsClass="custom-class"
               onClick={this.handleClickQuestion}
               active={this.state.activeButtonQuestion}
             >

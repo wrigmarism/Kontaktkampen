@@ -31,6 +31,8 @@ class CompaniesPage extends React.Component {
       .doc("50luj5fMi93PBkK4s26N")
       .onSnapshot(function (doc) {
         var data = doc.get("score");
+        var source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+        console.log(source, " data: ", doc.data());
         self.setState({ points: data });
       });
   }

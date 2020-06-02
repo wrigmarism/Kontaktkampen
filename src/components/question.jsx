@@ -1,7 +1,8 @@
 import React from "react";
 import { updateUser } from "../helpers/db";
 
-import Button from "react-bootstrap/Button";
+import SubmitButton from "./button";
+import Radio from "./radio";
 
 class Question extends React.Component {
   constructor(props) {
@@ -9,6 +10,8 @@ class Question extends React.Component {
     this.state = {
       selectedOption: "1",
     };
+    this.submit = this.submit.bind(this);
+    this.handleOptionChange = this.handleOptionChange.bind(this);
   }
 
   handleOptionChange = (e) => {
@@ -34,46 +37,18 @@ class Question extends React.Component {
         <h5> {this.props.company.question}</h5>
         <form>
           <div className="form-check">
-            <label>
-              <input
-                type="radio"
-                value="1"
-                checked={this.state.selectedOption === "1"}
-                onChange={this.handleOptionChange}
-                className="form-check-input"
-              />
-              {this.props.company.answer1}
-            </label>
+            <Radio
+              company={this.props.company}
+              handleOptionChange={this.handleOptionChange}
+              selectedOption={this.state.selectedOption}
+              completedQuestion={this.props.completedQuestion}
+            />
           </div>
-
-          <div className="form-check">
-            <label>
-              <input
-                type="radio"
-                value="2"
-                checked={this.state.selectedOption === "2"}
-                onChange={this.handleOptionChange}
-                className="form-check-input"
-              />
-              {this.props.company.answer2}
-            </label>
-          </div>
-
-          <div className="form-check">
-            <label>
-              <input
-                type="radio"
-                value="3"
-                checked={this.state.selectedOption === "3"}
-                onChange={this.handleOptionChange}
-                className="form-check-input"
-              />
-              {this.props.company.answer3}
-            </label>
-          </div>
-          <Button onClick={this.submit} variant="primary">
-            Välj
-          </Button>
+          <SubmitButton
+            submit={this.submit}
+            completedQuestion={this.props.completedQuestion}
+            selectedOption={this.state.selectedOption}
+          />
         </form>
       </div>
     );
