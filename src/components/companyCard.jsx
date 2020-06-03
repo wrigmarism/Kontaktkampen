@@ -114,25 +114,31 @@ class CompanyCard extends React.Component {
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={this.props.company.ID}>
           <Card.Body>
-            <Button
-              style={
-                {
-                  // backgroundColor: "#1969ae",
-                  // borderColor: "#1969ae",
-                }
-              }
-              onClick={this.handleClickText}
-              active={this.state.activeButtonText}
-            >
-              Info
-            </Button>
-            <Button
-              onClick={this.handleClickQuestion}
-              active={this.state.activeButtonQuestion}
-            >
-              Fråga
-            </Button>
-            {content}
+            <Container style={{ paddingLeft: 0, paddingRight: 0 }}>
+              <Row>
+                <Col style={{ paddingLeft: 0, paddingRight: 0 }}>
+                  <Button
+                    style={
+                      {
+                        // backgroundColor: "#1969ae",
+                        // borderColor: "#1969ae",
+                      }
+                    }
+                    onClick={this.handleClickText}
+                    active={this.state.activeButtonText}
+                  >
+                    Info
+                  </Button>
+                  <Button
+                    onClick={this.handleClickQuestion}
+                    active={this.state.activeButtonQuestion}
+                  >
+                    Fråga
+                  </Button>
+                </Col>
+              </Row>
+              {content}
+            </Container>
           </Card.Body>
         </Accordion.Collapse>
       </Card>

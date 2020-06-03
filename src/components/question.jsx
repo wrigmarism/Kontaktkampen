@@ -3,6 +3,7 @@ import { updateUser, failedQuestions } from "../helpers/db";
 
 import SubmitButton from "./button";
 import Radio from "./radio";
+import Row from "react-bootstrap/Row";
 
 class Question extends React.Component {
   constructor(props) {
@@ -34,8 +35,10 @@ class Question extends React.Component {
 
   render() {
     return (
-      <div>
-        <h5> {this.props.company.question}</h5>
+      <React.Fragment>
+        <Row>
+          <h5> {this.props.company.question}</h5>
+        </Row>
         <form>
           <div className="form-check">
             <Radio
@@ -51,7 +54,7 @@ class Question extends React.Component {
             selectedOption={this.state.selectedOption}
           />
         </form>
-      </div>
+      </React.Fragment>
     );
   }
 }
