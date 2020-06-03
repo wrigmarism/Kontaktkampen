@@ -1,6 +1,9 @@
 import React, { Fragment } from "react";
 
-import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Image from "react-bootstrap/Image";
 
 class Radio extends React.Component {
   constructor(props) {
@@ -13,10 +16,47 @@ class Radio extends React.Component {
   render() {
     var data;
     if (this.props.completedQuestion != 1) {
+      var result;
+      if (this.props.completedQuestion == 3) {
+        result = (
+          <Container>
+            <Row>
+              <Col>
+                <Image
+                  style={{ width: "20px" }}
+                  src={require("../img/checkmark.png")}
+                  fluid
+                />
+              </Col>
+              <Col>
+                <p>Rätt svar!</p>
+              </Col>
+            </Row>
+          </Container>
+        );
+      } else if (this.props.completedQuestion == 2) {
+        result = (
+          <Container>
+            <Row>
+              <Col>
+                <Image
+                  style={{ width: "20px" }}
+                  src={require("../img/x.png")}
+                  fluid
+                />
+              </Col>
+              <Col>
+                <p>Fel svar!</p>
+              </Col>
+            </Row>
+          </Container>
+        );
+      }
       //Du svarade rätt du svarede fel med ikoner
       //Sätt inline if statements som kollar om det är det rätta svaret och ge den då en speciell still annars ge den defult
       data = (
         <React.Fragment>
+          {result}
           <label>
             <input type="radio" className="form-check-input" disabled />
             {this.props.company.answer1}

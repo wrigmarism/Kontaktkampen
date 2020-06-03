@@ -26,7 +26,7 @@ export async function getData(collection) {
   return result;
 }
 
-export async function getUser() {
+export async function getCompletedQuestions() {
   var data = [];
   await db
     .collection("users")
@@ -45,6 +45,25 @@ export async function getUser() {
   return data;
 }
 
+export async function getFailedQuestions() {
+  var data = [];
+  await db
+    .collection("users")
+    .where("userID", "==", "123")
+    .get()
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        // doc.data() is never undefined for query doc snapshots
+        data.push(doc.get("failedQuestions"));
+      });
+    })
+    .catch(function (error) {
+      console.log("Error getting documents: ", error);
+    });
+
+  return data;
+}
+
 export function updateUser(question) {
   var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
 
@@ -54,11 +73,20 @@ export function updateUser(question) {
   });
 }
 
+export function failedQuestions(question) {
+  var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
+
+  ref.update({
+    failedQuestions: firebase.firestore.FieldValue.arrayUnion(question),
+  });
+}
+
 export function clearUser() {
   var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
 
   ref.update({
     completedQuestions: [],
+    failedQuestions: [],
     score: 0,
   });
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { getUser } from "../helpers/db";
+import { getFailedQuestions, getCompletedQuestions } from "../helpers/db";
 
 import Question from "./question";
 import Text from "./text";
@@ -60,11 +60,14 @@ class CompanyCard extends React.Component {
   }
 
   async componentDidMount() {
-    var data = [];
-    getUser().then((result) => {
+    getCompletedQuestions().then((result) => {
       if (result[0].includes(this.props.company.ID)) {
-        console.log("its a match");
         this.setState({ completedQuestion: "3" });
+      }
+    });
+    getFailedQuestions().then((result) => {
+      if (result[0].includes(this.props.company.ID)) {
+        this.setState({ completedQuestion: "2" });
       }
     });
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import { updateUser } from "../helpers/db";
+import { updateUser, failedQuestions } from "../helpers/db";
 
 import SubmitButton from "./button";
 import Radio from "./radio";
@@ -25,6 +25,7 @@ class Question extends React.Component {
       updateUser(this.props.company.ID);
       this.props.changeSubmited(3);
     } else {
+      failedQuestions(this.props.company.ID);
       this.props.changeSubmited(2);
     }
   };
