@@ -5,6 +5,7 @@ import { Start } from "./pages/Start.jsx";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
+import "./styles/app.css";
 
 export default class App extends React.Component {
   render() {
@@ -30,17 +31,17 @@ export default class App extends React.Component {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
-            <Switch>
-              <Route exact path="/">
-                <Start />
-              </Route>
-              <Route path="/Start">
-                <Start />
-              </Route>
-              <Route path="/Companies">
-                <Companies />
-              </Route>
-            </Switch>
+          <Switch>
+            <Route exact path="/">
+              <Start />
+            </Route>
+            <Route path="/Start">
+              <Start />
+            </Route>
+            <Route path="/Companies">
+              <Companies />
+            </Route>
+          </Switch>
         </div>
       </Router>
     );

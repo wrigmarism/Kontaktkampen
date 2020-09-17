@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
+import Media from "react-bootstrap/Media";
 
 class Radio extends React.Component {
   constructor(props) {
@@ -19,37 +20,29 @@ class Radio extends React.Component {
       var result;
       if (this.props.completedQuestion == 3) {
         result = (
-          <Container>
-            <Row>
-              <Col>
-                <Image
-                  style={{ width: "20px" }}
-                  src={require("../img/checkmark.png")}
-                  fluid
-                />
-              </Col>
-              <Col>
-                <p>Rätt svar!</p>
-              </Col>
-            </Row>
-          </Container>
+          <Row>
+            <p style={{ paddingTop: 10, paddingBottom: 0, float: "left" }}>
+              <Image
+                style={{ width: "20px", paddingLeft: 5 }}
+                src={require("../img/checkmark.png")}
+                fluid
+              />
+              Rätt svar!
+            </p>
+          </Row>
         );
       } else if (this.props.completedQuestion == 2) {
         result = (
-          <Container>
-            <Row>
-              <Col>
-                <Image
-                  style={{ width: "20px" }}
-                  src={require("../img/x.png")}
-                  fluid
-                />
-              </Col>
-              <Col>
-                <p>Fel svar!</p>
-              </Col>
-            </Row>
-          </Container>
+          <Row>
+            <p style={{ paddingTop: 10, paddingBottom: 0, float: "left" }}>
+              <Image
+                style={{ width: "20px", paddingLeft: 5 }}
+                src={require("../img/x.png")}
+                fluid
+              />
+              Fel svar!
+            </p>
+          </Row>
         );
       }
       //Du svarade rätt du svarede fel med ikoner

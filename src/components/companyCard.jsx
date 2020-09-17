@@ -101,7 +101,7 @@ class CompanyCard extends React.Component {
         <Accordion.Toggle as={Card.Header} eventKey={this.props.company.ID}>
           <Container>
             <Row>
-              <Col>{this.props.company.name}</Col>
+              <Col style={{ paddingLeft: 0 }}>{this.props.company.name}</Col>
               <Col>
                 <div style={{ float: "right" }}>{icon}</div>
               </Col>
@@ -113,23 +113,31 @@ class CompanyCard extends React.Component {
           </div> */}
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={this.props.company.ID}>
-          <Card.Body>
+          <Card.Body style={{ paddingTop: 0, paddingBottom: 0 }}>
             <Container style={{ paddingLeft: 0, paddingRight: 0 }}>
               <Row>
                 <Col style={{ paddingLeft: 0, paddingRight: 0 }}>
                   <Button
-                    style={
-                      {
-                        // backgroundColor: "#1969ae",
-                        // borderColor: "#1969ae",
-                      }
-                    }
+                    style={{
+                      marginTop: 10,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                      // backgroundColor: "#1969ae",
+                      // borderColor: "#1969ae",
+                    }}
                     onClick={this.handleClickText}
                     active={this.state.activeButtonText}
                   >
                     Info
                   </Button>
                   <Button
+                    style={{
+                      marginTop: 10,
+                      borderTopLeftRadius: 0,
+                      borderBottomLeftRadius: 0,
+                      // backgroundColor: "#1969ae",
+                      // borderColor: "#1969ae",
+                    }}
                     onClick={this.handleClickQuestion}
                     active={this.state.activeButtonQuestion}
                   >
