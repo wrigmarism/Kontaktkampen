@@ -24,3 +24,6 @@ export async function getData(collection) {
   });
   return result;
 }
+
+var firebase = require("firebase");
+var firebaseui = require("firebaseui");
