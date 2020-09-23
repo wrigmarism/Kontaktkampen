@@ -1,6 +1,8 @@
 import React from "react";
 import { getScore } from "../helpers/db";
 
+import Test from "../components/QRtest";
+
 import { clearUser } from "../helpers/db";
 import { db } from "../services/firebase";
 import CompanyContainer from "../components/companyContainer.jsx";
@@ -40,11 +42,12 @@ class CompaniesPage extends React.Component {
   render() {
     return (
       <div>
-        <h4>Vi äro alla ekonomer</h4>
+        <h4>Vi äro alla systemvetare</h4>
         <p>Din poäng är: {this.state.points}</p>
         <CompanyContainer />
         <p>Endast för utvecklingssyfte</p>
         <Button onClick={this.handleClick}>Rensa användardata</Button>
+        <Test />
       </div>
     );
   }
