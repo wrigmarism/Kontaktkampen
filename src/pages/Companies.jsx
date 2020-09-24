@@ -19,8 +19,16 @@ class CompaniesPage extends React.Component {
     super(props);
     this.state = {
       points: 0,
+      showQR: false,
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleQRCklick = this.handleQRCklick.bind(this);
+  }
+
+  handleQRCklick(e) {
+    this.setState((prevState) => ({
+      showQR: !prevState.showQR,
+    }));
   }
 
   handleClick(e) {
@@ -40,14 +48,21 @@ class CompaniesPage extends React.Component {
   }
 
   render() {
+    let reader;
+    if (this.state.showQR == true) {
+      reader = <Test />;
+    } else {
+      reader = <div></div>;
+    }
     return (
       <div>
         <h4>Vi äro alla systemvetare</h4>
         <p>Din poäng är: {this.state.points}</p>
+        <Button onClick={this.handleQRCklick}>Fota QR-kod</Button>
+        {reader}
         <CompanyContainer />
         <p>Endast för utvecklingssyfte</p>
         <Button onClick={this.handleClick}>Rensa användardata</Button>
-        <Test />
       </div>
     );
   }

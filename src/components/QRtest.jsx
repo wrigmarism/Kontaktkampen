@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import QrReader from "react-qr-reader";
+import { checkQRCode } from "../helpers/db";
 
 class Test extends Component {
   state = {
@@ -8,6 +9,7 @@ class Test extends Component {
 
   handleScan = (data) => {
     if (data) {
+      checkQRCode(data);
       this.setState({
         result: data,
       });
@@ -17,6 +19,7 @@ class Test extends Component {
     console.error(err);
   };
   render() {
+    checkQRCode("qz3nUjibi0daF19LgL0B");
     return (
       <div>
         <QrReader

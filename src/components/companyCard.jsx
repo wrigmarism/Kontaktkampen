@@ -1,7 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { getFailedQuestions, getCompletedQuestions } from "../helpers/db";
+import {
+  getFailedQuestions,
+  getCompletedQuestions,
+  getUnlockedQuestions,
+} from "../helpers/db";
 
 import Question from "./question";
 import Text from "./text";
@@ -60,6 +64,7 @@ class CompanyCard extends React.Component {
   }
 
   async componentDidMount() {
+    //denna behöver strukturerars upp mycket bättre
     getCompletedQuestions().then((result) => {
       if (result[0].includes(this.props.company.ID)) {
         this.setState({ completedQuestion: "3" });
@@ -68,6 +73,11 @@ class CompanyCard extends React.Component {
     getFailedQuestions().then((result) => {
       if (result[0].includes(this.props.company.ID)) {
         this.setState({ completedQuestion: "2" });
+      }
+    });
+    getUnlockedQuestions().then((result) => {
+      if (result[0].includes(this.props.company.ID)) {
+        this.setState({ completedQuestion: "4" });
       }
     });
   }
@@ -94,6 +104,10 @@ class CompanyCard extends React.Component {
     } else if (this.state.completedQuestion == "2") {
       icon = (
         <img style={{ width: "20px" }} src={require("../img/x.png")}></img>
+      );
+    } else if (this.state.completedQuestion == "4") {
+      icon = (
+        <img style={{ width: "20px" }} src={require("../img/lås.png")}></img>
       );
     }
     return (
