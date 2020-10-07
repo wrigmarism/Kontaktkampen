@@ -7,9 +7,6 @@ class Start extends Component {
       return (
         <div>
           <h2>Loggad in som {auth.currentUser.displayName}</h2>
-          <button type="submit" onClick={this.logout}>
-            Logga ut
-          </button>
         </div>
       );
     } else {
@@ -21,6 +18,7 @@ class Start extends Component {
     auth.signOut();
     if (auth.currentUser === null) {
       console.log("Utloggad");
+      this.setState({ signedIn: false });
     } else {
       console.log("Inte utloggad");
     }

@@ -1,14 +1,21 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Companies from "../pages/Companies";
+import Companies from "./Companies";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Login from "./Login";
 import Start from "./Start";
-import Signup from "../pages/SignUp";
-import SignOut from "../helpers/SignOut";
+import Signup from "./SignUp";
+import { AlertHeading } from "react-bootstrap/Alert";
+import { auth } from "../services/firebase";
+import Signout from "../helpers/SignOut";
 
 class Menu extends Component {
+  handleSignOut() {
+    auth.signOut();
+    this.setState({ signedIn: false });
+  }
+
   render() {
     return (
       <Router>
@@ -29,8 +36,17 @@ class Menu extends Component {
               <Nav className="mr-auto">
                 <Nav.Link href="Start">Start</Nav.Link>
                 <Nav.Link href="Companies">Företag</Nav.Link>
-                <Nav.Link href="Login">Logga in</Nav.Link>
-                <Nav.Link href="SignUp">Registrera</Nav.Link>
+                {auth.currentUser == null && (
+                  <Nav.Link href="Login">Logga in</Nav.Link>
+                )}
+                {auth.currentUser == null && (
+                  <Nav.Link href="SignUp">Registrera</Nav.Link>
+                )}
+                {!(auth.currentUser == null) && (
+                  <Nav.Link href="Start" onClick={() => this.handleSignOut()}>
+                    Logga ut
+                  </Nav.Link>
+                )}
               </Nav>
             </Navbar.Collapse>
           </Navbar>
