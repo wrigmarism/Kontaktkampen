@@ -25,5 +25,15 @@ export async function getData(collection) {
   return result;
 }
 
+export function createUser(u) {
+  db.collection("users").doc().set({
+    completedQuestions: [],
+    failedQuestions: [],
+    score: 0,
+    unlockedQuestions: [],
+    userID: u.email,
+  });
+}
+
 var firebase = require("firebase");
 var firebaseui = require("firebaseui");

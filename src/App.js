@@ -29,6 +29,8 @@ class App extends Component {
     });
   }
 
+  async componentDidUpdate() {}
+
   onSignInSuccess() {
     this.setState({ signedIn: true });
     return false;
@@ -40,13 +42,7 @@ class App extends Component {
   }
 
   render() {
-    console.log("Inloggad: " + this.state.signedIn);
-    return (
-      <Menu
-        onSignInSuccess={this.onSignInSuccess}
-        handleSignOut={this.handleSignOut}
-      />
-    );
+    return <Menu />;
   }
 }
 

@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { auth } from "../services/firebase";
 
 class Start extends Component {
-  loggedIn() {
+  checkLogIn() {
     if (auth.currentUser !== null) {
       return (
         <div>
-          <h2>Loggad in som {auth.currentUser.displayName}</h2>
+          <h2>Inloggad som {auth.currentUser.displayName}</h2>
         </div>
       );
     } else {
@@ -14,18 +14,8 @@ class Start extends Component {
     }
   }
 
-  logout() {
-    auth.signOut();
-    if (auth.currentUser === null) {
-      console.log("Utloggad");
-      this.setState({ signedIn: false });
-    } else {
-      console.log("Inte utloggad");
-    }
-  }
-
   render() {
-    return <div>{this.loggedIn()}</div>;
+    return <div>{this.checkLogIn()}</div>;
   }
 }
 

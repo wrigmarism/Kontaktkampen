@@ -6,9 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Login from "./Login";
 import Start from "./Start";
 import Signup from "./SignUp";
-import { AlertHeading } from "react-bootstrap/Alert";
 import { auth } from "../services/firebase";
-import Signout from "../helpers/SignOut";
 
 class Menu extends Component {
   handleSignOut() {
@@ -17,6 +15,7 @@ class Menu extends Component {
   }
 
   render() {
+    let signedIn = auth.currentUser != null;
     return (
       <Router>
         <div>
@@ -35,14 +34,10 @@ class Menu extends Component {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link href="Start">Start</Nav.Link>
-                <Nav.Link href="Companies">Företag</Nav.Link>
-                {auth.currentUser == null && (
-                  <Nav.Link href="Login">Logga in</Nav.Link>
-                )}
-                {auth.currentUser == null && (
-                  <Nav.Link href="SignUp">Registrera</Nav.Link>
-                )}
-                {!(auth.currentUser == null) && (
+                {signedIn && <Nav.Link href="Companies">Företag</Nav.Link>}
+                {!signedIn && <Nav.Link href="Login">Logga in</Nav.Link>}
+                {!signedIn && <Nav.Link href="SignUp">Registrera</Nav.Link>}
+                {signedIn && (
                   <Nav.Link href="Start" onClick={() => this.handleSignOut()}>
                     Logga ut
                   </Nav.Link>

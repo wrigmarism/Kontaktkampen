@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { auth } from "../services/firebase";
+import { createUser } from "../helpers/db";
 
 class Signup extends Component {
   constructor(props) {
@@ -11,9 +12,6 @@ class Signup extends Component {
       name: "",
       email: "",
       password: "",
-      edu1: false,
-      edu2: false,
-      edu3: false,
     };
   }
 
@@ -37,10 +35,10 @@ class Signup extends Component {
   handleSignup(e) {
     e.preventDefault();
     auth
-      .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((u) => {
-        this.updateUser(auth.auth().currentUser, this.state.name);
+        this.updateUser(auth.currentUser, this.state.name);
+        createUser(auth.currentUser);
       })
       .catch((error) => {
         alert(error);
@@ -83,22 +81,6 @@ class Signup extends Component {
             name="password"
           ></input>
         </label>
-        <br />
-        Utbildning:
-        <br />
-        <input type="checkbox" id="edu1" name="edu1" value="Ekonomi"></input>
-        Ekonom
-        <br />
-        <input
-          type="checkbox"
-          id="edu2"
-          name="edu2"
-          value="Systemvetenskap"
-        ></input>
-        Systemvetare
-        <br />
-        <input type="checkbox" id="edu3" name="edu3" value="MKV"></input>
-        Medievetare
         <br />
         <button type="submit" onClick={this.handleSignup}>
           Registrera
