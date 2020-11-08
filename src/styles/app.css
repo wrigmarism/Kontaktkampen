@@ -8,4 +8,5 @@ body {
 }
 
 .forceMobile {
+  max-width: 750px;
 }
