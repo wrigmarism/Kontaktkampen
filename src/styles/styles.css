@@ -1,0 +1,26 @@
+.start-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.start-box {
+  width: 90%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  color: #e9e9e9;
+  background: #343a40;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  padding: 1rem;
+  box-shadow: 3px 3px 5px rgba(34, 41, 48, 0.3);
+}
+
+.start-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #222930;
+}

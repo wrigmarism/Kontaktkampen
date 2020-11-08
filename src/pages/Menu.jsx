@@ -7,6 +7,7 @@ import Login from "./Login";
 import Start from "./Start";
 import Signup from "./SignUp";
 import { auth } from "../services/firebase";
+import "../styles/Navbar.css";
 
 class Menu extends Component {
   handleSignOut() {

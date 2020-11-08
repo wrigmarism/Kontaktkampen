@@ -11,6 +11,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 
+
 class App extends Component {
   constructor() {
     super();
@@ -18,6 +19,7 @@ class App extends Component {
       user: {},
       admin: false,
       signedIn: false,
+      start: {},
     };
   }
 
@@ -42,7 +44,12 @@ class App extends Component {
   }
 
   render() {
-    return <Menu />;
+    return( 
+      <div className="App">
+          <Menu />
+      </div>
+    );
+      
   }
 }
 
