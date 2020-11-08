@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 import {
   getFailedQuestions,
@@ -12,7 +11,6 @@ import Text from "./text";
 
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
-import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -26,7 +24,7 @@ class CompanyCard extends React.Component {
 
     this.state = {
       openCard: false,
-      text: true,
+      text: false,
       activeButtonText: true,
       activeButtonQuestion: false,
       //1=inte svarat på. 2=svarat men fel. 3=svarat rätt
@@ -75,11 +73,11 @@ class CompanyCard extends React.Component {
         this.setState({ completedQuestion: "2" });
       }
     });
-    getUnlockedQuestions().then((result) => {
-      if (result[0].includes(this.props.company.ID)) {
-        this.setState({ completedQuestion: "4" });
-      }
-    });
+    // getUnlockedQuestions().then((result) => {
+    //   if (result[0].includes(this.props.company.ID)) {
+    //     this.setState({ completedQuestion: "4" });
+    //   }
+    // });
   }
   // <h1>{this.props.company.name}</h1>
   render() {
@@ -105,11 +103,11 @@ class CompanyCard extends React.Component {
       icon = (
         <img style={{ width: "20px" }} src={require("../img/x.png")}></img>
       );
-    } else if (this.state.completedQuestion == "4") {
-      icon = (
-        <img style={{ width: "20px" }} src={require("../img/lås.png")}></img>
-      );
-    }
+    } //else if (this.state.completedQuestion == "4") { //Ska det verkligen vara en fyra här?
+    //   icon = (
+    //     <img style={{ width: "20px" }} src={require("../img/lås.png")}></img>
+    //   );
+    // }
     return (
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey={this.props.company.ID}>
@@ -131,7 +129,7 @@ class CompanyCard extends React.Component {
             <Container style={{ paddingLeft: 0, paddingRight: 0 }}>
               <Row>
                 <Col style={{ paddingLeft: 0, paddingRight: 0 }}>
-                  <Button
+                  {/* <Button
                     style={{
                       marginTop: 10,
                       borderTopRightRadius: 0,
@@ -143,8 +141,8 @@ class CompanyCard extends React.Component {
                     active={this.state.activeButtonText}
                   >
                     Info
-                  </Button>
-                  <Button
+                  </Button> */}
+                  {/* <Button
                     style={{
                       marginTop: 10,
                       borderTopLeftRadius: 0,
@@ -156,7 +154,7 @@ class CompanyCard extends React.Component {
                     active={this.state.activeButtonQuestion}
                   >
                     Fråga
-                  </Button>
+                  </Button> */}
                 </Col>
               </Row>
               {content}

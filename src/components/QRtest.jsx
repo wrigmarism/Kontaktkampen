@@ -18,6 +18,7 @@ class Test extends Component {
   handleError = (err) => {
     console.error(err);
   };
+
   render() {
     checkQRCode("qz3nUjibi0daF19LgL0B");
     return (
