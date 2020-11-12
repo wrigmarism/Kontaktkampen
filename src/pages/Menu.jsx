@@ -6,6 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Login from "./Login";
 import Start from "./Start";
 import Signup from "./SignUp";
+import Profile from "./Profile";
 import { auth } from "../services/firebase";
 import "../styles/Navbar.css";
 
@@ -36,6 +37,7 @@ class Menu extends Component {
               <Nav className="mr-auto">
                 <Nav.Link href="Start">Start</Nav.Link>
                 {signedIn && <Nav.Link href="Companies">Företag</Nav.Link>}
+                {signedIn && <Nav.Link href="Profile">Profil</Nav.Link>}
                 {!signedIn && <Nav.Link href="Login">Logga in</Nav.Link>}
                 {!signedIn && <Nav.Link href="SignUp">Registrera</Nav.Link>}
                 {signedIn && (
@@ -55,6 +57,9 @@ class Menu extends Component {
             </Route>
             <Route path="/Companies">
               <Companies />
+            </Route>
+            <Route path="/Profile">
+              <Profile />
             </Route>
             <Route path="/Login">
               <Login />

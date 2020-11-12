@@ -38,7 +38,7 @@ class Start extends Component {
       <div className="start-main">
         <div className="start-container">
           <div className="start-box">
-              {this.checkLogIn()}
+              {/* {this.checkLogIn()} */}
               <p><h2>{this.state.header}</h2>
               </p>
               <p>{this.state.body1}</p>
