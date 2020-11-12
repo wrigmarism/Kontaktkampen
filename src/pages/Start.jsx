@@ -21,6 +21,7 @@ class Start extends Component {
     this.setState({header: text.header, body1: text.body1, body2: text.body2, body3: text.body3, body4: text.body4});
   }
 
+
   checkLogIn() {
     if (auth.currentUser !== null) {
       return (
