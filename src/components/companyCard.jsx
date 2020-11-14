@@ -113,11 +113,19 @@ class CompanyCard extends React.Component {
         <Accordion.Toggle as={Card.Header} eventKey={this.props.company.ID}>
           <Container>
             <Row>
+              <Card.Img
+                class="companyPic"
+                variant="top"
+                fluid
+                src={this.props.company.img}
+              />
+            </Row>
+            {/* <Row>
               <Col style={{ paddingLeft: 0 }}>{this.props.company.name}</Col>
               <Col>
                 <div style={{ float: "right" }}>{icon}</div>
               </Col>
-            </Row>
+            </Row> */}
           </Container>
           {/* {this.props.company.name}
           <div style={{ float: "right" }}>

@@ -67,36 +67,42 @@ class Radio extends React.Component {
     } else {
       data = (
         <React.Fragment>
-          <label>
-            <input
-              type="radio"
-              value="1"
-              checked={this.props.selectedOption === "1"}
-              onChange={this.props.handleOptionChange}
-              className="form-check-input"
-            />
-            {this.props.company.answer1}
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="2"
-              checked={this.props.selectedOption === "2"}
-              onChange={this.props.handleOptionChange}
-              className="form-check-input"
-            />
-            {this.props.company.answer2}
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="3"
-              checked={this.props.selectedOption === "3"}
-              onChange={this.props.handleOptionChange}
-              className="form-check-input"
-            />
-            {this.props.company.answer3}
-          </label>
+          <Row>
+            <label>
+              <input
+                type="radio"
+                value="1"
+                checked={this.props.selectedOption === "1"}
+                onChange={this.props.handleOptionChange}
+                className="form-check-input"
+              />
+              {this.props.company.answer1}
+            </label>
+          </Row>
+          <Row>
+            <label>
+              <input
+                type="radio"
+                value="2"
+                checked={this.props.selectedOption === "2"}
+                onChange={this.props.handleOptionChange}
+                className="form-check-input"
+              />
+              {this.props.company.answer2}
+            </label>
+          </Row>
+          <Row>
+            <label>
+              <input
+                type="radio"
+                value="3"
+                checked={this.props.selectedOption === "3"}
+                onChange={this.props.handleOptionChange}
+                className="form-check-input"
+              />
+              {this.props.company.answer3}
+            </label>
+          </Row>
         </React.Fragment>
       );
     }

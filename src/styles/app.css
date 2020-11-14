@@ -8,5 +8,10 @@ body {
 }
 
 .forceMobile {
-  max-width: 750px;
+  max-width: 45em;
+}
+
+.companyPic {
+  height: auto;
+  width: 15em;
 }
