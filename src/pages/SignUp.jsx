@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { auth } from "../services/firebase";
 import { createUser } from "../helpers/db";
+import { Redirect } from "react-router-dom";
 
 class Signup extends Component {
   constructor(props) {
@@ -39,6 +40,14 @@ class Signup extends Component {
       .then((u) => {
         this.updateUser(auth.currentUser, this.state.name);
         createUser(auth.currentUser);
+        return(
+          <Redirect
+          to={{
+            pathname: "/",
+            state: { uid: this.state.uid },
+          }}
+        />
+        )
       })
       .catch((error) => {
         alert(error);
@@ -46,7 +55,21 @@ class Signup extends Component {
   }
 
   render() {
+    if (auth.currentUser !== null) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/",
+            state: { uid: this.state.uid },
+          }}
+        />
+      );
+    }
     return (
+      <div className="main">
+        <div className="container">
+          <div className="box">
+            <h4>Registrera användare</h4>
       <form>
         <label>
           Namn:
@@ -86,6 +109,9 @@ class Signup extends Component {
           Registrera
         </button>
       </form>
+      </div>
+      </div>
+      </div>
     );
   }
 }

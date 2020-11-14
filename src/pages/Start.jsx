@@ -36,9 +36,9 @@ class Start extends Component {
 
   render() {
     return (
-      <div className="start-main">
-        <div className="start-container">
-          <div className="start-box">
+      <div className="main">
+        <div className="container">
+          <div className="box">
               {/* {this.checkLogIn()} */}
               <p><h2>{this.state.header}</h2>
               </p>

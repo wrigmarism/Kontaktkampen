@@ -32,6 +32,16 @@ class Login extends Component {
     });
   }
 
+  redirectToReset(){
+    return (
+      <Redirect
+        to={{
+          pathname: "/",
+        }}
+      />
+    );
+  }
+
   render() {
     if (auth.currentUser !== null) {
       return (
@@ -44,33 +54,40 @@ class Login extends Component {
       );
     }
     return (
-      <form>
-        <label>
-          E-postadress:
-          <br />
-          <input
-            value={this.state.email}
-            onChange={this.handleChange}
-            type="email"
-            name="email"
-          ></input>
-        </label>
-        <br />
-        <label>
-          Lösenord:
-          <br />
-          <input
-            value={this.state.password}
-            onChange={this.handleChange}
-            type="password"
-            name="password"
-          ></input>{" "}
-        </label>
-        <br />
-        <button type="submit" onClick={this.handleSubmit}>
-          Logga in
-        </button>
-      </form>
+      <div className="main">
+        <div className="container">
+          <div className="box">
+            <h4>Logga in</h4>
+            <form>
+              <label>
+                E-postadress:
+                <br />
+                <input
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  type="email"
+                  name="email"
+                ></input>
+              </label>
+              <br />
+              <label>
+                Lösenord:
+                <br />
+                <input
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  type="password"
+                  name="password"
+                ></input>{" "}
+              </label>
+              <br />
+              <button type="submit" onClick={this.handleSubmit}>
+                Logga in
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     );
   }
 }
