@@ -1,4 +1,5 @@
 import { db } from "../services/firebase";
+import firebase from "firebase/app";
 import Company from "./companyClass.js";
 
 export async function getData(collection) {
@@ -24,6 +25,7 @@ export async function getData(collection) {
   });
   return result;
 }
+
 
 //Skapar ett dokument i db/collection/users, input: användarobjekt
 export function createUser(u) {
@@ -63,3 +65,110 @@ export async function getStaticText(page) {
 
 var firebase = require("firebase");
 var firebaseui = require("firebaseui");
+=======
+export async function getCompletedQuestions() {
+  var data = [];
+  await db
+    .collection("users")
+    .where("userID", "==", "123")
+    .get()
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        // doc.data() is never undefined for query doc snapshots
+        data.push(doc.get("completedQuestions"));
+      });
+    })
+    .catch(function (error) {
+      console.log("Error getting documents: ", error);
+    });
+
+  return data;
+}
+
+export async function getFailedQuestions() {
+  var data = [];
+  await db
+    .collection("users")
+    .where("userID", "==", "123")
+    .get()
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        // doc.data() is never undefined for query doc snapshots
+        data.push(doc.get("failedQuestions"));
+      });
+    })
+    .catch(function (error) {
+      console.log("Error getting documents: ", error);
+    });
+
+  return data;
+}
+
+export async function getUnlockedQuestions() {
+  var data = [];
+  await db
+    .collection("users")
+    .where("userID", "==", "123")
+    .get()
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        // doc.data() is never undefined for query doc snapshots
+        data.push(doc.get("unlockedQuestions"));
+      });
+    })
+    .catch(function (error) {
+      console.log("Error getting documents: ", error);
+    });
+
+  return data;
+}
+
+export async function checkQRCode(code) {
+  var docRef = db.collection("company").doc(code);
+
+  docRef
+    .get()
+    .then(function (doc) {
+      if (doc.exists) {
+        var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
+        console.log("Hejsan det är jesus");
+        ref.update({
+          unlockedQuestions: firebase.firestore.FieldValue.arrayUnion(code),
+        });
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("QR code did not match with any question ID");
+      }
+    })
+    .catch(function (error) {
+      console.log("Error getting document:", error);
+    });
+}
+
+export function updateUser(question) {
+  var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
+
+  ref.update({
+    completedQuestions: firebase.firestore.FieldValue.arrayUnion(question),
+    score: firebase.firestore.FieldValue.increment(1),
+  });
+}
+
+export function failedQuestions(question) {
+  var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
+
+  ref.update({
+    failedQuestions: firebase.firestore.FieldValue.arrayUnion(question),
+  });
+}
+
+export function clearUser() {
+  var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
+
+  ref.update({
+    completedQuestions: [],
+    failedQuestions: [],
+    score: 0,
+  });
+}
+

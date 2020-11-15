@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+.forceMobile {
+  max-width: 45em;
+}
+
+.companyPic {
+  height: auto;
+  width: 15em;
+}

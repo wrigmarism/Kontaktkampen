@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { getData } from "../helpers/db";
+import { getUser } from "../helpers/db";
 import CompanyCard from "./companyCard";
 
 import Accordion from "react-bootstrap/Accordion";
