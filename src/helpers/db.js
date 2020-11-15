@@ -25,7 +25,6 @@ export async function getData(collection) {
   return result;
 }
 
-
 //Skapar ett dokument i db/collection/users, input: användarobjekt
 export function createUser(u) {
   db.collection("users").doc().set({
@@ -51,19 +50,16 @@ export async function fetchData(collection) {
   return data;
 }
 
-export async function getStaticText(page){
+export async function getStaticText(page) {
   const data = await fetchData("staticText");
   var result;
   data.forEach((text) => {
-    if(text.id === page){
+    if (text.id === page) {
       result = text;
     }
-    });
-    return result;
-  }
-
-  
-
+  });
+  return result;
+}
 
 var firebase = require("firebase");
 var firebaseui = require("firebaseui");

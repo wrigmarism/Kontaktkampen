@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { auth } from "../services/firebase";
 import firebase from "firebase";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 class Login extends Component {
   constructor(props) {
@@ -44,7 +46,48 @@ class Login extends Component {
       );
     }
     return (
-      <form>
+      <div className="start-main">
+        <div className="start-container">
+          <div className="start-box">
+            <Form>
+              <Form.Group controlId="email">
+                <Form.Label>E-postadress:</Form.Label>
+                <Form.Control
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  type="email"
+                  name="email"
+                />
+              </Form.Group>
+
+              <Form.Group controlId="password">
+                <Form.Label>Lösenord:</Form.Label>
+                <Form.Control
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  type="password"
+                  name="password"
+                />
+              </Form.Group>
+              <Button
+                type="submit"
+                onClick={this.handleSubmit}
+                variant="primary"
+              >
+                Logga in
+              </Button>
+            </Form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Login;
+
+{
+  /* <form>
         <label>
           E-postadress:
           <br />
@@ -70,9 +113,5 @@ class Login extends Component {
         <button type="submit" onClick={this.handleSubmit}>
           Logga in
         </button>
-      </form>
-    );
-  }
+      </form> */
 }
-
-export default Login;

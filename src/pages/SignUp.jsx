@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { auth } from "../services/firebase";
 import { createUser } from "../helpers/db";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 class Signup extends Component {
   constructor(props) {
@@ -47,16 +49,67 @@ class Signup extends Component {
 
   render() {
     return (
-      <form>
+      <div className="start-main">
+        <div className="start-container">
+          <div className="start-box">
+            <Form>
+              <Form.Group controlId="userName">
+                <Form.Label>Namn:</Form.Label>
+                <Form.Control
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  type="text"
+                  name="name"
+                  id="name"
+                />
+              </Form.Group>
+
+              <Form.Group controlId="email">
+                <Form.Label>E-postadress:</Form.Label>
+                <Form.Control
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  type="email"
+                  name="email"
+                />
+                <Form.Text className="text-muted">
+                  Vi kommer aldrig att dela din e-mail med andra
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group controlId="password">
+                <Form.Label>Lösenord:</Form.Label>
+                <Form.Control
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  type="password"
+                  name="password"
+                />
+              </Form.Group>
+              <Button
+                type="submit"
+                onClick={this.handleSignup}
+                variant="primary"
+              >
+                Registrera
+              </Button>
+            </Form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Signup;
+
+{
+  /* <form>
         <label>
           Namn:
           <br />
           <input
-            value={this.state.name}
-            onChange={this.handleChange}
-            type="text"
-            name="name"
-            id="name"
+            
           ></input>
         </label>
         <br />
@@ -64,10 +117,7 @@ class Signup extends Component {
           E-postadress:
           <br />
           <input
-            value={this.state.email}
-            onChange={this.handleChange}
-            type="email"
-            name="email"
+            
           ></input>
         </label>
         <br />
@@ -75,19 +125,12 @@ class Signup extends Component {
           Lösenord:
           <br />
           <input
-            value={this.state.password}
-            onChange={this.handleChange}
-            type="password"
-            name="password"
+            
           ></input>
         </label>
         <br />
-        <button type="submit" onClick={this.handleSignup}>
+        <button >
           Registrera
         </button>
-      </form>
-    );
-  }
+      </form> */
 }
-
-export default Signup;
