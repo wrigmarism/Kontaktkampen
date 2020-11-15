@@ -68,9 +68,9 @@ class Signup extends Component {
       );
     }
     return (
-      <div className="start-main">
-        <div className="start-container">
-          <div className="start-box">
+      <div className="main">
+        <div className="container">
+          <div className="box">
             <Form>
               <Form.Group controlId="userName">
                 <Form.Label>Namn:</Form.Label>

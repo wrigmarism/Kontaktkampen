@@ -1,3 +1,7 @@
+.App {
+  max-width: 50rem;
+}
+
 .main {
   display: flex;
   flex-direction: column;
