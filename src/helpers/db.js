@@ -26,6 +26,46 @@ export async function getData(collection) {
   return result;
 }
 
+
+//Skapar ett dokument i db/collection/users, input: användarobjekt
+export function createUser(u) {
+  db.collection("users").doc().set({
+    completedQuestions: [],
+    failedQuestions: [],
+    score: 0,
+    unlockedQuestions: [],
+    userID: u.email,
+  });
+}
+
+export async function fetchData(collection) {
+  const data = await db
+    .collection(collection)
+    .get()
+    .then((querySnapshot) => {
+      const tempDoc = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      return tempDoc;
+    });
+  return data;
+}
+
+export async function getStaticText(page) {
+  const data = await fetchData("staticText");
+  var result;
+  data.forEach((text) => {
+    if (text.id === page) {
+      result = text;
+    }
+  });
+  return result;
+}
+
+var firebase = require("firebase");
+var firebaseui = require("firebaseui");
+=======
 export async function getCompletedQuestions() {
   var data = [];
   await db
@@ -131,3 +171,4 @@ export function clearUser() {
     score: 0,
   });
 }
+

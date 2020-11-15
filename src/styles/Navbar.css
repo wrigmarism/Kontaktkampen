@@ -1,0 +1,30 @@
+.Navbar {
+  background: #222930;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.Navbar-link-container {
+  display: flex;
+}
+
+.Navbar-link {
+  padding: 1.2rem 0.5rem;
+  color: #e9e9e9;
+}
+
+.Navbar-link-home {
+  color: #4eb1ba;
+}
+
+.Navbar-logout {
+  background: inherit;
+  color: #e9e9e9;
+  border: none;
+}
+
+.Navbar-logout:focus {
+  outline: none;
+  box-shadow: none;
+}
