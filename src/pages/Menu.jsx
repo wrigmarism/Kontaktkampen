@@ -7,6 +7,7 @@ import Login from "./Login";
 import Start from "./Start";
 import Signup from "./SignUp";
 import Profile from "./Profile";
+import ResetPassword from "./resetPassword";
 import { auth } from "../services/firebase";
 import "../styles/Navbar.css";
 
@@ -36,10 +37,11 @@ class Menu extends Component {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link href="Start">Start</Nav.Link>
-                {signedIn && <Nav.Link href="Companies">Företag</Nav.Link>}
+                {signedIn && <Nav.Link href="Companies">Frågor</Nav.Link>}
                 {signedIn && <Nav.Link href="Profile">Profil</Nav.Link>}
                 {!signedIn && <Nav.Link href="Login">Logga in</Nav.Link>}
                 {!signedIn && <Nav.Link href="SignUp">Registrera</Nav.Link>}
+                {!signedIn && <Nav.Link href="ResetPassword">Återställ lösenord</Nav.Link>}
                 {signedIn && (
                   <Nav.Link href="Start" onClick={() => this.handleSignOut()}>
                     Logga ut
@@ -66,6 +68,9 @@ class Menu extends Component {
             </Route>
             <Route path="/SignUp">
               <Signup />
+            </Route>
+            <Route path="/ResetPassword">
+              <ResetPassword />
             </Route>
           </Switch>
         </div>

@@ -34,6 +34,16 @@ class Login extends Component {
     });
   }
 
+  redirectToReset() {
+    return (
+      <Redirect
+        to={{
+          pathname: "/",
+        }}
+      />
+    );
+  }
+
   render() {
     if (auth.currentUser !== null) {
       return (

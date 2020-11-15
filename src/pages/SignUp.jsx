@@ -3,6 +3,7 @@ import { auth } from "../services/firebase";
 import { createUser } from "../helpers/db";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { Redirect } from "react-router-dom";
 
 class Signup extends Component {
   constructor(props) {
@@ -41,6 +42,14 @@ class Signup extends Component {
       .then((u) => {
         this.updateUser(auth.currentUser, this.state.name);
         createUser(auth.currentUser);
+        return (
+          <Redirect
+            to={{
+              pathname: "/",
+              state: { uid: this.state.uid },
+            }}
+          />
+        );
       })
       .catch((error) => {
         alert(error);
@@ -48,6 +57,16 @@ class Signup extends Component {
   }
 
   render() {
+    if (auth.currentUser !== null) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/",
+            state: { uid: this.state.uid },
+          }}
+        />
+      );
+    }
     return (
       <div className="start-main">
         <div className="start-container">
