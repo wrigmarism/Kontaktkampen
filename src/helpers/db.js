@@ -26,7 +26,6 @@ export async function getData(collection) {
   return result;
 }
 
-
 //Skapar ett dokument i db/collection/users, input: användarobjekt
 export function createUser(u) {
   db.collection("users").doc().set({
@@ -63,9 +62,9 @@ export async function getStaticText(page) {
   return result;
 }
 
-var firebase = require("firebase");
-var firebaseui = require("firebaseui");
-=======
+//var firebase = require("firebase");
+//var firebaseui = require("firebaseui");
+
 export async function getCompletedQuestions() {
   var data = [];
   await db
@@ -171,4 +170,3 @@ export function clearUser() {
     score: 0,
   });
 }
-
