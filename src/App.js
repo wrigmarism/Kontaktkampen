@@ -10,6 +10,7 @@ import Signout from "./helpers/SignOut";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
+import "./styles/app.css";
 
 
 class App extends Component {
@@ -44,10 +45,12 @@ class App extends Component {
   }
 
   render() {
+
     return( 
       <div className="App">
           <Menu />
       </div>
+
     );
       
   }

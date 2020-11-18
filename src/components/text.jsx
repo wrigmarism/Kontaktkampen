@@ -1,6 +1,7 @@
 import React from "react";
 
 import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
 
 class Text extends React.Component {
   constructor(props) {
@@ -9,7 +10,6 @@ class Text extends React.Component {
       openCard: false,
     };
     this.handleClick = this.handleClick.bind(this);
-    
   }
 
   openCard() {
@@ -24,13 +24,22 @@ class Text extends React.Component {
 
   async componentDidMount() {}
 
-  render() { 
+  render() {
     return (
-      <div>
-        <Card.Img variant="top" src={require('./cytiva.jpg')} />
-        <h5> {this.props.company.title}</h5>
-        <p>{this.props.company.text}</p>
-      </div>
+      <React.Fragment>
+        <Row>
+          <Card.Img
+            variant="top"
+            src={require("../img/" + this.props.company.img)}
+          />
+        </Row>
+        <Row>
+          <h5> {this.props.company.title}</h5>
+        </Row>
+        <Row>
+          <p>{this.props.company.text}</p>
+        </Row>
+      </React.Fragment>
     );
   }
 }

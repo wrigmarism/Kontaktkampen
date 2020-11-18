@@ -38,7 +38,6 @@ class Menu extends Component {
               <Nav className="mr-auto">
                 <Nav.Link href="Start">Start</Nav.Link>
                 {signedIn && <Nav.Link href="Companies">Frågor</Nav.Link>}
-                {signedIn && <Nav.Link href="Profile">Profil</Nav.Link>}
                 {!signedIn && <Nav.Link href="Login">Logga in</Nav.Link>}
                 {!signedIn && <Nav.Link href="SignUp">Registrera</Nav.Link>}
                 {!signedIn && <Nav.Link href="ResetPassword">Återställ lösenord</Nav.Link>}
@@ -59,9 +58,6 @@ class Menu extends Component {
             </Route>
             <Route path="/Companies">
               <Companies />
-            </Route>
-            <Route path="/Profile">
-              <Profile />
             </Route>
             <Route path="/Login">
               <Login />

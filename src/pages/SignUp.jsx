@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { auth } from "../services/firebase";
 import { createUser } from "../helpers/db";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import { Redirect } from "react-router-dom";
+import Popup from "./Popup";
 
 class Signup extends Component {
   constructor(props) {
@@ -9,10 +12,14 @@ class Signup extends Component {
     this.handleSignup = this.handleSignup.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.updateUser = this.updateUser.bind(this);
+    this.togglePopup = this.togglePopup.bind(this);
+    this.checkTerms = this.checkTerms.bind(this);
     this.state = {
       name: "",
       email: "",
       password: "",
+      showPopup: false,
+      termsAccepted: false,
     };
   }
 
@@ -59,7 +66,20 @@ class Signup extends Component {
       });
   }
 
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
+  }
+
+  checkTerms() {
+    this.setState({
+      termsAccepted: !this.state.termsAccepted
+    });
+  }
+
   render() {
+    console.log(this.state.termsAccepted)
     if (auth.currentUser !== null) {
       return (
         <Redirect
@@ -71,20 +91,77 @@ class Signup extends Component {
       );
     }
     return (
+      
       <div className="main">
         <div className="container">
           <div className="box">
-            <h4>Registrera användare</h4>
-      <form>
+          {this.state.showPopup ?
+         <Popup closePopup={this.togglePopup.bind(this)}
+         />
+         : null
+       }
+       <h4>Registrera användare</h4>
+            <Form>
+              <Form.Group controlId="userName">
+                <Form.Label>Namn:</Form.Label>
+                <Form.Control
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  type="text"
+                  name="name"
+                  id="name"
+                />
+              </Form.Group>
+
+              <Form.Group controlId="email">
+                <Form.Label>E-postadress:</Form.Label>
+                <Form.Control
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  type="email"
+                  name="email"
+                />
+                <Form.Text className="text-muted">
+                  Vi kommer aldrig att dela din e-mail med andra
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group controlId="password">
+                <Form.Label>Lösenord:</Form.Label>
+                <Form.Control
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  type="password"
+                  name="password"
+                />
+                <Form.Text className="text-muted">
+                  <p>Genom att registrera dig så godkänner du vår <a href="#" onClick={this.togglePopup}>behandling av din data</a>.</p>
+                </Form.Text>
+              </Form.Group>
+              <Button
+                type="submit"
+                onClick={this.handleSignup}
+                variant="primary"
+              >
+                Registrera
+              </Button>
+            </Form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Signup;
+
+{
+  /* <form>
         <label>
           Namn:
           <br />
           <input
-            value={this.state.name}
-            onChange={this.handleChange}
-            type="text"
-            name="name"
-            id="name"
+            
           ></input>
         </label>
         <br />
@@ -92,10 +169,7 @@ class Signup extends Component {
           E-postadress:
           <br />
           <input
-            value={this.state.email}
-            onChange={this.handleChange}
-            type="email"
-            name="email"
+            
           ></input>
         </label>
         <br />
@@ -103,22 +177,12 @@ class Signup extends Component {
           Lösenord:
           <br />
           <input
-            value={this.state.password}
-            onChange={this.handleChange}
-            type="password"
-            name="password"
+            
           ></input>
         </label>
         <br />
         <button type="button" onClick={this.handleSignup}>
           Registrera
         </button>
-      </form>
-      </div>
-      </div>
-      </div>
-    );
-  }
+      </form> */
 }
-
-export default Signup;
