@@ -81,7 +81,7 @@ class Login extends Component {
                 ></input>{" "}
               </label>
               <br />
-              <button type="submit" onClick={this.handleSubmit}>
+              <button type="button" onClick={this.handleSubmit}>
                 Logga in
               </button>
             </form>

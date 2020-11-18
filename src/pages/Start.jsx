@@ -27,6 +27,7 @@ class Start extends Component {
       return (
         <div>
           <p>Inloggad som:<b> {auth.currentUser.displayName}</b></p>
+          
         </div>
       );
     } else {

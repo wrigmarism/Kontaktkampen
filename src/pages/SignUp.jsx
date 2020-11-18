@@ -35,16 +35,21 @@ class Signup extends Component {
 
   handleSignup(e) {
     e.preventDefault();
+    const user = auth.currentUser
     auth
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((u) => {
-        this.updateUser(auth.currentUser, this.state.name);
-        createUser(auth.currentUser);
+        this.updateUser(user, this.state.name);
+        createUser(user);
+        user.sendEmailVerification().then(function() {
+          console.log("Verifiering skickad")
+        }).catch(function(error) {
+          alert("Fel:" + error)
+        });
         return(
           <Redirect
           to={{
             pathname: "/",
-            state: { uid: this.state.uid },
           }}
         />
         )
@@ -105,7 +110,7 @@ class Signup extends Component {
           ></input>
         </label>
         <br />
-        <button type="submit" onClick={this.handleSignup}>
+        <button type="button" onClick={this.handleSignup}>
           Registrera
         </button>
       </form>
