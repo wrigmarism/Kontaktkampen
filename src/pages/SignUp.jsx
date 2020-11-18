@@ -42,13 +42,12 @@ class Signup extends Component {
 
   handleSignup(e) {
     e.preventDefault();
-    const user = auth.currentUser
     auth
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((u) => {
-        this.updateUser(user, this.state.name);
-        createUser(user);
-        user.sendEmailVerification().then(function() {
+        this.updateUser(auth.currentUser, this.state.name);
+        createUser(auth.currentUser);
+        auth.currentUser.sendEmailVerification().then(function() {
           console.log("Verifiering skickad")
         }).catch(function(error) {
           alert("Fel:" + error)
