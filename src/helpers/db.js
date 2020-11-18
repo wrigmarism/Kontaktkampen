@@ -12,7 +12,7 @@ export async function getData(collection) {
       doc.get("name"),
       doc.get("title"),
 
-      doc.get("infoText"),
+      doc.get("text"),
 
       doc.get("question"),
       doc.get("answer1"),

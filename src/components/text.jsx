@@ -29,13 +29,15 @@ class Text extends React.Component {
       <React.Fragment>
         <Row>
           <Card.Img
+            class="companyPic"
+            fluid
             variant="top"
-            src={require("../img/" + this.props.company.img)}
+            src={this.props.company.img}
           />
         </Row>
-        <Row>
+        {/* <Row>
           <h5> {this.props.company.title}</h5>
-        </Row>
+        </Row> */}
         <Row>
           <p>{this.props.company.text}</p>
         </Row>

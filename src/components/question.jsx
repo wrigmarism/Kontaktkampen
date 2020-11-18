@@ -35,6 +35,30 @@ class Question extends React.Component {
   async componentDidMount() {}
 
   render() {
+    var question = "";
+    if (this.props.completedQuestion == 1) {
+      question = (
+        <React.Fragment>
+          <form>
+            <div className="form-check">
+              <Radio
+                company={this.props.company}
+                handleOptionChange={this.handleOptionChange}
+                selectedOption={this.state.selectedOption}
+                completedQuestion={this.props.completedQuestion}
+              />
+            </div>
+            <SubmitButton
+              submit={this.submit}
+              completedQuestion={this.props.completedQuestion}
+              selectedOption={this.state.selectedOption}
+            />
+          </form>
+        </React.Fragment>
+      );
+    } else {
+      question = <p>Denna fråga är redan besvarad!</p>;
+    }
     return (
       <React.Fragment>
         <Row style={{ paddingTop: 10, paddingBottom: 0 }}>
@@ -42,21 +66,7 @@ class Question extends React.Component {
             <h5> {this.props.company.question}</h5>
           </Col>
         </Row>
-        <form>
-          <div className="form-check">
-            <Radio
-              company={this.props.company}
-              handleOptionChange={this.handleOptionChange}
-              selectedOption={this.state.selectedOption}
-              completedQuestion={this.props.completedQuestion}
-            />
-          </div>
-          <SubmitButton
-            submit={this.submit}
-            completedQuestion={this.props.completedQuestion}
-            selectedOption={this.state.selectedOption}
-          />
-        </form>
+        {question}
       </React.Fragment>
     );
   }

@@ -47,23 +47,7 @@ class Radio extends React.Component {
       }
       //Du svarade rätt du svarede fel med ikoner
       //Sätt inline if statements som kollar om det är det rätta svaret och ge den då en speciell still annars ge den defult
-      data = (
-        <React.Fragment>
-          {result}
-          <label>
-            <input type="radio" className="form-check-input" disabled />
-            {this.props.company.answer1}
-          </label>
-          <label>
-            <input type="radio" className="form-check-input" disabled />
-            {this.props.company.answer2}
-          </label>
-          <label>
-            <input type="radio" className="form-check-input" disabled />
-            {this.props.company.answer3}
-          </label>
-        </React.Fragment>
-      );
+      data = <React.Fragment>{/* {result} */}</React.Fragment>;
     } else {
       data = (
         <React.Fragment>

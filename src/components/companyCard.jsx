@@ -24,7 +24,7 @@ class CompanyCard extends React.Component {
 
     this.state = {
       openCard: false,
-      text: false,
+      text: true,
       activeButtonText: true,
       activeButtonQuestion: false,
       //1=inte svarat på. 2=svarat men fel. 3=svarat rätt
@@ -94,16 +94,16 @@ class CompanyCard extends React.Component {
         />
       );
     }
-    var icon = <div></div>;
-    if (this.state.completedQuestion == "3") {
-      icon = (
-        <img style={{ width: "20px" }} src={require("../img/trophy.png")}></img>
-      );
-    } else if (this.state.completedQuestion == "2") {
-      icon = (
-        <img style={{ width: "20px" }} src={require("../img/x.png")}></img>
-      );
-    } //else if (this.state.completedQuestion == "4") { //Ska det verkligen vara en fyra här?
+    // var icon = <div></div>;
+    // if (this.state.completedQuestion == "3") {
+    //   icon = (
+    //     <img style={{ width: "20px" }} src={require("../img/trophy.png")}></img>
+    //   );
+    // } else if (this.state.completedQuestion == "2") {
+    //   icon = (
+    //     <img style={{ width: "20px" }} src={require("../img/x.png")}></img>
+    //   );
+    //} //else if (this.state.completedQuestion == "4") { //Ska det verkligen vara en fyra här?
     //   icon = (
     //     <img style={{ width: "20px" }} src={require("../img/lås.png")}></img>
     //   );
@@ -111,34 +111,29 @@ class CompanyCard extends React.Component {
     return (
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey={this.props.company.ID}>
-          <Container>
+          <Container fluid>
             <Row>
-              <Card.Img
-                class="companyPic"
-                variant="top"
-                fluid
-                src={this.props.company.img}
-              />
-            </Row>
-            {/* <Row>
-              <Col style={{ paddingLeft: 0 }}>{this.props.company.name}</Col>
-              <Col>
-                <div style={{ float: "right" }}>{icon}</div>
+              <Col style={{ paddingLeft: 0, float: "left" }}>
+                {this.props.company.name}
               </Col>
-            </Row> */}
+              {/* <Col>
+                <div style={{ float: "right" }}>{icon}</div>
+              </Col> */}
+            </Row>
           </Container>
-          {/* {this.props.company.name}
-          <div style={{ float: "right" }}>
+          {/* {this.props.company.name} */}
+          {/* <div style={{ float: "right" }}>
             {this.state.completedQuestion == "3" && <Icon />}
           </div> */}
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={this.props.company.ID}>
           <Card.Body style={{ paddingTop: 0, paddingBottom: 0 }}>
-            <Container style={{ paddingLeft: 0, paddingRight: 0 }}>
+            <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }}>
               <Row>
                 <Col style={{ paddingLeft: 0, paddingRight: 0 }}>
-                  {/* <Button
+                  <Button
                     style={{
+                      float: "Left",
                       marginTop: 10,
                       borderTopRightRadius: 0,
                       borderBottomRightRadius: 0,
@@ -149,9 +144,10 @@ class CompanyCard extends React.Component {
                     active={this.state.activeButtonText}
                   >
                     Info
-                  </Button> */}
-                  {/* <Button
+                  </Button>
+                  <Button
                     style={{
+                      float: "Left",
                       marginTop: 10,
                       borderTopLeftRadius: 0,
                       borderBottomLeftRadius: 0,
@@ -162,7 +158,7 @@ class CompanyCard extends React.Component {
                     active={this.state.activeButtonQuestion}
                   >
                     Fråga
-                  </Button> */}
+                  </Button>
                 </Col>
               </Row>
               {content}
