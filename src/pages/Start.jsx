@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { UserContext } from "../services/UserProvider.jsx";
 import { auth } from "../services/firebase";
 import { getStaticText } from "../helpers/db";
 import "../styles/styles.css";
 //import {getView} from "../components/view";
 
 class Start extends Component {
+  //static contextType = UserContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -25,6 +27,8 @@ class Start extends Component {
       body3: text.body3,
       body4: text.body4,
     });
+    const user = this.context;
+    console.log(this.context);
   }
 
   checkLogIn() {

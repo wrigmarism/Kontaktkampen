@@ -12,7 +12,6 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import "./styles/app.css";
 
-
 class App extends Component {
   constructor() {
     super();
@@ -45,14 +44,11 @@ class App extends Component {
   }
 
   render() {
-
-    return( 
+    return (
       <div className="App">
-          <Menu />
+        <Menu user={this.state.user} />
       </div>
-
     );
-      
   }
 }
 

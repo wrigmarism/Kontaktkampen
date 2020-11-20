@@ -41,7 +41,7 @@ class Signup extends Component {
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((u) => {
         this.updateUser(auth.currentUser, this.state.name);
-        createUser(auth.currentUser);
+        createUser(auth.currentUser, auth.currentUser.uid);
         return (
           <Redirect
             to={{

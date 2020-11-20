@@ -1,6 +1,5 @@
 import React from "react";
 import { getScore } from "../helpers/db";
-
 import Test from "../components/QRtest";
 
 import { clearUser } from "../helpers/db";
@@ -37,14 +36,14 @@ class CompaniesPage extends React.Component {
 
   async componentDidMount() {
     var self = this;
-    db.collection("users")
-      .doc("50luj5fMi93PBkK4s26N")
-      .onSnapshot(function (doc) {
-        var data = doc.get("score");
-        var source = doc.metadata.hasPendingWrites ? "Local" : "Server";
-        console.log(source, " data: ", doc.data());
-        self.setState({ points: data });
-      });
+    // db.collection("users")
+    //   .doc(user.uid)
+    //   .onSnapshot(function (doc) {
+    //     var data = doc.get("score");
+    //     var source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+    //     console.log(source, " data: ", doc.data());
+    //     self.setState({ points: data });
+    //   });
   }
 
   render() {
@@ -65,7 +64,7 @@ class CompaniesPage extends React.Component {
         {/* <p>Din poäng är: {this.state.points}</p> */}
         {/* <Button onClick={this.handleQRCklick}>Fota QR-kod</Button> */}
         {/* {reader} */}
-        <CompanyContainer />
+        <CompanyContainer user={this.props.user} />
         <p>Endast för utvecklingssyfte</p>
         <Button onClick={this.handleClick}>Rensa användardata</Button>
       </div>

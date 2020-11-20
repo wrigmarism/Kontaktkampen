@@ -30,7 +30,13 @@ class CompanyContainer extends React.Component {
       content = <Spinner animation="border" />;
     } else {
       const companies = this.state.companies.map((company, index) => {
-        return <CompanyCard key={company.ID} company={company} />;
+        return (
+          <CompanyCard
+            key={company.ID}
+            company={company}
+            user={this.props.user}
+          />
+        );
       });
       content = <Accordion defaultActiveKey="0">{companies}</Accordion>;
     }

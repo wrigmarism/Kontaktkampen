@@ -41,7 +41,9 @@ class Menu extends Component {
                 {signedIn && <Nav.Link href="Profile">Profil</Nav.Link>}
                 {!signedIn && <Nav.Link href="Login">Logga in</Nav.Link>}
                 {!signedIn && <Nav.Link href="SignUp">Registrera</Nav.Link>}
-                {!signedIn && <Nav.Link href="ResetPassword">Återställ lösenord</Nav.Link>}
+                {!signedIn && (
+                  <Nav.Link href="ResetPassword">Återställ lösenord</Nav.Link>
+                )}
                 {signedIn && (
                   <Nav.Link href="Start" onClick={() => this.handleSignOut()}>
                     Logga ut
@@ -58,7 +60,7 @@ class Menu extends Component {
               <Start />
             </Route>
             <Route path="/Companies">
-              <Companies />
+              <Companies user={this.props.user} />
             </Route>
             <Route path="/Profile">
               <Profile />
