@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import "../styles/styles.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import {Alert} from "react-bootstrap";
 
 class ResetPassword extends Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class ResetPassword extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+    
   }
 
   handleChange(e) {
@@ -21,7 +24,14 @@ class ResetPassword extends Component {
     });
   }
 
-  ResetPassword() {}
+  handleReset() {
+    auth.sendPasswordResetEmail(this.state.email).then(function() {
+      
+      alert("Ett e-mail för att skapa ett nytt lösenord har skickats till dig!")
+    }).catch(function(error) {
+      alert(error)
+    });
+  }
 
   render() {
     if (auth.currentUser !== null) {
@@ -42,7 +52,7 @@ class ResetPassword extends Component {
             <Form>
               <Form.Group controlId="email">
                 <Form.Label>
-                  Email att skicka återställningsmail till:
+                  E-postadress:
                 </Form.Label>
                 <Form.Control
                   value={this.state.email}
@@ -52,11 +62,11 @@ class ResetPassword extends Component {
                 />
               </Form.Group>
               <Button
-                type="submit"
-                onClick={this.handleSubmit}
+                type="button"
+                onClick={this.handleReset}
                 variant="primary"
               >
-                Återställ lösenord
+                Skicka
               </Button>
             </Form>
           </div>

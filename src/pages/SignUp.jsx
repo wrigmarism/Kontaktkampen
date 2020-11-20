@@ -4,6 +4,7 @@ import { createUser } from "../helpers/db";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Redirect } from "react-router-dom";
+import Popup from "./Popup";
 
 class Signup extends Component {
   constructor(props) {
@@ -11,10 +12,14 @@ class Signup extends Component {
     this.handleSignup = this.handleSignup.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.updateUser = this.updateUser.bind(this);
+    this.togglePopup = this.togglePopup.bind(this);
+    this.toggleError = this.toggleError.bind(this);
     this.state = {
       name: "",
       email: "",
       password: "",
+      showPopup: false,
+      showError: false,
     };
   }
 
@@ -41,22 +46,40 @@ class Signup extends Component {
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((u) => {
         this.updateUser(auth.currentUser, this.state.name);
-        createUser(auth.currentUser, auth.currentUser.uid);
-        return (
+        createUser(auth.currentUser, auth.currentUser.uid, this.state.name);
+        auth.currentUser.sendEmailVerification().then(function() {
+          alert("En länk för att verifiera din e-postadress har skickats till den angivna e-postadressen. Du behöver klicka på den för att kunna vara med och tävla!")
+        }).catch(function(error) {
+          alert("Fel:" + error)
+        });
+        return(
           <Redirect
-            to={{
-              pathname: "/",
-              state: { uid: this.state.uid },
-            }}
-          />
-        );
+          to={{
+            pathname: "/",
+          }}
+        />
+        )
       })
       .catch((error) => {
         alert(error);
       });
   }
 
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
+  }
+
+  toggleError() {
+    this.setState({
+      showError: !this.state.showError
+    });
+  }
+
   render() {
+    const { error } = this.props;
+    const { showError } = this.state;
     if (auth.currentUser !== null) {
       return (
         <Redirect
@@ -68,9 +91,16 @@ class Signup extends Component {
       );
     }
     return (
+      
       <div className="main">
         <div className="container">
           <div className="box">
+          {this.state.showPopup ?
+         <Popup closePopup={this.togglePopup.bind(this)}
+         />
+         : null
+       }
+       <h4>Registrera användare</h4>
             <Form>
               <Form.Group controlId="userName">
                 <Form.Label>Namn:</Form.Label>
@@ -104,7 +134,11 @@ class Signup extends Component {
                   type="password"
                   name="password"
                 />
+                <Form.Text className="text-muted">
+                  <p>Genom att registrera dig så godkänner du vår <a href="#" onClick={this.togglePopup}>behandling av din data</a>.</p>
+                </Form.Text>
               </Form.Group>
+              {showError && <error error={error} isCloseable={true} toggleError={this.toggleError}/>}
               <Button
                 type="submit"
                 onClick={this.handleSignup}
@@ -148,7 +182,7 @@ export default Signup;
           ></input>
         </label>
         <br />
-        <button >
+        <button type="button" onClick={this.handleSignup}>
           Registrera
         </button>
       </form> */

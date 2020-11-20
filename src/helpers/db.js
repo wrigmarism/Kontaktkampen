@@ -36,13 +36,14 @@ export function SubmitAnswer(answer, company, uid) {
 }
 
 //Skapar ett dokument i db/collection/users, input: användarobjekt
-export function createUser(u, uid) {
+export function createUser(u, uid, name) {
   db.collection("users").doc(uid).set({
     completedQuestions: [],
     failedQuestions: [],
     score: 0,
     unlockedQuestions: [],
-    email: u.email,
+    userID: u.email,
+    name: name,
   });
 }
 
