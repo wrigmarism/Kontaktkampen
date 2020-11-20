@@ -97,6 +97,7 @@ class CompanyCard extends React.Component {
 
   // <h1>{this.props.company.name}</h1>
   render() {
+    const user = UserContext;
     const text = this.state.text;
     let content;
     if (text) {

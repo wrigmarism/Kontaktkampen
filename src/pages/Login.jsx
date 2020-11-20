@@ -38,7 +38,7 @@ class Login extends Component {
     return (
       <Redirect
         to={{
-          pathname: "/",
+          pathname: "/resetPassword",
         }}
       />
     );
@@ -59,6 +59,7 @@ class Login extends Component {
       <div className="main">
         <div className="container">
           <div className="box">
+            <h4>Logga in</h4>
             <Form>
               <Form.Group controlId="email">
                 <Form.Label>E-postadress:</Form.Label>
@@ -80,13 +81,15 @@ class Login extends Component {
                 />
               </Form.Group>
               <Button
-                type="submit"
+                type="button"
                 onClick={this.handleSubmit}
                 variant="primary"
               >
                 Logga in
               </Button>
             </Form>
+            <br />
+            <a href="/resetPassword" onClick={this.redirectToReset}>Har du glömt ditt lösenord?</a>
           </div>
         </div>
       </div>

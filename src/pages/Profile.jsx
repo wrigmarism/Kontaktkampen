@@ -51,6 +51,7 @@ class Profile extends Component {
       }
 
     checkLogIn() {
+        console.log(auth.currentUser)
         if (auth.currentUser !== null) {
           return (
             <div>
@@ -68,22 +69,6 @@ class Profile extends Component {
             <div className="container">
                 <div className="box">
                     {this.checkLogIn()}
-                    <form>
-              <label>
-                Ny E-postadress:
-                <br />
-                <input
-                  value={this.state.newEmail}
-                  onChange={this.handleChange}
-                  type="email"
-                  name="newEmail"
-                ></input>
-              </label>
-              <br />
-              <button type="button" onClick={this.handleChangeEmail}>
-                Ändra email
-              </button>
-            </form>
             <form>
               <label>
                 Nytt lösenord:
