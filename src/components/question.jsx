@@ -1,5 +1,5 @@
 import React from "react";
-import { updateUser, failedQuestions } from "../helpers/db";
+import { updateUser, failedQuestions, SubmitAnswer } from "../helpers/db";
 
 import SubmitButton from "./button";
 import Radio from "./radio";
@@ -23,13 +23,19 @@ class Question extends React.Component {
   };
 
   submit = (e) => {
-    if (this.state.selectedOption == this.props.company.correctAnswer) {
-      updateUser(this.props.company.ID);
-      this.props.changeSubmited(3);
-    } else {
-      failedQuestions(this.props.company.ID);
-      this.props.changeSubmited(2);
-    }
+    SubmitAnswer(
+      this.state.selectedOption,
+      this.props.company.ID,
+      this.props.uid
+    );
+    this.props.changeSubmited(2);
+    // if (this.state.selectedOption == this.props.company.correctAnswer) {
+    //   updateUser(this.props.company.ID);
+    //   this.props.changeSubmited(3);
+    // } else {
+    //   failedQuestions(this.props.company.ID);
+    //   this.props.changeSubmited(2);
+    // }
   };
 
   async componentDidMount() {}

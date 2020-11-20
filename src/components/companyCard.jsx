@@ -63,15 +63,6 @@ class CompanyCard extends React.Component {
     }
   }
 
-  waitForElement(user) {
-    console.log(user);
-    if (user != null) {
-      console.log("w4g4g");
-    } else {
-      setTimeout(this.waitForElement, 1000);
-    }
-  }
-
   async componentDidMount() {
     //denna behöver strukturerars upp mycket bättre
     // getUnlockedQuestions().then((result) => {
@@ -79,36 +70,41 @@ class CompanyCard extends React.Component {
     //     this.setState({ completedQuestion: "4" });
     //   }
     // });
-
-    const user = this.context;
-    await this.waitForElement(user);
-    if (user != null) {
-      console.log("gergerg");
-      if (user.completedQuestions.includes(this.props.company.ID)) {
-        this.setState({ completedQuestion: "3" });
-      }
-      // getFailedQuestions(user.uid).then((result) => {
-      //   if (result.includes(this.props.company.ID)) {
-      //     this.setState({ completedQuestion: "2" });
-      //   }
-      // });
-    }
   }
 
   // <h1>{this.props.company.name}</h1>
   render() {
+    // if (user.completedQuestions.includes(this.props.company.ID)) {
+    //   this.setState({ completedQuestion: "3" });
+    // }
+    // getFailedQuestions(user.uid).then((result) => {
+    //   if (result.includes(this.props.company.ID)) {
+    //     this.setState({ completedQuestion: "2" });
+    //   }
+    // });
+
+    let user = this.context;
     const text = this.state.text;
     let content;
     if (text) {
       content = <Text company={this.props.company} />;
     } else {
-      content = (
-        <Question
-          company={this.props.company}
-          changeSubmited={this.changeSubmited}
-          completedQuestion={this.state.completedQuestion}
-        />
-      );
+      if (user != null) {
+        var answerdOrNot = 1;
+        if (user.completedQuestions.includes(this.props.company.ID)) {
+          answerdOrNot = 2;
+        }
+        content = (
+          <Question
+            company={this.props.company}
+            changeSubmited={this.changeSubmited}
+            completedQuestion={answerdOrNot}
+            uid={user.uid}
+          />
+        );
+      } else {
+        content = "";
+      }
     }
     // var icon = <div></div>;
     // if (this.state.completedQuestion == "3") {

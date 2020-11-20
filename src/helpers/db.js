@@ -26,6 +26,15 @@ export async function getData(collection) {
   return result;
 }
 
+export function SubmitAnswer(answer, company, uid) {
+  var ref = db.collection("users").doc(uid);
+  console.log(company);
+  ref.update({
+    completedQuestions: firebase.firestore.FieldValue.arrayUnion(company),
+    answeredQuestionCompany: { company: answer },
+  });
+}
+
 //Skapar ett dokument i db/collection/users, input: användarobjekt
 export function createUser(u, uid) {
   db.collection("users").doc(uid).set({
@@ -167,7 +176,6 @@ export async function getUser(uid) {
 
 export function updateUser(question) {
   var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
-
   ref.update({
     completedQuestions: firebase.firestore.FieldValue.arrayUnion(question),
     score: firebase.firestore.FieldValue.increment(1),
