@@ -27,8 +27,8 @@ export async function getData(collection) {
 }
 
 //Skapar ett dokument i db/collection/users, input: användarobjekt
-export function createUser(u, name) {
-  db.collection("users").doc().set({
+export function createUser(u, uid, name) {
+  db.collection("users").doc(uid).set({
     completedQuestions: [],
     failedQuestions: [],
     score: 0,
@@ -66,11 +66,12 @@ export async function getStaticText(page) {
 //var firebase = require("firebase");
 //var firebaseui = require("firebaseui");
 
-export async function getCompletedQuestions() {
+export async function getCompletedQuestions(userId) {
   var data = [];
+  console.log(userId);
   await db
     .collection("users")
-    .where("userID", "==", "123")
+    .where("userID", "==", userId)
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
@@ -85,11 +86,11 @@ export async function getCompletedQuestions() {
   return data;
 }
 
-export async function getFailedQuestions() {
+export async function getFailedQuestions(userId) {
   var data = [];
   await db
     .collection("users")
-    .where("userID", "==", "123")
+    .where("userID", "==", userId)
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
@@ -104,11 +105,11 @@ export async function getFailedQuestions() {
   return data;
 }
 
-export async function getUnlockedQuestions() {
+export async function getUnlockedQuestions(userId) {
   var data = [];
   await db
     .collection("users")
-    .where("userID", "==", "123")
+    .where("userID", "==", userId)
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
@@ -143,6 +144,26 @@ export async function checkQRCode(code) {
     .catch(function (error) {
       console.log("Error getting document:", error);
     });
+}
+
+export async function getUser(uid) {
+  if (!uid) {
+    return null;
+  }
+  try {
+    const userDocument = await db.collection("users").doc(uid).get();
+    console.log(userDocument.exists);
+    if (userDocument.exists) {
+      return {
+        uid,
+        ...userDocument.data(),
+      };
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error("Error fetching user", error);
+  }
 }
 
 export function updateUser(question) {

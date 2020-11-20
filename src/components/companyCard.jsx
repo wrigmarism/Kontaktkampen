@@ -6,6 +6,7 @@ import {
   getUnlockedQuestions,
 } from "../helpers/db";
 
+import { UserContext } from "../services/UserProvider.jsx";
 import Question from "./question";
 import Text from "./text";
 
@@ -19,6 +20,7 @@ import Row from "react-bootstrap/Row";
 //Detta är det enskilda företagets container som ska displaya all information.
 //Denna ska enligt min tanke få datan från föräldrarklassen "companyContainer" som den sedan visar ut.
 class CompanyCard extends React.Component {
+  static contextType = UserContext;
   constructor(props) {
     super(props);
 
@@ -61,24 +63,38 @@ class CompanyCard extends React.Component {
     }
   }
 
+  waitForElement(user) {
+    console.log(user);
+    if (user != null) {
+      console.log("w4g4g");
+    } else {
+      setTimeout(this.waitForElement, 1000);
+    }
+  }
+
   async componentDidMount() {
     //denna behöver strukturerars upp mycket bättre
-    getCompletedQuestions().then((result) => {
-      if (result[0].includes(this.props.company.ID)) {
-        this.setState({ completedQuestion: "3" });
-      }
-    });
-    getFailedQuestions().then((result) => {
-      if (result[0].includes(this.props.company.ID)) {
-        this.setState({ completedQuestion: "2" });
-      }
-    });
     // getUnlockedQuestions().then((result) => {
     //   if (result[0].includes(this.props.company.ID)) {
     //     this.setState({ completedQuestion: "4" });
     //   }
     // });
+
+    const user = this.context;
+    await this.waitForElement(user);
+    if (user != null) {
+      console.log("gergerg");
+      if (user.completedQuestions.includes(this.props.company.ID)) {
+        this.setState({ completedQuestion: "3" });
+      }
+      // getFailedQuestions(user.uid).then((result) => {
+      //   if (result.includes(this.props.company.ID)) {
+      //     this.setState({ completedQuestion: "2" });
+      //   }
+      // });
+    }
   }
+
   // <h1>{this.props.company.name}</h1>
   render() {
     const text = this.state.text;

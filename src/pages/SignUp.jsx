@@ -46,7 +46,7 @@ class Signup extends Component {
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((u) => {
         this.updateUser(auth.currentUser, this.state.name);
-        createUser(auth.currentUser, this.state.name);
+        createUser(auth.currentUser, auth.currentUser.uid, this.state.name);
         auth.currentUser.sendEmailVerification().then(function() {
           alert("En länk för att verifiera din e-postadress har skickats till den angivna e-postadressen. Du behöver klicka på den för att kunna vara med och tävla!")
         }).catch(function(error) {
