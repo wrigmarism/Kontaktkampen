@@ -28,7 +28,7 @@ class Start extends Component {
       prizes: text.Prizes,
     });
     const user = this.context;
-    console.log(this.context);
+    console.log(user);
   }
 
   render() {

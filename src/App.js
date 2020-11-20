@@ -5,6 +5,7 @@ import Companies from "./pages/Companies.jsx";
 import Start from "./pages/Start.jsx";
 import Login from "./pages/Login.jsx";
 import Menu from "./pages/Menu.jsx";
+import Footer from "./pages/Footer.jsx";
 import Signup from "./pages/SignUp.jsx";
 import Signout from "./helpers/SignOut";
 import Nav from "react-bootstrap/Nav";
@@ -47,6 +48,7 @@ class App extends Component {
     return (
       <div className="App">
         <Menu user={this.state.user} />
+        <Footer></Footer>
       </div>
     );
   }
