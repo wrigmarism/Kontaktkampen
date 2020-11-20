@@ -27,13 +27,14 @@ export async function getData(collection) {
 }
 
 //Skapar ett dokument i db/collection/users, input: användarobjekt
-export function createUser(u) {
+export function createUser(u, name) {
   db.collection("users").doc().set({
     completedQuestions: [],
     failedQuestions: [],
     score: 0,
     unlockedQuestions: [],
     userID: u.email,
+    name: name,
   });
 }
 

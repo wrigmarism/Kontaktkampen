@@ -13,13 +13,13 @@ class Signup extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.togglePopup = this.togglePopup.bind(this);
-    this.checkTerms = this.checkTerms.bind(this);
+    this.toggleError = this.toggleError.bind(this);
     this.state = {
       name: "",
       email: "",
       password: "",
       showPopup: false,
-      termsAccepted: false,
+      showError: false,
     };
   }
 
@@ -46,9 +46,9 @@ class Signup extends Component {
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((u) => {
         this.updateUser(auth.currentUser, this.state.name);
-        createUser(auth.currentUser);
+        createUser(auth.currentUser, this.state.name);
         auth.currentUser.sendEmailVerification().then(function() {
-          console.log("Verifiering skickad")
+          alert("En länk för att verifiera din e-postadress har skickats till den angivna e-postadressen. Du behöver klicka på den för att kunna vara med och tävla!")
         }).catch(function(error) {
           alert("Fel:" + error)
         });
@@ -71,14 +71,15 @@ class Signup extends Component {
     });
   }
 
-  checkTerms() {
+  toggleError() {
     this.setState({
-      termsAccepted: !this.state.termsAccepted
+      showError: !this.state.showError
     });
   }
 
   render() {
-    console.log(this.state.termsAccepted)
+    const { error } = this.props;
+    const { showError } = this.state;
     if (auth.currentUser !== null) {
       return (
         <Redirect
@@ -137,6 +138,7 @@ class Signup extends Component {
                   <p>Genom att registrera dig så godkänner du vår <a href="#" onClick={this.togglePopup}>behandling av din data</a>.</p>
                 </Form.Text>
               </Form.Group>
+              {showError && <error error={error} isCloseable={true} toggleError={this.toggleError}/>}
               <Button
                 type="submit"
                 onClick={this.handleSignup}

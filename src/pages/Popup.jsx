@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
+import Button from "react-bootstrap/Button";
 import '../styles/styles.css';
 
 class Popup extends React.Component {
@@ -28,7 +28,14 @@ dina uppgifter. Detta gör du enklast genom att kontakta Kontaktdagarnas <a href
 
 <p>Om du har klagomål på vår behandling av dina personuppgifter har du rätt att inge klagomål till 
   tillsynsmyndigheten Datainspektionen.</p>
-        <button onClick={this.props.closePopup}>Stäng fönster</button>
+  <Button
+                type="button"
+                onClick={this.props.closePopup}
+                variant="primary"
+              >
+                Stäng
+              </Button>
+        {/* <button onClick={this.props.closePopup}>Stäng fönster</button> */}
         </div>
       </div>
     );
