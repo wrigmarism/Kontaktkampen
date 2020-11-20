@@ -30,7 +30,7 @@ class Start extends Component {
   render() {
     const prizes = [];
     {this.state.prizes.forEach(prize => {
-      prizes.push(<li>{prize}</li> )
+      prizes.push(<li key={prize}>{prize}</li> )
     })}
     return (
       <div className="main">
