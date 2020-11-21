@@ -1,10 +1,11 @@
 import React from "react";
 import { getScore } from "../helpers/db";
 import Test from "../components/QRtest";
-
+import { auth } from "../services/firebase";
 import { clearUser } from "../helpers/db";
 import { db } from "../services/firebase";
 import CompanyContainer from "../components/companyContainer.jsx";
+import { Redirect } from "react-router-dom";
 
 import Button from "react-bootstrap/Button";
 
@@ -25,18 +26,19 @@ class CompaniesPage extends React.Component {
   }
 
   // handleQRCklick(e) {
-  //   this.setState((prevState) => ({
-  //     showQR: !prevState.showQR,
-  //   }));
-  // }
-
-  handleClick(e) {
-    clearUser();
-  }
-
-  async componentDidMount() {
-    var self = this;
-    // db.collection("users")
+    //   this.setState((prevState) => ({
+      //     showQR: !prevState.showQR,
+      //   }));
+      // }
+      
+      handleClick(e) {
+        clearUser();
+      }
+      
+      async componentDidMount() {
+        const user = auth.currentUser;
+        var self = this;
+        // db.collection("users")
     //   .doc(user.uid)
     //   .onSnapshot(function (doc) {
     //     var data = doc.get("score");
@@ -53,8 +55,9 @@ class CompaniesPage extends React.Component {
     // } else {
     //   reader = <div></div>;
     // }
-    return (
-      <div>
+
+return (
+  <div>
         <h4>Rubrik</h4>
         <p>
           You empty-headed animal food trough water! I fart in your general

@@ -47,11 +47,6 @@ class Signup extends Component {
       .then((u) => {
         this.updateUser(auth.currentUser, this.state.name);
         createUser(auth.currentUser, auth.currentUser.uid, this.state.name);
-        auth.currentUser.sendEmailVerification().then(function() {
-          alert("En länk för att verifiera din e-postadress har skickats till den angivna e-postadressen. Du behöver klicka på den för att kunna vara med och tävla!")
-        }).catch(function(error) {
-          alert("Fel:" + error)
-        });
         return(
           <Redirect
           to={{
@@ -122,7 +117,7 @@ class Signup extends Component {
                   name="email"
                 />
                 <Form.Text className="text-muted">
-                  Vi kommer aldrig att dela din e-mail med andra
+                  Vinnarna kommer kontaktas per e-post, så var säker på att du skriver in rätt e-postadress.
                 </Form.Text>
               </Form.Group>
 
