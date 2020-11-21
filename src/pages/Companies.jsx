@@ -1,10 +1,11 @@
 import React from "react";
 import { getScore } from "../helpers/db";
 import Test from "../components/QRtest";
-
+import { auth } from "../services/firebase";
 import { clearUser } from "../helpers/db";
 import { db } from "../services/firebase";
 import CompanyContainer from "../components/companyContainer.jsx";
+import { Redirect } from "react-router-dom";
 
 import Button from "react-bootstrap/Button";
 
@@ -35,6 +36,7 @@ class CompaniesPage extends React.Component {
   }
 
   async componentDidMount() {
+    const user = auth.currentUser;
     var self = this;
     // db.collection("users")
     //   .doc(user.uid)
