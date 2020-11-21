@@ -2,6 +2,8 @@ import { db } from "../services/firebase";
 import firebase from "firebase/app";
 import Company from "./companyClass.js";
 
+var functions = firebase.functions();
+
 export async function getData(collection) {
   const data = await db.collection(collection).get();
   let result = [];
@@ -26,13 +28,23 @@ export async function getData(collection) {
   return result;
 }
 
-export function SubmitAnswer(answer, company, uid) {
-  var ref = db.collection("users").doc(uid);
-  console.log(company);
-  ref.update({
-    completedQuestions: firebase.firestore.FieldValue.arrayUnion(company),
-    answeredQuestionCompany: { company: answer },
-  });
+export function SubmitAnswer(company, answer, uid) {
+  var addMessage = firebase.functions().httpsCallable("RegisterAnswer");
+  addMessage({ companyID: company, answer: answer })
+    .then(function (result) {
+      // Read result of the Cloud Function.
+      var sanitizedMessage = result.data.text;
+      console.log(sanitizedMessage);
+      console.log(result.data.uid);
+      console.log(result.data.name);
+    })
+    .catch(function (error) {
+      // Getting the Error details.
+      var code = error.code;
+      var message = error.message;
+      var details = error.details;
+      // ...
+    });
 }
 
 //Skapar ett dokument i db/collection/users, input: användarobjekt

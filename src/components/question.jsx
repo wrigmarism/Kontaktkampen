@@ -24,8 +24,8 @@ class Question extends React.Component {
 
   submit = (e) => {
     SubmitAnswer(
-      this.state.selectedOption,
       this.props.company.ID,
+      this.state.selectedOption,
       this.props.uid
     );
     this.props.changeSubmited(2);

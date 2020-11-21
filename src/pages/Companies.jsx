@@ -65,8 +65,6 @@ class CompaniesPage extends React.Component {
         {/* <Button onClick={this.handleQRCklick}>Fota QR-kod</Button> */}
         {/* {reader} */}
         <CompanyContainer user={this.props.user} />
-        <p>Endast för utvecklingssyfte</p>
-        <Button onClick={this.handleClick}>Rensa användardata</Button>
       </div>
     );
   }
