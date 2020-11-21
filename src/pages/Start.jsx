@@ -49,8 +49,7 @@ class Start extends Component {
             <ul>
               {prizes}
               </ul>
-            <p><font size="1"><b>Kontaktkampen är del av <a href="https://kontaktdagarna.se" target="_blank">Kontaktdagarna</a></b><br />
-            Om du har några frågor som rör Kontaktkampen, kontakta Kontaktdagarnas <a href="mailto:christoffer.wrigmar@kontaktdagarna.se">IT-ansvarige</a>.</font></p>
+            <p><font size="1">Kontaktkampen är del av <a href="https://kontaktdagarna.se" target="_blank">Kontaktdagarna</a>. Om du har några frågor som rör applikationen eller tävlingen, kontakta Kontaktdagarnas <a href="mailto:christoffer.wrigmar@kontaktdagarna.se">IT-ansvarige</a>.</font></p>
           </div>
         </div>
       </div>
