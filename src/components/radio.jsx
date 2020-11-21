@@ -1,7 +1,6 @@
 import React from "react";
 
 import Row from "react-bootstrap/Row";
-import Image from "react-bootstrap/Image";
 
 class Radio extends React.Component {
   constructor(props) {
@@ -14,34 +13,34 @@ class Radio extends React.Component {
   render() {
     var data;
     if (this.props.completedQuestion != 1) {
-      var result;
-      if (this.props.completedQuestion == 3) {
-        result = (
-          <Row>
-            <p style={{ paddingTop: 10, paddingBottom: 0, float: "left" }}>
-              <Image
-                style={{ width: "20px", paddingLeft: 5 }}
-                //src={require("../img/checkmark.png")}
-                fluid
-              />
-              Rätt svar!
-            </p>
-          </Row>
-        );
-      } else if (this.props.completedQuestion == 2) {
-        result = (
-          <Row>
-            <p style={{ paddingTop: 10, paddingBottom: 0, float: "left" }}>
-              <Image
-                style={{ width: "20px", paddingLeft: 5 }}
-                //src={require("../img/x.png")}
-                fluid
-              />
-              Fel svar!
-            </p>
-          </Row>
-        );
-      }
+      // var result;
+      // if (this.props.completedQuestion === 3) {
+      //   result = (
+      //     <Row>
+      //       <p style={{ paddingTop: 10, paddingBottom: 0, float: "left" }}>
+      //         <Image
+      //           style={{ width: "20px", paddingLeft: 5 }}
+      //           //src={require("../img/checkmark.png")}
+      //           fluid
+      //         />
+      //         Rätt svar!
+      //       </p>
+      //     </Row>
+      //   );
+      // } else if (this.props.completedQuestion == 2) {
+      //   result = (
+      //     <Row>
+      //       <p style={{ paddingTop: 10, paddingBottom: 0, float: "left" }}>
+      //         <Image
+      //           style={{ width: "20px", paddingLeft: 5 }}
+      //           //src={require("../img/x.png")}
+      //           fluid
+      //         />
+      //         Fel svar!
+      //       </p>
+      //     </Row>
+      //   );
+      // }
       //Du svarade rätt du svarede fel med ikoner
       //Sätt inline if statements som kollar om det är det rätta svaret och ge den då en speciell still annars ge den defult
       data = <React.Fragment>{/* {result} */}</React.Fragment>;

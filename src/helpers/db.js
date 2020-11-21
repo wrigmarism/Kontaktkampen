@@ -1,5 +1,4 @@
-import { db } from "../services/firebase";
-import firebase from "firebase/app";
+import { db, functions } from "../services/firebase";
 import Company from "./companyClass.js";
 
 export async function getData(collection) {
@@ -26,8 +25,8 @@ export async function getData(collection) {
 }
 
 export function SubmitAnswer(company, answer) {
-  var addMessage = firebase.functions().httpsCallable("RegisterAnswer");
-  addMessage({ companyID: company, answer: answer })
+  var RegisterAnswer = functions.httpsCallable("RegisterAnswer");
+  RegisterAnswer({ companyID: company, answer: answer })
     .then(function (result) {
       // Read result of the Cloud Function.
       console.log(result.data.return);
@@ -149,7 +148,7 @@ export async function checkQRCode(code) {
         var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
         console.log("Hejsan det är jesus");
         ref.update({
-          unlockedQuestions: firebase.firestore.FieldValue.arrayUnion(code),
+          unlockedQuestions: db.FieldValue.arrayUnion(code),
         });
       } else {
         // doc.data() will be undefined in this case
@@ -167,7 +166,7 @@ export async function getUser(uid) {
   }
   try {
     const userDocument = await db.collection("users").doc(uid).get();
-    console.log(userDocument.exists);
+    //console.log(userDocument.exists);
     if (userDocument.exists) {
       return {
         uid,
@@ -184,8 +183,8 @@ export async function getUser(uid) {
 export function updateUser(question) {
   var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
   ref.update({
-    completedQuestions: firebase.firestore.FieldValue.arrayUnion(question),
-    score: firebase.firestore.FieldValue.increment(1),
+    completedQuestions: db.FieldValue.arrayUnion(question),
+    score: db.FieldValue.increment(1),
   });
 }
 
@@ -193,7 +192,7 @@ export function failedQuestions(question) {
   var ref = db.collection("users").doc("50luj5fMi93PBkK4s26N");
 
   ref.update({
-    failedQuestions: firebase.firestore.FieldValue.arrayUnion(question),
+    failedQuestions: db.FieldValue.arrayUnion(question),
   });
 }
 

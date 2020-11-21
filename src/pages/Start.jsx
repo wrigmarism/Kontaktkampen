@@ -25,24 +25,20 @@ class Start extends Component {
       body3: text.body3,
       prizes: text.Prizes,
     });
-    const user = this.context;
-    console.log(user);
   }
 
   render() {
     const prizes = [];
-    {
-      this.state.prizes.forEach((prize) => {
-        prizes.push(<li key={prize}>{prize}</li>);
-      });
-    }
+
+    this.state.prizes.forEach((prize) => {
+      prizes.push(<li key={prize}>{prize}</li>);
+    });
+
     return (
       <div className="main">
         <div className="container">
           <div className="box">
-            <p>
-              <h4>{this.state.header}</h4>
-            </p>
+            <h4>{this.state.header}</h4>
             <p>{this.state.body1}</p>
             <p>{this.state.body2}</p>
             <p>

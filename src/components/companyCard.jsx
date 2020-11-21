@@ -84,12 +84,10 @@ class CompanyCard extends React.Component {
       content = <Text company={this.props.company} />;
     } else {
       if (user != null) {
-        //var answerdOrNot = 1;
         if (
           user.completedQuestions.includes(this.props.company.ID) &&
           this.state.completedQuestion != "2"
         ) {
-          //answerdOrNot = 2;
           this.setState({ completedQuestion: "2" });
         }
         content = (

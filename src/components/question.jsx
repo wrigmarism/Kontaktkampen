@@ -1,5 +1,5 @@
 import React from "react";
-import { updateUser, failedQuestions, SubmitAnswer } from "../helpers/db";
+import { SubmitAnswer } from "../helpers/db";
 
 import SubmitButton from "./button";
 import Radio from "./radio";

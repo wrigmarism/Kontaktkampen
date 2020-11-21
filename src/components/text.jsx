@@ -29,8 +29,7 @@ class Text extends React.Component {
       <React.Fragment>
         <Row>
           <Card.Img
-            class="companyPic"
-            fluid
+            className="companyPic"
             variant="top"
             src={this.props.company.img}
           />

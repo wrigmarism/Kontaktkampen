@@ -1,5 +1,4 @@
 import React from "react";
-import { auth } from "../services/firebase";
 import { clearUser } from "../helpers/db";
 import CompanyContainer from "../components/companyContainer.jsx";
 
@@ -30,8 +29,8 @@ class CompaniesPage extends React.Component {
   }
 
   async componentDidMount() {
-    const user = auth.currentUser;
-    var self = this;
+    // const user = auth.currentUser;
+    // var self = this;
     // db.collection("users")
     //   .doc(user.uid)
     //   .onSnapshot(function (doc) {
@@ -50,7 +49,7 @@ class CompaniesPage extends React.Component {
     //   reader = <div></div>;
     // }
     return (
-      <div class="main">
+      <div className="main">
         <h4>Företagsfrågor</h4>
         <p>
           Du svarar genom att välja rätt alternativ och klicka på knappen

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { auth } from "../services/firebase";
-import firebase from "firebase";
+import { auth, fireB } from "../services/firebase";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
@@ -25,7 +24,7 @@ class Login extends Component {
 
   async handleSubmit(e) {
     e.preventDefault();
-    auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then((u) => {
+    auth.setPersistence(fireB.auth.Auth.Persistence.LOCAL).then((u) => {
       return auth
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .catch((error) => {
@@ -89,7 +88,9 @@ class Login extends Component {
               </Button>
             </Form>
             <br />
-            <a href="/resetPassword" onClick={this.redirectToReset}>Har du glömt ditt lösenord?</a>
+            <a href="/resetPassword" onClick={this.redirectToReset}>
+              Har du glömt ditt lösenord?
+            </a>
           </div>
         </div>
       </div>
@@ -99,8 +100,7 @@ class Login extends Component {
 
 export default Login;
 
-{
-  /* <form>
+/* <form>
         <label>
           E-postadress:
           <br />
@@ -127,4 +127,3 @@ export default Login;
           Logga in
         </button>
       </form> */
-}

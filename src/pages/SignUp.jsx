@@ -161,8 +161,7 @@ class Signup extends Component {
 
 export default Signup;
 
-{
-  /* <form>
+/* <form>
         <label>
           Namn:
           <br />
@@ -191,4 +190,3 @@ export default Signup;
           Registrera
         </button>
       </form> */
-}
