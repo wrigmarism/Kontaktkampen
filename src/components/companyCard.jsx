@@ -129,6 +129,9 @@ class CompanyCard extends React.Component {
               <Col style={{ paddingLeft: 0, float: "left" }}>
                 {this.props.company.name}
               </Col>
+              {/* <Col style={{ marginRight: 0, paddingRight: 0, float: "right" }}>
+                Besvarad
+              </Col> */}
               {/* <Col>
                 <div style={{ float: "right" }}>{icon}</div>
               </Col> */}

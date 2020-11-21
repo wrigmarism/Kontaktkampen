@@ -54,12 +54,12 @@ class CompaniesPage extends React.Component {
     //   reader = <div></div>;
     // }
     return (
-      <div>
-        <h4>Rubrik</h4>
+      <div class="main">
+        <h4>Företagsfrågor</h4>
         <p>
-          You empty-headed animal food trough water! I fart in your general
-          direction! Your mother was a hamster and your father smelt of
-          elderberries! Now leave before I am forced to taunt you a second time!
+          Du svarar genom att välja rätt alternativ och klicka på knappen
+          "välj". Facit kommer att komma upp efter att tävlingen är avslutade
+          och vinnarna kommer att meddelas på fredag.
         </p>
         {/* <p>Din poäng är: {this.state.points}</p> */}
         {/* <Button onClick={this.handleQRCklick}>Fota QR-kod</Button> */}
