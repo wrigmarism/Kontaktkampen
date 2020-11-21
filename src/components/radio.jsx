@@ -1,10 +1,7 @@
-import React, { Fragment } from "react";
+import React from "react";
 
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
-import Media from "react-bootstrap/Media";
 
 class Radio extends React.Component {
   constructor(props) {
@@ -24,7 +21,7 @@ class Radio extends React.Component {
             <p style={{ paddingTop: 10, paddingBottom: 0, float: "left" }}>
               <Image
                 style={{ width: "20px", paddingLeft: 5 }}
-                src={require("../img/checkmark.png")}
+                //src={require("../img/checkmark.png")}
                 fluid
               />
               Rätt svar!
@@ -37,7 +34,7 @@ class Radio extends React.Component {
             <p style={{ paddingTop: 10, paddingBottom: 0, float: "left" }}>
               <Image
                 style={{ width: "20px", paddingLeft: 5 }}
-                src={require("../img/x.png")}
+                //src={require("../img/x.png")}
                 fluid
               />
               Fel svar!

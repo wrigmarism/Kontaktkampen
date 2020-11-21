@@ -1,16 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { auth } from "./services/firebase";
-import Companies from "./pages/Companies.jsx";
-import Start from "./pages/Start.jsx";
-import Login from "./pages/Login.jsx";
 import Menu from "./pages/Menu.jsx";
 import Footer from "./pages/Footer.jsx";
-import Signup from "./pages/SignUp.jsx";
-import Signout from "./helpers/SignOut";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
 import "./styles/app.css";
 
 class App extends Component {

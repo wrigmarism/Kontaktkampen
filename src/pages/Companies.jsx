@@ -1,13 +1,7 @@
 import React from "react";
-import { getScore } from "../helpers/db";
-import Test from "../components/QRtest";
 import { auth } from "../services/firebase";
 import { clearUser } from "../helpers/db";
-import { db } from "../services/firebase";
 import CompanyContainer from "../components/companyContainer.jsx";
-import { Redirect } from "react-router-dom";
-
-import Button from "react-bootstrap/Button";
 
 // export async function Companies() {
 //   var data = ["hej", "då"];
@@ -60,8 +54,8 @@ class CompaniesPage extends React.Component {
         <h4>Företagsfrågor</h4>
         <p>
           Du svarar genom att välja rätt alternativ och klicka på knappen
-          "välj". Facit kommer att komma upp efter att tävlingen är avslutade
-          och vinnarna kommer att meddelas på fredag.
+          "välj". Facit kommer att komma upp efter att tävlingen är avslutad och
+          vinnarna kommer att meddelas på fredag.
         </p>
         {/* <p>Din poäng är: {this.state.points}</p> */}
         {/* <Button onClick={this.handleQRCklick}>Fota QR-kod</Button> */}

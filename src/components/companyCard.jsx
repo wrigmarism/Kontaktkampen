@@ -1,11 +1,5 @@
 import React from "react";
 
-import {
-  getFailedQuestions,
-  getCompletedQuestions,
-  getUnlockedQuestions,
-} from "../helpers/db";
-
 import { UserContext } from "../services/UserProvider.jsx";
 import Question from "./question";
 import Text from "./text";

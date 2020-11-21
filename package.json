@@ -15,7 +15,8 @@
     "react-google-login": "^5.1.23",
     "react-qr-reader": "^2.2.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.4"
+    "react-scripts": "^3.4.4",
+    "update": "^0.7.4"
   },
   "scripts": {
     "start": "react-scripts start",

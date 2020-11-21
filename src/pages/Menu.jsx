@@ -6,7 +6,6 @@ import Navbar from "react-bootstrap/Navbar";
 import Login from "./Login";
 import Start from "./Start";
 import Signup from "./SignUp";
-import Profile from "./Profile";
 import ResetPassword from "./resetPassword";
 import { auth } from "../services/firebase";
 import "../styles/Navbar.css";

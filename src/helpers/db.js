@@ -2,8 +2,6 @@ import { db } from "../services/firebase";
 import firebase from "firebase/app";
 import Company from "./companyClass.js";
 
-var functions = firebase.functions();
-
 export async function getData(collection) {
   const data = await db.collection(collection).get();
   let result = [];

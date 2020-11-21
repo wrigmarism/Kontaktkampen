@@ -1,7 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { getData } from "../helpers/db";
-import { getUser } from "../helpers/db";
 import CompanyCard from "./companyCard";
 import Spinner from "react-bootstrap/Spinner";
 
