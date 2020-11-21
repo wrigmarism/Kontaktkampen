@@ -90,20 +90,21 @@ class CompanyCard extends React.Component {
       content = <Text company={this.props.company} />;
     } else {
       if (user != null) {
-        var answerdOrNot = 1;
-        if (user.completedQuestions.includes(this.props.company.ID)) {
-          answerdOrNot = 2;
+        //var answerdOrNot = 1;
+        if (
+          user.completedQuestions.includes(this.props.company.ID) &&
+          this.state.completedQuestion != "2"
+        ) {
+          //answerdOrNot = 2;
+          this.setState({ completedQuestion: "2" });
         }
         content = (
           <Question
             company={this.props.company}
             changeSubmited={this.changeSubmited}
-            completedQuestion={answerdOrNot}
-            uid={user.uid}
+            completedQuestion={this.state.completedQuestion}
           />
         );
-      } else {
-        content = "";
       }
     }
     // var icon = <div></div>;

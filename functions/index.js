@@ -8,10 +8,17 @@ admin.initializeApp();
 exports.RegisterAnswer = functions.https.onCall(async (data, context) => {
   // Message text passed from the client.
   const companyID = data.companyID;
-  const answer = data.answer;
+  var answer = data.answer;
   // Authentication / user information is automatically added to the request.
   const uid = context.auth.uid;
-  const name = context.auth.token.name || null;
+
+  if (!context.auth) {
+    // Throwing an HttpsError so that the client gets the error details.
+    throw new functions.https.HttpsError(
+      "failed-precondition",
+      "The function must be called " + "while authenticated."
+    );
+  }
 
   var company = await admin
     .firestore()
@@ -19,9 +26,17 @@ exports.RegisterAnswer = functions.https.onCall(async (data, context) => {
     .doc(companyID)
     .get();
 
+  var user = await admin.firestore().collection("users").doc(uid).get();
+  var companyList = user.get("completedQuestions");
+
+  alreadyAnswered = false;
+  if (companyList.includes(companyID)) {
+    alreadyAnswered = true;
+  }
+
   var correctAnswer = company.get("correctAnswer");
   var score = 0;
-  if (correctAnswer === answer) {
+  if (correctAnswer == answer && alreadyAnswered == false) {
     score = 1;
   }
 
@@ -31,11 +46,22 @@ exports.RegisterAnswer = functions.https.onCall(async (data, context) => {
     score: admin.firestore.FieldValue.increment(score),
   });
 
-  // if (!context.auth) {
-  //     // Throwing an HttpsError so that the client gets the error details.
-  //     throw new functions.https.HttpsError('failed-precondition', 'The function must be called ' +
-  //         'while authenticated.');
-  //   }
+  functions.logger.log(
+    "UserID:",
+    uid,
+    "User Answer:",
+    answer,
+    "CompanyID:",
+    companyID,
+    "Correct Answer:",
+    correctAnswer,
+    "CompanyID:",
+    companyID,
+    "Score:",
+    score,
+    "AlreadyAnswered:",
+    alreadyAnswered
+  );
   // Send back a message that we've succesfully written the message
-  return { uid: correctAnswer };
+  return { return: "Answer registered in database" };
 });

@@ -20,7 +20,6 @@ export async function getData(collection) {
       doc.get("answer1"),
       doc.get("answer2"),
       doc.get("answer3"),
-      doc.get("correctAnswer"),
       doc.get("img")
     );
     result.push(company);
@@ -28,22 +27,19 @@ export async function getData(collection) {
   return result;
 }
 
-export function SubmitAnswer(company, answer, uid) {
+export function SubmitAnswer(company, answer) {
   var addMessage = firebase.functions().httpsCallable("RegisterAnswer");
   addMessage({ companyID: company, answer: answer })
     .then(function (result) {
       // Read result of the Cloud Function.
-      var sanitizedMessage = result.data.text;
-      console.log(sanitizedMessage);
-      console.log(result.data.uid);
-      console.log(result.data.name);
+      console.log(result.data.return);
     })
     .catch(function (error) {
       // Getting the Error details.
       var code = error.code;
       var message = error.message;
       var details = error.details;
-      // ...
+      console.log(code + " " + message + " " + details);
     });
 }
 

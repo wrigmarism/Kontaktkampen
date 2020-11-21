@@ -1,18 +1,7 @@
-//En klass för att spara datan från databasen. Vet inte om det här behövs i javaScript dock. 
+//En klass för att spara datan från databasen. Vet inte om det här behövs i javaScript dock.
 
 class Company {
-  constructor(
-    ID,
-    name,
-    title,
-    text,
-    question,
-    answer1,
-    answer2,
-    answer3,
-    correctAnswer,
-    img
-  ) {
+  constructor(ID, name, title, text, question, answer1, answer2, answer3, img) {
     this.ID = ID;
     this.name = name;
     this.title = title;
@@ -21,7 +10,6 @@ class Company {
     this.answer1 = answer1;
     this.answer2 = answer2;
     this.answer3 = answer3;
-    this.correctAnswer = correctAnswer;
     this.img = img;
   }
 }

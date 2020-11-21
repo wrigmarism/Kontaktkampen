@@ -63,7 +63,7 @@ class Question extends React.Component {
         </React.Fragment>
       );
     } else {
-      question = <p>Denna fråga är redan besvarad!</p>;
+      question = <p>Tack för ditt svar!</p>;
     }
     return (
       <React.Fragment>
