@@ -2,6 +2,7 @@ import React from "react";
 import { clearUser } from "../helpers/db";
 import CompanyContainer from "../components/companyContainer.jsx";
 import { Example } from "../components/modal.jsx";
+import { Redirect } from "react-router-dom";
 
 // export async function Companies() {
 //   var data = ["hej", "då"];
@@ -16,6 +17,7 @@ class CompaniesPage extends React.Component {
       allAnswered: false,
       allAnsweredModal: false,
       // showQR: false,
+      redirect: false,
     };
     this.handleClick = this.handleClick.bind(this);
     this.AllQuestionsAnswered = this.AllQuestionsAnswered.bind(this);
@@ -64,7 +66,14 @@ class CompaniesPage extends React.Component {
     //   });
   }
 
+  async componentDidUpdate() {
+    if (this.props.user == null && this.state.redirect == false) {
+      this.setState({ redirect: true });
+    }
+  }
+
   render() {
+    var redirect = this.state.redirect ? <Redirect push to="/" /> : null;
     // let reader;
     // if (this.state.showQR == true) {
     //   reader = <Test />;
@@ -83,6 +92,7 @@ class CompaniesPage extends React.Component {
     return (
       <div className="main">
         {modal}
+        {redirect}
         <h4>Företagsfrågor</h4>
         <p>
           Du svarar genom att välja rätt alternativ och klicka på knappen
