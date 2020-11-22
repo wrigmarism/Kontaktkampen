@@ -23,19 +23,8 @@ class Question extends React.Component {
   };
 
   submit = (e) => {
-    SubmitAnswer(
-      this.props.company.ID,
-      this.state.selectedOption,
-      this.props.uid
-    );
+    SubmitAnswer(this.props.company.ID, this.state.selectedOption);
     this.props.changeSubmited(2);
-    // if (this.state.selectedOption == this.props.company.correctAnswer) {
-    //   updateUser(this.props.company.ID);
-    //   this.props.changeSubmited(3);
-    // } else {
-    //   failedQuestions(this.props.company.ID);
-    //   this.props.changeSubmited(2);
-    // }
   };
 
   async componentDidMount() {}

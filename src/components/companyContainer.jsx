@@ -1,7 +1,6 @@
 import React from "react";
-import { getData } from "../helpers/db";
+import { getData, getUserData } from "../helpers/db";
 import CompanyCard from "./companyCard";
-import Spinner from "react-bootstrap/Spinner";
 
 import Accordion from "react-bootstrap/Accordion";
 /* Denna komponents syfte är att ta in datan från databasen och sedan för varje objekt i databasen skapa 
@@ -12,27 +11,66 @@ class CompanyContainer extends React.Component {
 
     this.state = {
       companies: [],
+      answeredCompanies: [],
+      numberOfAnsweredQuestions: 0,
+      numberOfTotalQuestions: 0,
+      databaseCheck: true,
     };
+    this.CheckNumberOfAnsweredQuestions = this.CheckNumberOfAnsweredQuestions.bind(
+      this
+    );
+  }
+
+  async CheckNumberOfAnsweredQuestions() {
+    if (
+      this.state.numberOfAnsweredQuestions + 1 ==
+      this.state.numberOfTotalQuestions
+    ) {
+      this.props.AllQuestionsAnswered();
+      this.props.AllQuestionsAnsweredModal();
+    }
+    this.setState((state) => ({
+      numberOfAnsweredQuestions: state.numberOfAnsweredQuestions + 1,
+    }));
   }
 
   async componentDidMount() {
     // I obiwan kenobied dis shiet *dabs
     getData("company").then((result) => {
-      this.setState({ companies: result });
+      this.setState({
+        companies: result,
+        numberOfTotalQuestions: result.length,
+      });
     });
+  }
+
+  async componentDidUpdate() {
+    if (this.props.user != null && this.state.databaseCheck) {
+      getUserData(this.props.user.uid).then((result) => {
+        this.setState({
+          numberOfAnsweredQuestions: result.length,
+          answeredCompanies: result,
+        });
+        if (result.length == this.state.numberOfTotalQuestions) {
+          this.props.AllQuestionsAnswered();
+        }
+      });
+      this.setState({ databaseCheck: false });
+    }
   }
 
   render() {
     var content;
     if (this.state.companies == []) {
-      content = <Spinner animation="border" />;
+      content = "";
     } else {
       const companies = this.state.companies.map((company, index) => {
         return (
           <CompanyCard
             key={company.ID}
             company={company}
-            user={this.props.user}
+            answeredCompanies={this.state.answeredCompanies}
+            CheckNumberOfAnsweredQuestions={this.CheckNumberOfAnsweredQuestions}
           />
         );
       });

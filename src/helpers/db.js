@@ -159,7 +159,7 @@ export async function checkQRCode(code) {
       console.log("Error getting document:", error);
     });
 }
-
+//Ta bort hannes?
 export async function getUser(uid) {
   if (!uid) {
     return null;
@@ -175,6 +175,19 @@ export async function getUser(uid) {
     } else {
       return false;
     }
+  } catch (error) {
+    console.error("Error fetching user", error);
+  }
+}
+
+export async function getUserData(uid) {
+  if (!uid) {
+    return null;
+  }
+  try {
+    var user = await db.collection("users").doc(uid).get();
+    var data = user.get("completedQuestions");
+    return data;
   } catch (error) {
     console.error("Error fetching user", error);
   }

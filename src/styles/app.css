@@ -12,7 +12,8 @@ body {
 }
 
 .companyPic {
-  height: auto;
-  width: 15em;
+  max-height: auto;
+  max-width: 15em;
   padding-top: 2%;
+  padding-bottom: 2%;
 }

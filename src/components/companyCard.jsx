@@ -25,6 +25,7 @@ class CompanyCard extends React.Component {
       activeButtonQuestion: false,
       //1=inte svarat på. 2=svarat men fel. 3=svarat rätt
       completedQuestion: "1",
+      dataLoad: true,
     };
     this.handleClickText = this.handleClickText.bind(this);
     this.handleClickQuestion = this.handleClickQuestion.bind(this);
@@ -35,6 +36,7 @@ class CompanyCard extends React.Component {
     this.setState((state) => ({
       completedQuestion: e,
     }));
+    this.props.CheckNumberOfAnsweredQuestions();
   }
 
   handleClickText() {
@@ -66,38 +68,28 @@ class CompanyCard extends React.Component {
     // });
   }
 
-  // <h1>{this.props.company.name}</h1>
-  render() {
-    // if (user.completedQuestions.includes(this.props.company.ID)) {
-    //   this.setState({ completedQuestion: "3" });
-    // }
-    // getFailedQuestions(user.uid).then((result) => {
-    //   if (result.includes(this.props.company.ID)) {
-    //     this.setState({ completedQuestion: "2" });
-    //   }
-    // });
+  async componentDidUpdate() {
+    if (this.props.answeredCompanies != null && this.state.dataLoad) {
+      if (this.props.answeredCompanies.includes(this.props.company.ID)) {
+        this.setState({ completedQuestion: "2" });
+      }
+      this.setState({ dataLoad: false });
+    }
+  }
 
-    let user = this.context;
+  render() {
     const text = this.state.text;
     let content;
     if (text) {
       content = <Text company={this.props.company} />;
     } else {
-      if (user != null) {
-        if (
-          user.completedQuestions.includes(this.props.company.ID) &&
-          this.state.completedQuestion != "2"
-        ) {
-          this.setState({ completedQuestion: "2" });
-        }
-        content = (
-          <Question
-            company={this.props.company}
-            changeSubmited={this.changeSubmited}
-            completedQuestion={this.state.completedQuestion}
-          />
-        );
-      }
+      content = (
+        <Question
+          company={this.props.company}
+          changeSubmited={this.changeSubmited}
+          completedQuestion={this.state.completedQuestion}
+        />
+      );
     }
     // var icon = <div></div>;
     // if (this.state.completedQuestion == "3") {

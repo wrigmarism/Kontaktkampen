@@ -80,7 +80,7 @@ class Login extends Component {
                 />
               </Form.Group>
               <Button
-                type="button"
+                type="submit"
                 onClick={this.handleSubmit}
                 variant="primary"
               >
