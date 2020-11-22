@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getStaticText } from "../helpers/db";
 import "../styles/styles.css";
+import CookieDisclaimer from 'react-cookie-disclaimer';
 //import {getView} from "../components/view";
 
 class Start extends Component {
@@ -34,9 +35,11 @@ class Start extends Component {
     });
 
     return (
+      
       <div className="main">
         <div className="container">
           <div className="box">
+          
             <h4>{this.state.header}</h4>
             <p>{this.state.body1}</p>
             <p>{this.state.body2}</p>
