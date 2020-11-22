@@ -23,7 +23,6 @@ class Login extends Component {
   }
 
   async handleSubmit(e) {
-    console.log(this.state.email);
     e.preventDefault();
     auth.setPersistence(fireB.auth.Auth.Persistence.LOCAL).then((u) => {
       return auth
