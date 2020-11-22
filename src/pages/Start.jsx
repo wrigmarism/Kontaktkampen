@@ -4,7 +4,6 @@ import "../styles/styles.css";
 //import {getView} from "../components/view";
 
 class Start extends Component {
-  //static contextType = UserContext;
   constructor(props) {
     super(props);
     this.state = {

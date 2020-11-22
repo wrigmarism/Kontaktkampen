@@ -1,6 +1,5 @@
 import React from "react";
 
-import { UserContext } from "../services/UserProvider.jsx";
 import Question from "./question";
 import Text from "./text";
 
@@ -14,7 +13,6 @@ import Row from "react-bootstrap/Row";
 //Detta är det enskilda företagets container som ska displaya all information.
 //Denna ska enligt min tanke få datan från föräldrarklassen "companyContainer" som den sedan visar ut.
 class CompanyCard extends React.Component {
-  static contextType = UserContext;
   constructor(props) {
     super(props);
 
