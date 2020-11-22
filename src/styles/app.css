@@ -17,3 +17,8 @@ body {
   padding-top: 2%;
   padding-bottom: 2%;
 }
+
+/* Style error message for login here */
+.errorMessage {
+  color: #d8000c;
+}

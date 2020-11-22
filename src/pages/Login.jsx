@@ -10,6 +10,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      error: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,11 +26,12 @@ class Login extends Component {
   async handleSubmit(e) {
     console.log(this.state.email);
     e.preventDefault();
+
     auth.setPersistence(fireB.auth.Auth.Persistence.LOCAL).then((u) => {
       return auth
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .catch((error) => {
-          alert(error);
+          this.setState({ error: error });
         });
     });
   }
@@ -45,6 +47,7 @@ class Login extends Component {
   }
 
   render() {
+    var error = this.state.error.message;
     if (auth.currentUser !== null) {
       return (
         <Redirect
@@ -80,6 +83,7 @@ class Login extends Component {
                   name="password"
                 />
               </Form.Group>
+              <div className="errorMessage"> {error} </div>
               <Button
                 type="submit"
                 onClick={this.handleSubmit}

@@ -20,6 +20,7 @@ class Signup extends Component {
       password: "",
       showPopup: false,
       showError: false,
+      error: "",
     };
   }
 
@@ -56,7 +57,7 @@ class Signup extends Component {
         );
       })
       .catch((error) => {
-        alert(error);
+        this.setState({ error: error });
       });
   }
 
@@ -73,6 +74,7 @@ class Signup extends Component {
   }
 
   render() {
+    var errorText = this.state.error.message;
     const { error } = this.props;
     const { showError } = this.state;
     if (auth.currentUser !== null) {
@@ -144,6 +146,7 @@ class Signup extends Component {
                   toggleError={this.toggleError}
                 />
               )}
+              <div className="errorMessage"> {errorText} </div>
               <Button
                 type="submit"
                 onClick={this.handleSignup}
