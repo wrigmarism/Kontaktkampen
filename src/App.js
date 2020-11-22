@@ -41,19 +41,17 @@ class App extends Component {
     return (
       <div className="App">
         <Menu user={this.state.user} />
-        <div className="Cookies">
-    <CookieDisclaimer
-      background='#f8f9fa' 
-      bottomPosition={true}
-      closeIconSize={30}
-      closeIconPositionTop={false}
-      color='#272727'
-      cookiePolicyName=''
-      cookiePolicyLink='' 
-      cookiePolicyText=''
-      text='Den här sidan använder cookies till nödvändiga funktioner. Genom att fortsätta använda Kontaktkampen så godkänner du vårt bruk av cookies.'
-      />
-  </div>
+          <CookieDisclaimer
+            background='#4d8bce' 
+            bottomPosition={true}
+            closeIconSize={30}
+            closeIconPositionTop={false}
+            color='#f8f9fa'
+            cookiePolicyName=''
+            cookiePolicyLink='' 
+            cookiePolicyText=''
+            text='Den här sidan använder cookies till nödvändiga funktioner. Genom att fortsätta använda Kontaktkampen så godkänner du vårt bruk av cookies.'
+          />
       <Footer></Footer>
       </div>
     );
