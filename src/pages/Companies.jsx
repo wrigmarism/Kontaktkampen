@@ -14,7 +14,7 @@ class CompaniesPage extends React.Component {
     this.state = {
       points: 0,
       allAnswered: false,
-      allAnsweredModal: true,
+      allAnsweredModal: false,
       // showQR: false,
     };
     this.handleClick = this.handleClick.bind(this);
