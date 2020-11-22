@@ -37,7 +37,7 @@ class Text extends React.Component {
         {/* <Row>
           <h5> {this.props.company.title}</h5>
         </Row> */}
-        <Row>
+        <Row className="companyText">
           <p>{this.props.company.text}</p>
         </Row>
       </React.Fragment>

@@ -15,13 +15,13 @@ class SubmitButton extends React.Component {
     if (this.props.completedQuestion == 1) {
       data = (
         <Button onClick={this.props.submit} variant="primary">
-          Välj
+          Svara
         </Button>
       );
     } else {
       data = (
         <Button onClick={this.props.submit} variant="primary" disabled>
-          Välj
+          Svara
         </Button>
       );
     }

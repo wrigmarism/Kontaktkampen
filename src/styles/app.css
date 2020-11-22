@@ -12,8 +12,15 @@ body {
 }
 
 .companyPic {
-  max-height: auto;
-  max-width: 15em;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+
+  height: auto;
+  width: 15em;
   padding-top: 2%;
   padding-bottom: 2%;
 }
@@ -21,4 +28,34 @@ body {
 /* Style error message for login here */
 .errorMessage {
   color: #d8000c;
+}
+
+.besvaradText {
+  color: #7f7e82;
+  font-style: italic;
+  text-align: right;
+}
+
+.allAnsweredText {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 480px) {
+  .comapnyTextDiv {
+    padding: 0.5%;
+  }
+  .companyText {
+    padding-left: 0.5%;
+  }
+}
+@media screen and (max-width: 880px) {
+  .comapnyTextDiv {
+    padding: 3%;
+  }
+  .companyText {
+    padding-left: 2%;
+  }
+}
+.modal-footer {
+  display: inline !important;
 }

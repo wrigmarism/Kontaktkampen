@@ -1,4 +1,5 @@
 import React from "react";
+import { analytics } from "../services/firebase";
 import { clearUser } from "../helpers/db";
 import CompanyContainer from "../components/companyContainer.jsx";
 import { Example } from "../components/modal.jsx";
@@ -45,6 +46,9 @@ class CompaniesPage extends React.Component {
     this.setState({
       allAnsweredModal: true,
     });
+    analytics.logEvent(
+      "User submitted  all questions: " + this.props.user.name
+    );
   }
 
   handleClose() {
@@ -83,7 +87,7 @@ class CompaniesPage extends React.Component {
     var allAnsweredText;
     if (this.state.allAnswered) {
       allAnsweredText =
-        "Dina svar är nu sparade, tack för att du deltog i Kontaktkampen";
+        "Dina svar är nu sparade, tack för att du deltog i Kontaktkampen!";
     }
     var modal;
     if (this.state.allAnsweredModal) {
@@ -93,13 +97,17 @@ class CompaniesPage extends React.Component {
       <div className="main">
         {modal}
         {redirect}
-        <h4>Företagsfrågor</h4>
-        <p>
-          Du svarar genom att välja rätt alternativ och klicka på knappen
-          "välj". Facit kommer att komma upp efter att tävlingen är avslutad och
-          vinnarna kommer att meddelas på fredag.
-        </p>
-        <div>{allAnsweredText}</div>
+        <div className="comapnyTextDiv">
+          <h4>Företagsfrågor</h4>
+          <p>
+            Här under hittar du ett urval av de företag som deltar på
+            kontaktdagarna i år. Din uppgift är att läsa informationen om
+            företagen och sedan svara på den tillhörande frågan. Svara på alla
+            frågor för att ha en chans att vinna något av våra fina priser.
+            Lycka till!
+          </p>
+          <div className="allAnsweredText">{allAnsweredText}</div>
+        </div>
         {/* <p>Din poäng är: {this.state.points}</p> */}
         {/* <Button onClick={this.handleQRCklick}>Fota QR-kod</Button> */}
         {/* {reader} */}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { auth } from "../services/firebase";
+import { auth, analytics } from "../services/firebase";
 import { createUser } from "../helpers/db";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -48,6 +48,7 @@ class Signup extends Component {
       .then((u) => {
         this.updateUser(auth.currentUser, this.state.name);
         createUser(auth.currentUser, auth.currentUser.uid, this.state.name);
+        analytics.logEvent("New user signed up: " + this.state.name);
         return (
           <Redirect
             to={{

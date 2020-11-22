@@ -10,7 +10,8 @@ class Question extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: "1",
+      selectedOption: "",
+      error: "",
     };
     this.submit = this.submit.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
@@ -23,13 +24,18 @@ class Question extends React.Component {
   };
 
   submit = (e) => {
-    SubmitAnswer(this.props.company.ID, this.state.selectedOption);
-    this.props.changeSubmited(2);
+    if (this.state.selectedOption != "") {
+      SubmitAnswer(this.props.company.ID, this.state.selectedOption);
+      this.props.changeSubmited(2);
+    } else {
+      this.setState({ error: "Du måste välja ett alternativ!" });
+    }
   };
 
   async componentDidMount() {}
 
   render() {
+    var error = this.state.error;
     var question = "";
     if (this.props.completedQuestion == 1) {
       question = (
@@ -43,6 +49,7 @@ class Question extends React.Component {
                 completedQuestion={this.props.completedQuestion}
               />
             </div>
+            <div className="errorMessage">{error}</div>
             <SubmitButton
               submit={this.submit}
               completedQuestion={this.props.completedQuestion}

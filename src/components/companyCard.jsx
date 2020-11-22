@@ -89,6 +89,20 @@ class CompanyCard extends React.Component {
         />
       );
     }
+
+    var answeredText;
+    if (this.state.completedQuestion != 1) {
+      answeredText = (
+        <Col
+          className="besvaradText"
+          style={{ marginRight: 0, paddingRight: 0, float: "right" }}
+        >
+          Besvarad
+        </Col>
+      );
+    } else {
+      answeredText = "";
+    }
     // var icon = <div></div>;
     // if (this.state.completedQuestion == "3") {
     //   icon = (
@@ -111,9 +125,7 @@ class CompanyCard extends React.Component {
               <Col style={{ paddingLeft: 0, float: "left" }}>
                 {this.props.company.name}
               </Col>
-              {/* <Col style={{ marginRight: 0, paddingRight: 0, float: "right" }}>
-                Besvarad
-              </Col> */}
+              {answeredText}
               {/* <Col>
                 <div style={{ float: "right" }}>{icon}</div>
               </Col> */}
