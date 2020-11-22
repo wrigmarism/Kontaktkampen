@@ -28,11 +28,13 @@ class Text extends React.Component {
     return (
       <React.Fragment>
         <Row>
-          <Card.Img
-            className="companyPic"
-            variant="top"
-            src={this.props.company.img}
-          />
+          <div className="imageContainer">
+            <Card.Img
+              className="companyPic"
+              variant="top"
+              src={this.props.company.img}
+            />
+          </div>
         </Row>
         {/* <Row>
           <h5> {this.props.company.title}</h5>

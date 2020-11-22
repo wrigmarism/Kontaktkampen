@@ -11,20 +11,6 @@ body {
   max-width: 45em;
 }
 
-.companyPic {
-  -webkit-text-size-adjust: none;
-  -moz-text-size-adjust: none;
-  -ms-text-size-adjust: none;
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-
-  height: auto;
-  width: 15em;
-  padding-top: 2%;
-  padding-bottom: 2%;
-}
-
 /* Style error message for login here */
 .errorMessage {
   color: #d8000c;
@@ -40,12 +26,18 @@ body {
   font-weight: bold;
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 880px) {
   .comapnyTextDiv {
     padding: 0.5%;
   }
   .companyText {
     padding-left: 0.5%;
+  }
+  .imageContainer {
+    max-height: auto;
+    max-width: 15%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
   }
 }
 @media screen and (max-width: 880px) {
@@ -54,6 +46,12 @@ body {
   }
   .companyText {
     padding-left: 2%;
+  }
+  .imageContainer {
+    max-height: auto;
+    max-width: 50%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
   }
 }
 .modal-footer {

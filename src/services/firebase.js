@@ -16,6 +16,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
 export const analytics = firebase.analytics();
 export const auth = firebase.auth();
